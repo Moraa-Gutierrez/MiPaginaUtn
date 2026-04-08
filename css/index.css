@@ -1,4 +1,8 @@
-
+*
+{
+  margin: 0;
+  padding: 0;
+}
 body,header
 {
     background-color: #464d5d;
