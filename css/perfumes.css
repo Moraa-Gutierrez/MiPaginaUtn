@@ -3,7 +3,6 @@ body,header
 {
     background-color: #464d5d;
     margin: 0;
-    box-shadow: #2d3852 0px 4px 4px;
 }
 main 
 {
@@ -39,10 +38,81 @@ hr
     font-size: 30px;
 }
 
-p {
+li,
+.pejemplos {
     font-family: "Arimo", sans-serif;
     color: #ffffff;
+    text-align: left;
+    font-weight: 400;
+    font-size: 15px;
+}
+.pejemplos
+{
+    font-family: "Arimo", sans-serif;
+    color: #ffffff;
+    text-align: left;
+    font-weight: 400;
+    font-size: 15px;
+    margin-left: 20px;
+}
+.contenedor-consejos {
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* Espacio entre tarjetas */
+    padding: 20px;
+    overflow-x: auto;
+    /* Scroll horizontal si no caben */
+    scroll-behavior: smooth;
+}
+
+.consejos {
+
+    background-color: #464d5d;
+    border-left: 4px solid #d4af37;
+    /* Un dorado elegante */
+    max-width: 20vw;
+    /* Evita que se estiren demasiado en pantallas enormes */
+    min-height: 20vh;
+    /* Altura mínima para que el texto respire */
+    flex: 1 1 200px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.consejos:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.step-number {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #d4af37;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.contenedor-consejos::-webkit-scrollbar {
+    height: 8px;
+}
+
+.perfume-sequence::-webkit-scrollbar-thumb {
+    background: #c5a059;
+    border-radius: 10px;
+}
+
+h4 {
+    font-family: 'Great Vibes', cursive;
+    color: #b79067;
     text-align: center;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 30px;
+}
+.productos
+{
+    background-color: white;
 }

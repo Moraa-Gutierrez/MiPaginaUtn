@@ -52,14 +52,15 @@ p {
 }
 .hero {
   position: relative;
-  height: 100vh; /* Ocupa toda la pantalla */
+  width: 100vw;
+  height: 80vh; 
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: white;
   /* Imagen de fondo */
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('../img/imagen2.png') no-repeat center center/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/imagen2.png') no-repeat center center/cover;
   background-attachment: fixed; 
   overflow: hidden;
 }
