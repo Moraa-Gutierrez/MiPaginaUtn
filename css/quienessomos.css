@@ -1,41 +1,46 @@
-.menu
+body,header
 {
-   background-color: #464d5d;
-    padding: 10px 0;
-    box-shadow: #2e384e 0px 4px 4px;
+    background-color: #464d5d;
+    margin: 0;
 }
-.menu ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-align: center;
-}
-.menu ul li {
-  border-radius: 10px;
-  display: inline-flex;
-  margin-right: 20px;
-}
-.menu ul li:last-child {
-  margin-right: 0;
-}
-.menu ul li a {
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  display: block;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-.menu ul li a:hover {
-  transform: translateY(3px); 
-  background-color: #b79067; 
-  border-radius: 10px;
-  box-shadow: #37425c 2px 2px 2px;
-}
-.logo
+main 
 {
-    width: 50px;
-    height: 50px;
-justify-content: right; 
-    vertical-align: middle; /* alineado con el menu */
-    border-radius: 50%;
+    background-color: white;
+}
+h1,
+h2 {
+    font-family: 'Great Vibes', cursive;
+    color: #b79067;
+    text-align: center;
+    font-weight: 400;
+    font-size: 70px;
+}
+h3
+{
+ font-family: 'Great Vibes', cursive;
+    color: #b79067;
+    text-align: center;
+    font-weight: 400;
+    font-size: 50px;
+}
+hr
+{
+    border: 0.5px solid #d1cecb;
+    width: 90%;
+    margin: 20px auto;
+}
+.subtitulo {
+    font-family: "Arimo", sans-serif;
+    color: #b79067;
+    text-align: center;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+p {
+    font-family: "Arimo", sans-serif;
+    color: #ffffff;
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
 }
