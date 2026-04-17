@@ -1,5 +1,6 @@
 .menu
 {
+  box-sizing: border-box;
    background-color: #464d5d;
     padding: 10px 0;
     box-shadow: #2e384e 0px 4px 4px;
@@ -22,7 +23,11 @@
   color: white;
   text-decoration: none;
   padding: 10px 20px;
-  display: block;
+  display: flex;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 .menu ul li a:hover {

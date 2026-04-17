@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="../css/menu.css">
     <title>Perfumes</title>
 </head>
+
 <body>
     <header>
         <h1>M&L</h1>
@@ -21,53 +23,54 @@
         <hr>
     </header>
     <nav class="menu">
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="#">Perfumes</a></li>
-                <li><a href="accesorios.html">Accesorios</a></li>
-                <li><a href="velas.html">Velas</a></li>
-                <li><a href="cuidadosdiarios.html">Cuidados Diarios-Natura</a></li>
-                <li><a href="quienessomos.html">Quienes Somos</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="../html/login-registro/registrarse.html">Registrarse</a></li>
-                <li><a href="../html/login-registro/iniciarsesion.html">Iniciar Sesión</a></li>
-    <img src="../img/imagen1.svg" alt="Logo de M&L" class="logo">
-            </ul>
-                
-        </nav>
-        <h2>Perfumes</h2>
-        <section class="productos">
-             <div class="contenedor-producto">
-                <article class="tarjeta-producto">
-                    <div class="imagen-producto">
-                        <img src="../img/cadena canasta cielo2.jpg" alt="Aros Elegantes">
-                        <span class="categoria">Collares</span>
-                    </div>
-                    <div class="producto-info">
-                        <h4>Auriculares Pro Wireless</h4>
-                        <p>Cancelación de ruido activa y batería de 40 horas. Ideales para viajes largos.</p>                        <div class="producto-footer">
-                            <span class="precio">$129.99</span>
-                            <button class="agregar-carrito" data-id="101">Agregar</button>
-                        </div>
-                </article>
-            </div>
-            <div class="contenedor-producto">
-                <article class="tarjeta-producto">
-                    <div class="imagen-producto">
-                        <img src="../img/cadena canasta cielo2.jpg" alt="Aros Elegantes">
-                        <span class="categoria">Collares</span>
-                    </div>
-                    <div class="producto-info">
-                        <h4>Auriculares Pro Wireless</h4>
-                        <p>Cancelación de ruido activa y batería de 40 horas. Ideales para viajes largos.</p>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#">Perfumes</a></li>
+            <li><a href="accesorios.html">Accesorios</a></li>
+            <li><a href="velas.html">Velas</a></li>
+            <li><a href="cuidadosdiarios.html">Cuidados Diarios-Natura</a></li>
+            <li><a href="quienessomos.html">Quienes Somos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="../html/login-registro/registrarse.html">Registrarse</a></li>
+            <li><a href="../html/login-registro/iniciarsesion.html">Iniciar Sesión</a></li>
+            <img src="../img/imagen1.svg" alt="Logo de M&L" class="logo">
+        </ul>
 
-                        <div class="producto-footer">
-                            <span class="precio">$129.99</span>
-                            <button class="agregar-carrito" data-id="101">Agregar</button>
-                        </div>
-                </article>
-            </div>
-        <h3>Consejos para elegir tu fragancia propia</h3>
+    </nav>
+    <main>
+        <h2>Perfumes</h2>
+        <section class="cards">
+            <article class="tarjeta">
+                <div class="tarjeta-imagen">
+                    <img src="../img/cadena canasta cielo2.jpg" alt="Producto 1">
+                </div>
+                <div class="tarjeta-cuerpo">
+                    <h3 class="titulo">Producto Uno</h3>
+                    <p class="descripcion">Breve descripción del producto que explica sus beneficios.</p>
+                    <p class="precio">$2.500</p>
+                    <div class="botones">
+                        <a href="#" class="btn btn-secundario">Detalle</a>
+                        <button class="btn btn-primario">Añadir al Carrito</button>
+                    </div>
+                </div>
+            </article>
+            <article class="tarjeta">
+                <div class="tarjeta-imagen">
+                    <img src="../img/cadena canasta cielo2.jpg" alt="Producto 2">
+                </div>
+                <div class="tarjeta-cuerpo">
+                    <h3 class="titulo">Producto Dos</h3>
+                    <p class="descripcion">Otra descripción para mostrar cómo se alinean solas.</p>
+                    <p class="precio">$3.800</p>
+                    <div class="botones">
+                        <a href="#" class="btn btn-secundario">Detalle</a>
+                        <button class="btn btn-primario">Añadir al Carrito</button>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <section class="productos">
+            <h3>Consejos para elegir tu fragancia propia</h3>
             <div class="contenedor-consejos">
                 <div class="consejos">
                     <span class="step-number">01</span>
@@ -116,5 +119,7 @@
                 </div>
             </div>
         </section>
+    </main>
 </body>
+
 </html>

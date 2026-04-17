@@ -46,3 +46,128 @@ p {
     font-weight: 400;
     font-size: 20px;
 }
+/* --- Estilos Generales --- */
+.contenedor {
+    width: 100%;
+    min-height: 100px; /* Cambiado a min-height para que crezca con el contenido */
+    text-align: center;
+    padding: 20px;
+}
+
+.contenedor p {
+    margin: 20px 0;
+    font-size: 1.5em; /* Un poco más pequeño para que no rompa el diseño */
+}
+
+.btn {
+    display: inline-block; /* Para que el padding funcione correctamente */
+    padding: 12px 30px;
+    border-radius: 50px;
+    background-color: #b79067; /* Color dorado/café de tu marca */
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #967554;
+    transform: scale(1.05); /* Efecto de crecimiento suave */
+}
+
+/* --- Estructura del Modal --- */
+.contenedor-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); /* Invisible al inicio */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1; 
+    opacity: 0;
+    pointer-events: none; /* Evita clics accidentales cuando está oculto */
+    transition: all 0.4s ease;
+}
+
+/* Estado Activo del Modal */
+.contenedor-modal.mostrar {
+    z-index: 1000; /* Siempre arriba */
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.7); 
+    pointer-events: auto;
+}
+
+/* Caja del Formulario */
+.contenedor-modal .modal {
+    width: 90%;
+    max-width: 450px; /* En lugar de margen de 500px, usamos max-width */
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Formulario dentro del Modal --- */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #555;
+}
+
+form input, 
+form textarea {
+    margin: 8px 0 15px 0;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box; /* Importante para que no se salga de la caja */
+}
+
+form input[type="submit"] {
+    background-color: #b79067;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+form input[type="submit"]:hover {
+    background-color: #464d5d; /* Color oscuro como el de tu tarjeta */
+}
+/* Posicionamiento de la X */
+.cerrar-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1; /* Para que no ocupe espacio extra */
+    transition: color 0.3s;
+}
+
+.cerrar-modal:hover {
+    color: #464d5d; /* Color oscuro al pasar el mouse */
+}
+
+/* Aseguramos que el modal tenga posición relativa para que la X se ubique bien */
+.contenedor-modal .modal {
+    position: relative; /* Indispensable para la X absoluta */
+}
