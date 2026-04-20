@@ -187,3 +187,81 @@ li,
 .btn-secundario:hover {
   background: #eaff0085;
 }
+.pejemplos {
+    font-family: "Arimo", sans-serif;
+    color: #ffffff;
+    text-align: left;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.contenedor-consejos {
+
+ display: flex;
+  flex-wrap: wrap; 
+  gap: 24px;       
+  padding: 30px;
+  justify-content: center; /* Centra las tarjetas si sobran */
+}
+
+.consejos {
+ background-color: #464d5d; 
+  border-left: 5px solid #d4af37; 
+  /* ---  UNIFORMIDAD --- */
+  flex: 1 0 320px;   /* Crece uniformemente, base de 320px */
+  display: flex;     /* Flexbox interno para alinear contenido */
+  flex-direction: column; /* Contenido en columna */
+  /* ---  ALTURA IGUAL --- */
+  height: auto;      /* Se adapta, pero Flexbox igualará alturas en la fila */
+  
+  border-radius: 12px;
+  padding: 20px;
+  color: #fff;       
+  border: 1px solid rgba(212, 175, 55, 0.3); 
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease-in-out; 
+  position: relative;
+  overflow: hidden; /* Para el efecto de brillo */
+}
+.consejos:hover {
+    transform: translateY(-8px); 
+  border: 1px solid #d4af37; 
+  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2); 
+}
+.consejos ul
+{
+  list-style: none; 
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Empuja el contenido para rellenar la altura */
+}
+.consejos li::before {
+    content: "•"; 
+    color: #d4af37;
+    position: absolute;
+    left: 0;
+}
+.step-number {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #d4af37;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.contenedor-consejos::-webkit-scrollbar {
+    height: 8px;
+}
+
+.perfume-sequence::-webkit-scrollbar-thumb {
+    background: #c5a059;
+    border-radius: 10px;
+}
+
+h4 {
+    font-family: 'Great Vibes', cursive;
+    color: #b79067;
+    text-align: center;
+    font-weight: 400;
+    font-size: 30px;
+}

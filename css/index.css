@@ -28,6 +28,7 @@ h3
     text-align: center;
     font-weight: 400;
     font-size: 50px;
+    
 }
 hr
 {
@@ -228,6 +229,10 @@ p {
   color: #b79067;
   margin-bottom: 20px;
 }
+.carousel-item img {
+  max-height: 80vh;
+  object-fit: cover;
+}
 table {
   width: 100%;
   border-collapse: collapse;
@@ -264,22 +269,4 @@ tr a {
   text-decoration: none;
   color: #ebff00;
   display: block;
-}
-.footer-nav
-{
-   background-color: #464d5d;
-    color: #b79067;
-     font-family: "Arimo", sans-serif;
-     font-size: 14px;
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: auto;
-}
-.footer-items
-{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 1rem;
 }

@@ -50,48 +50,53 @@ li,
     font-weight: 400;
     font-size: 15px;
 }
-.pejemplos
-{
-    font-family: "Arimo", sans-serif;
-    color: #ffffff;
-    text-align: left;
-    font-weight: 400;
-    font-size: 15px;
-    margin-left: 20px;
-}
+
 .contenedor-consejos {
 
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    /* Espacio entre tarjetas */
-    padding: 20px;
-    overflow-x: auto;
-    /* Scroll horizontal si no caben */
-    scroll-behavior: smooth;
+ display: flex;
+  flex-wrap: wrap; 
+  gap: 24px;       
+  padding: 30px;
+  justify-content: center; /* Centra las tarjetas si sobran */
 }
 
 .consejos {
-
-    background-color: #464d5d;
-    border-left: 4px solid #d4af37;
-    /* Un dorado elegante */
-    max-width: 20vw;
-    /* Evita que se estiren demasiado en pantallas enormes */
-    min-height: 20vh;
-    /* Altura mínima para que el texto respire */
-    flex: 1 1 200px;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+ background-color: #464d5d; 
+  border-left: 5px solid #d4af37; 
+  /* ---  UNIFORMIDAD --- */
+  flex: 1 0 320px;   /* Crece uniformemente, base de 320px */
+  display: flex;     /* Flexbox interno para alinear contenido */
+  flex-direction: column; /* Contenido en columna */
+  /* ---  ALTURA IGUAL --- */
+  height: auto;      /* Se adapta, pero Flexbox igualará alturas en la fila */
+  
+  border-radius: 12px;
+  padding: 20px;
+  color: #fff;       
+  border: 1px solid rgba(212, 175, 55, 0.3); 
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease-in-out; 
+  position: relative;
+  overflow: hidden; /* Para el efecto de brillo */
 }
-
 .consejos:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px); 
+  border: 1px solid #d4af37; 
+  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2); 
 }
-
+.consejos ul
+{
+  list-style: none; 
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Empuja el contenido para rellenar la altura */
+}
+.consejos li::before {
+    content: "•"; 
+    color: #d4af37;
+    position: absolute;
+    left: 0;
+}
 .step-number {
     font-size: 0.8rem;
     font-weight: bold;

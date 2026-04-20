@@ -15,6 +15,7 @@
   border-radius: 10px;
   display: inline-flex;
   margin-right: 20px;
+  font-family: "Arimo", sans-serif;
 }
 .menu ul li:last-child {
   margin-right: 0;
