@@ -20,6 +20,13 @@ h2 {
     text-align: center;
     font-weight: 400;
     font-size: 70px;
+    
+}
+.h1hero
+{
+   font-weight: 500;
+    font-size: 5em;
+  color: #ebff00;
 }
 h3
 {
@@ -28,7 +35,7 @@ h3
     text-align: center;
     font-weight: 400;
     font-size: 50px;
-    
+    margin-top: 3rem;
 }
 hr
 {
@@ -79,22 +86,6 @@ p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
   opacity: 0.9;
-}
-
-/* Estilo de los botones */
-.btn-primary {
-  background-color: #007bff;
-  color: white;
-  padding: 12px 30px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: transform 0.3s ease;
-  display: inline-block;
-}
-
-.btn-primary:hover {
-  transform: scale(1.05); /* Efecto de pulso al pasar el mouse */
 }
 
 /* Definición de la animación */
@@ -244,6 +235,7 @@ th {
   background-color: #464d5d; 
   color: white;
   padding: 15px;
+  text-align: center;
 }
 
 /* celdas */
