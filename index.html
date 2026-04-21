@@ -13,9 +13,9 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/menu.css">
-    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/footer.css">
     <title>Bienvenidos a M&L</title>
 </head>
 
@@ -26,16 +26,17 @@
         <hr>
         <nav class="menu">
             <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="perfumes.html">Perfumes</a></li>
-                <li><a href="accesorios.html">Accesorios</a></li>
-                <li><a href="velas.html">Velas</a></li>
-                <li><a href="cuidadosdiarios.html">Cuidados Diarios-Natura</a></li>
-                <li><a href="quienessomos.html">Quienes Somos</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="../html/login-registro/registrarse.html">Registrarse</a></li>
-                <li><a href="../html/login-registro/iniciarsesion.html">Iniciar Sesión</a></li>
-                <img src="../img/imagen1.svg" alt="Logo de M&L" class="logo">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="html/perfumes.html">Perfumes</a></li>
+                <li><a href="html/accesorios.html">Accesorios</a></li>
+                <li><a href="html/velas.html">Velas</a></li>
+                <li><a href="html/cuidadosdiarios.html">Cuidados Diarios</a></li>
+                <li><a href="html/quienessomos.html">Quienes Somos</a></li>
+                <li><a href="html/contacto.html">Contacto</a></li>
+                <li><a href="html/login-registro/registrarse.html">Registrarse</a></li>
+                <li><a href="html/login-registro/iniciarsesion.html">Iniciar Sesión</a></li>
+                <img src="img/imagen1.svg" alt="Logo de M&L" class="logo">
+
             </ul>
 
         </nav>
@@ -46,12 +47,19 @@
                 <div class="hero-container">
                     <div class="hero-content" ,class="hero-logo">
                         <h1 class="h1hero">Tu mejor versión, todos los días</h1>
-                        <p>Descubre nuestra exclusiva colección de perfumes, bijouterie, velas aromáticas y productos de cuidado personal que realzarán tu belleza natural.</p>
+                        <p>Descubre nuestra exclusiva colección de perfumes, bijouterie, velas aromáticas y productos de
+                            cuidado personal que realzarán tu belleza natural.</p>
                         <div class="hero-cta">
-                            <a href="#contacto" class="boton boton-1">Comenzar ahora</a>
-                            <a href="#saber-mas" class="boton boton-2">Saber más</a>
+                            <a href="html/login-registro/registrarse.html" class="boton boton-1">Comenzar ahora</a>
+                            <a href="#" class="boton boton-2">Saber más</a>
+                            <button class="btn-music" onclick="toggleMusic()">🎧</button>
+
+                            <div id="music-player" class="music-hidden">
+                             <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7ctZtN5IsXZmw7sl6ggmie?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                            </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </section>
         </section>
@@ -99,19 +107,19 @@
                 <div class="carousel-inner">
 
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="../img/neco1.jpg" alt="First slide">
+                        <img class="d-block w-100" src="img/neco1.jpg" alt="First slide">
                     </div>
 
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="../img/neco2.jpg" alt="Second slide">
+                        <img class="d-block w-100" src="img/neco2.jpg" alt="Second slide">
                     </div>
 
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="../img/neco3.jpg" alt="Third slide">
+                        <img class="d-block w-100" src="img/neco3.jpg" alt="Third slide">
                     </div>
 
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="../img/neco4.jpg" alt="Fourth slide">
+                        <img class="d-block w-100" src="img/neco4.jpg" alt="Fourth slide">
                     </div>
 
                 </div>
@@ -191,5 +199,5 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
+<script src="/js/boton-musica.js"></script>
 </html>

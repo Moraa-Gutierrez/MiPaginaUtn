@@ -62,4 +62,3 @@ btnOcultarModal.addEventListener('click', (e) => {
     // Cerramos el modal
     cerrar();
 });
-
