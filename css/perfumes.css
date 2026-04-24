@@ -36,7 +36,13 @@ hr {
   width: 90%;
   margin: 20px auto;
 }
-
+p {
+    font-family: "Arimo", sans-serif;
+    color: #ffffff;
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+}
 .subtitulo {
   font-family: "Arimo", sans-serif;
   color: #b79067;

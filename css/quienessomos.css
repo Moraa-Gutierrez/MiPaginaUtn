@@ -26,7 +26,13 @@ h3 {
   font-weight: 400;
   font-size: 50px;
 }
-
+p {
+    font-family: "Arimo", sans-serif;
+    color: #ffffff;
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+}
 hr {
   border: 0.5px solid #d1cecb;
   width: 90%;
