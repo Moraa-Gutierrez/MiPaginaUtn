@@ -6,7 +6,6 @@ body,
 header {
   background-color: #464d5d;
   margin: 0;
-  box-shadow: #2d3852 0px 4px 4px;
 }
 
 main {
@@ -15,6 +14,7 @@ main {
 
 h1,
 h2 {
+  margin-top: 40px;
   font-family: 'Great Vibes', cursive;
   color: #b79067;
   text-align: center;
@@ -170,22 +170,24 @@ li,
 
 .btn-primario {
   background: #b79067;
-  color: #ebff00;
-  font-family: 'Great Vibes'
+  color: #464d5d;
+  font-family: 'Great Vibes';
+    font-size: 1.5em;
 }
 
 .btn-primario:hover {
-  background: #b7906785;
+  background: #c1a78e;
 }
 
 .btn-secundario {
-  background: #ebff00;
+  background: #b79067;
   color: #464d5d;
-  font-family: 'Great Vibes'
+  font-family: 'Great Vibes';
+   font-size: 1.5em;
 }
 
 .btn-secundario:hover {
-  background: #eaff0085;
+  background: #c1a78e;
 }
 .pejemplos {
     font-family: "Arimo", sans-serif;

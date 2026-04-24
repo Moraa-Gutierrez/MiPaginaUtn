@@ -1,117 +1,137 @@
-body,header
-{
-    background-color: #464d5d;
-    margin: 0;
+body,
+header {
+  background-color: #464d5d;
+  margin: 0;
 }
-main 
-{
-    background-color: white;
+
+main {
+  background-color: white;
 }
 
 h1,
 h2 {
-    font-family: 'Great Vibes', cursive;
-    color: #b79067;
-    text-align: center;
-    font-weight: 400;
-    font-size: 70px;
+  margin-top: 0;
+  padding-top: 40px;
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 70px;
 }
-h3
-{
- font-family: 'Great Vibes', cursive;
-    color: #b79067;
-    text-align: center;
-    font-weight: 400;
-    font-size: 50px;
+
+h3 {
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
 }
-hr
-{
-    border: 0.5px solid #d1cecb;
-    width: 90%;
-    margin: 20px auto;
+
+hr {
+  border: 0.5px solid #d1cecb;
+  width: 90%;
+  margin: 20px auto;
 }
+
 .subtitulo {
-    font-family: "Arimo", sans-serif;
-    color: #b79067;
-    text-align: center;
-    font-weight: 400;
-    font-size: 30px;
+  font-family: "Arimo", sans-serif;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
 }
 
 .parent {
-display: grid;
-grid-template-columns: repeat(7, 1fr);
-grid-template-rows: repeat(9, 1fr);
-grid-column-gap: 0px;
-grid-row-gap: 3px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 3px;
 }
+
 .presentacion {
-    position: relative;
-    overflow: hidden;
-    background: radial-gradient(circle at 50% 50%, #4a5263 0%, #464d5d 100%);
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, #4a5263 0%, #464d5d 100%);
 }
 
 /* Un brillo que cruza el logo o el fondo */
 .presentacion::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -60%;
-    width: 20%;
-    height: 200%;
-    background: rgba(212, 175, 55, 0.1);
-    transform: rotate(30deg);
-    transition: all 1s;
-    animation: sweep 6s infinite;
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  background: rgba(212, 175, 55, 0.1);
+  transform: rotate(30deg);
+  transition: all 1s;
+  animation: sweep 6s infinite;
 }
 
 @keyframes sweep {
-    0% { left: -60%; opacity: 0; }
-    50% { opacity: 0.5; }
-    100% { left: 120%; opacity: 0; }
+  0% {
+    left: -60%;
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
 }
+
 .ppresentacion {
   font-family: "Arimo", sans-serif;
   color: #b79067;
-align-items: center;
+  align-items: center;
   text-align: center;
   font-weight: 400;
   font-size: 1.5em;
 }
+
 .presentacion.logo-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px 0;
 }
+
 img {
-    width: 100%;
-    height: 200px;
+  width: 100%;
+  height: 200px;
   object-fit: contain;
 }
-.section-valores{
-    max-width: 1200px;
-    margin: 3rem auto;
-    text-align: center;
+
+.section-valores {
+  max-width: 1200px;
+  margin: 3rem auto;
+  text-align: center;
 }
 
 .contenedor-valores {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
 }
+
 .tarjeta-valores {
-    background-color:#464d5d;
-    padding: 2rem;
-    border-radius: 8px;
-    flex: 1;
-    min-width: 300px;
-    box-shadow: 5px 5px 5px #eaff00;
-    color: white;
+  background-color: #464d5d;
+  padding: 2rem;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 300px;
+  box-shadow: 5px 5px 5px #b79067;
+  color: white;
 }
-.container{
+
+.container {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -129,7 +149,7 @@ img {
   white-space: nowrap;
   overflow: hidden;
   width: 170px;
-  animation: type 2s steps(40,end) forwards;
+  animation: type 2s steps(40, end) forwards;
 }
 
 .container h1:nth-child(2) {
@@ -138,12 +158,12 @@ img {
   margin: 0 auto auto auto;
   background: linear-gradient(to right, #464d5d, #eaff00, #b79067);
   font-weight: 800;
-  font-size: 2em;  
+  font-size: 2em;
   width: 430px;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   overflow: hidden;
-  animation: shring-animation 2.2s steps(40,end) 2s forwards, blink .5s step-end infinite alternate;
+  animation: shring-animation 2.2s steps(40, end) 2s forwards, blink .5s step-end infinite alternate;
 }
 
 @keyframes shring-animation {
@@ -152,16 +172,19 @@ img {
     opacity: 0;
     width: 0;
   }
+
   1% {
     background-position: 0 0;
     opacity: 1;
     border-right: 1px solid orange;
   }
+
   50% {
     background-position: 150px 0;
     opacity: 1;
     border-right: 1px solid orange;
   }
+
   100% {
     background-position: 400px 0;
     opacity: 1;
@@ -173,10 +196,13 @@ img {
   0% {
     width: 0;
   }
-  1%, 99%{
+
+  1%,
+  99% {
     border-right: 1px solid orange;
   }
-  100%{
+
+  100% {
     border-right: none;
   }
 }
@@ -186,14 +212,58 @@ img {
     border-color: transparent;
   }
 }
-.div1 { grid-area: 3 / 1 / 6 / 3; background-color: #b79067;}
-.div2 { grid-area: 1 / 3 / 3 / 6;  background-color: #b79067;}
-.div3 { grid-area: 1 / 1 / 3 / 3; background-color: #b79067; }
-.div4 { grid-area: 1 / 6 / 3 / 8; background-color: #b79067; }
-.div5 { grid-area: 3 / 3 / 6 / 6; background-color: #b79067; }
-.div6 { grid-area: 3 / 6 / 6 / 8; background-color: #b79067; }
-.div7 { grid-area: 6 / 1 / 8 / 8; background-color: #b79067; }
-.div8 { grid-area: 6 / 1 / 10 / 3; background-color: #b79067; }
-.div9 { grid-area: 8 / 1 / 10 / 3; background-color: #b79067; }
-.div10 { grid-area: 8 / 3 / 10 / 5; background-color: #b79067; }
-.div11 { grid-area: 8 / 5 / 10 / 8; background-color: #b79067; }
+
+.div1 {
+  grid-area: 3 / 1 / 6 / 3;
+  background-color: #b79067;
+}
+
+.div2 {
+  grid-area: 1 / 3 / 3 / 6;
+  background-color: #b79067;
+}
+
+.div3 {
+  grid-area: 1 / 1 / 3 / 3;
+  background-color: #b79067;
+}
+
+.div4 {
+  grid-area: 1 / 6 / 3 / 8;
+  background-color: #b79067;
+}
+
+.div5 {
+  grid-area: 3 / 3 / 6 / 6;
+  background-color: #b79067;
+}
+
+.div6 {
+  grid-area: 3 / 6 / 6 / 8;
+  background-color: #b79067;
+}
+
+.div7 {
+  grid-area: 6 / 1 / 8 / 8;
+  background-color: #b79067;
+}
+
+.div8 {
+  grid-area: 6 / 1 / 10 / 3;
+  background-color: #b79067;
+}
+
+.div9 {
+  grid-area: 8 / 1 / 10 / 3;
+  background-color: #b79067;
+}
+
+.div10 {
+  grid-area: 8 / 3 / 10 / 5;
+  background-color: #b79067;
+}
+
+.div11 {
+  grid-area: 8 / 5 / 10 / 8;
+  background-color: #b79067;
+}

@@ -10,6 +10,7 @@ main
 }
 h1,
 h2 {
+    margin-top: 40px;
     font-family: 'Great Vibes', cursive;
     color: #b79067;
     text-align: center;
@@ -96,7 +97,7 @@ p {
 {
     width: 100%;
     padding: 12px;
-    background-color: #ebff00; /* Verde oscuro similar al de la imagen */
+    background-color: #b79067; /* Verde oscuro similar al de la imagen */
     color: #464d5d;
     border-radius: 8px;
     cursor: pointer;
@@ -107,27 +108,11 @@ p {
     width: 100%;
     padding: 12px;
     background-color: #464d5d; /* Verde oscuro similar al de la imagen */
-    color: #ebff00;
+    color: #b79067;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
     margin-top: 10px;
-}
-.footer-form
-{
-font-family: 'Great Vibes', cursive;
-    color: #b79067;
-    text-align: center;
-    font-weight: 400;
-    font-size: 30px;
-}
-.afooter
-{
-    padding: 10px;
-    color: #b79067;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 30px;
 }
 .image-section {
     background-image: url('../../img/Tarjeta de presentación psicóloga floral beige.png');

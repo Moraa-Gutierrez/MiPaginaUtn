@@ -1,66 +1,71 @@
-*
-{
+* {
   margin: 0;
   padding: 0;
 }
-body,header
-{
-    background-color: #464d5d;
-    margin: 0;
-    box-shadow: #2d3852 0px 4px 4px;
+
+body,
+header {
+  background-color: #464d5d;
+  margin: 0;
 }
-main 
-{
-    background-color: white;
+
+main {
+  background-color: white;
 }
+
 h1,
 h2 {
-    font-family: 'Great Vibes', cursive;
-    color: #b79067;
-    text-align: center;
-    font-weight: 400;
-    font-size: 70px;
-    
+  margin-top: 0;
+  padding-top: 40px;
+  padding-top: 40px;
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 70px;
+
 }
-.h1hero
-{
-   font-weight: 500;
-    font-size: 5em;
-  color: #ebff00;
+
+.h1hero {
+  font-weight: 500;
+  font-size: 5em;
+  color: #b79067;
 }
-h3
-{
- font-family: 'Great Vibes', cursive;
-    color: #b79067;
-    text-align: center;
-    font-weight: 400;
-    font-size: 50px;
-    margin-top: 3rem;
+
+h3 {
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
+  margin-top: 3rem;
 }
-hr
-{
-    border: 0.5px solid #d1cecb;
-    width: 90%;
-    margin: 20px auto;
+
+hr {
+  border: 0.5px solid #d1cecb;
+  width: 90%;
+  margin: 20px auto;
 }
+
 .subtitulo {
-    font-family: "Arimo", sans-serif;
-    color: #b79067;
-    text-align: center;
-    font-weight: 400;
-    font-size: 30px;
+  font-family: "Arimo", sans-serif;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
 }
 
 p {
-    font-family: "Arimo", sans-serif;
-    color: #ffffff;
-    text-align: center;
-    font-weight: 400;
-    font-size: 20px;
+  font-family: "Arimo", sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
 }
+
 .hero {
   position: relative;
-  height: 80vh; 
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,7 +73,7 @@ p {
   color: white;
   /* Imagen de fondo */
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/imagen2.png') no-repeat center center/cover;
-  background-attachment: fixed; 
+  background-attachment: fixed;
   overflow: hidden;
 }
 
@@ -77,6 +82,7 @@ p {
   /* Aplicamos la animación */
   animation: fadeInUp 1.2s ease-out forwards;
 }
+
 h1 {
   font-size: 3.5rem;
   margin-bottom: 1rem;
@@ -92,29 +98,36 @@ p {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px); /* Empieza un poco más abajo */
+    transform: translateY(30px);
+    /* Empieza un poco más abajo */
   }
+
   to {
     opacity: 1;
-    transform: translateY(0); /* Sube a su posición original */
+    transform: translateY(0);
+    /* Sube a su posición original */
   }
 }
 
 .contenedor-botones {
   display: flex;
-  gap: 20px; /* espacio entre botones */
-    justify-content: center; /* centra los botones horizontalmente */
+  gap: 20px;
+  /* espacio entre botones */
+  justify-content: center;
+  /* centra los botones horizontalmente */
 }
-.presentacion
-{
+
+.presentacion {
   margin: 0;
   padding: 0;
   background-color: #464d5d;
   position: relative;
 }
+
 .boton {
   text-decoration: none;
-  padding: 15px 30px;/*hace el botón más grande*/
+  padding: 15px 30px;
+  /*hace el botón más grande*/
   border-radius: 12px;
   font-family: "Arimo", sans-serif;
   font-size: 18px;
@@ -128,38 +141,40 @@ p {
 }
 
 .boton-1:hover {
-  background-color: #a07d55;
+  background-color: #c1a78e;
 }
 
 /* Botón blanco con borde verde */
 .boton-2 {
-  background-color:#ebff00;
-  color:  #464d5d;
-  border: 2px solid #ebff00;
+  background-color: #b79067;
+  color: white;
+  border: 2px solid;
 }
 
 .boton-2:hover {
-  background-color: #d4ff00;
+  background-color: #c1a78e;
 }
+
 .boton-3 {
-  background-color: #464d5d;
-  color: #b79067;
-  border: 2px solid #f8ffa8;
+  background-color: #b79067;
+  color: white;
+  border: 2px solid #464d5d;
 }
+
 .boton-3:hover {
-  background-color: #464d5d;
-  color: #ebff00;
+  background-color: #c1a78e;
+  
 }
-.virtudes
-{
-   display: flex;
+
+.virtudes {
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 50px;
   gap: 40px;
 }
-.tarjeta-virtud
-{
+
+.tarjeta-virtud {
   color: white;
   background-color: #f8ffa8;
   padding: 40px;
@@ -168,6 +183,7 @@ p {
   position: relative;
   z-index: 1;
 }
+
 .tarjeta-virtud::before {
   content: "";
   position: absolute;
@@ -179,6 +195,7 @@ p {
   border-radius: 15px;
   z-index: -1;
 }
+
 .tarjeta-virtud ul {
   list-style: none;
   padding: 0;
@@ -194,21 +211,22 @@ p {
   content: "✓";
   position: absolute;
   left: 0;
-  color: #ebff00;
+  color: #b79067;
 }
-.pvirtud
-{
- font-family: "Arimo", sans-serif;
-    color: #464d5d;
-    text-align:left;
-    font-weight: 400;
-    font-size: 20px;
+
+.pvirtud {
+  font-family: "Arimo", sans-serif;
+  color: #464d5d;
+  text-align: left;
+  font-weight: 400;
+  font-size: 20px;
 }
 
 .mapa-contenedor {
   text-align: center;
   margin: 50px 0;
-  font-family:"Arimo", sans-serif; /* tu tipografía */
+  font-family: "Arimo", sans-serif;
+  /* tu tipografía */
 }
 
 .mapa-contenedor h2 {
@@ -220,19 +238,22 @@ p {
   color: #b79067;
   margin-bottom: 20px;
 }
+
 .carousel-item img {
   max-height: 80vh;
   object-fit: cover;
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
-  font-family: Arial; /* tu tipografía */
+  font-family: Arial;
+  /* tu tipografía */
 }
 
 /* encabezado */
 th {
-  background-color: #464d5d; 
+  background-color: #464d5d;
   color: white;
   padding: 15px;
   text-align: center;
@@ -240,7 +261,7 @@ th {
 
 /* celdas */
 td {
-    color: #b79067;
+  color: #b79067;
   padding: 15px;
   text-align: center;
   border-bottom: 1px solid #ddd;
@@ -262,11 +283,14 @@ tr a {
   color: #ebff00;
   display: block;
 }
+
 .btn-music {
-  position: absolute; /* se posiciona dentro del hero */
+  position: absolute;
+  /* se posiciona dentro del hero */
   bottom: 20px;
   right: 20px;
-  background: rgba(123, 92, 255, 0.8); /* violeta suave */
+  background: rgba(123, 92, 255, 0.8);
+  /* violeta suave */
   color: white;
   border: none;
   padding: 10px 12px;
@@ -296,7 +320,8 @@ tr a {
 
 #music-player iframe {
   width: 100%;
-  height: 152px; /* más alto para que se vea completo */
+  height: 152px;
+  /* más alto para que se vea completo */
   border-radius: 12px;
 }
 
@@ -305,6 +330,7 @@ tr a {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

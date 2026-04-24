@@ -1,130 +1,144 @@
+* {
+  box-sizing: border-box;
+}
 
-*
-{
-box-sizing: border-box;
+body,
+header {
+  background-color: #464d5d;
+  margin: 0;
 }
-body,header
-{
-    background-color: #464d5d;
-    margin: 0;
+
+main {
+  background-color: white;
 }
-main 
-{
-    background-color: white;
-}
+
 h1,
 h2 {
-    font-family: 'Great Vibes', cursive;
-    color: #b79067;
-    text-align: center;
-    font-weight: 400;
-    font-size: 70px;
+  margin-top: 0;
+  padding-top: 40px;
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 70px;
 }
-h3
-{
- font-family: 'Great Vibes', cursive;
-    color: #b79067;
-    text-align: center;
-    font-weight: 400;
-    font-size: 50px;
+
+h3 {
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
 }
-hr
-{
-    border: 0.5px solid #d1cecb;
-    width: 90%;
-    margin: 20px auto;
+
+hr {
+  border: 0.5px solid #d1cecb;
+  width: 90%;
+  margin: 20px auto;
 }
+
 .subtitulo {
-    font-family: "Arimo", sans-serif;
-    color: #b79067;
-    text-align: center;
-    font-weight: 400;
-    font-size: 30px;
+  font-family: "Arimo", sans-serif;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
 }
 
 li,
 .pejemplos {
-    font-family: "Arimo", sans-serif;
-    color: #ffffff;
-    text-align: left;
-    font-weight: 400;
-    font-size: 15px;
+  font-family: "Arimo", sans-serif;
+  color: #ffffff;
+  text-align: left;
+  font-weight: 400;
+  font-size: 15px;
 }
 
 .contenedor-consejos {
 
- display: flex;
-  flex-wrap: wrap; 
-  gap: 24px;       
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
   padding: 30px;
-  justify-content: center; /* Centra las tarjetas si sobran */
+  justify-content: center;
+  /* Centra las tarjetas si sobran */
 }
 
 .consejos {
- background-color: #464d5d; 
-  border-left: 5px solid #d4af37; 
+  background-color: #464d5d;
+  border-left: 5px solid #d4af37;
   /* ---  UNIFORMIDAD --- */
-  flex: 1 0 320px;   /* Crece uniformemente, base de 320px */
-  display: flex;     /* Flexbox interno para alinear contenido */
-  flex-direction: column; /* Contenido en columna */
+  flex: 1 0 320px;
+  /* Crece uniformemente, base de 320px */
+  display: flex;
+  /* Flexbox interno para alinear contenido */
+  flex-direction: column;
+  /* Contenido en columna */
   /* ---  ALTURA IGUAL --- */
-  height: auto;      /* Se adapta, pero Flexbox igualará alturas en la fila */
-  
+  height: auto;
+  /* Se adapta, pero Flexbox igualará alturas en la fila */
+
   border-radius: 12px;
   padding: 20px;
-  color: #fff;       
-  border: 1px solid rgba(212, 175, 55, 0.3); 
+  color: #fff;
+  border: 1px solid rgba(212, 175, 55, 0.3);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s ease-in-out; 
+  transition: all 0.4s ease-in-out;
   position: relative;
-  overflow: hidden; /* Para el efecto de brillo */
+  overflow: hidden;
+  /* Para el efecto de brillo */
 }
+
 .consejos:hover {
-    transform: translateY(-8px); 
-  border: 1px solid #d4af37; 
-  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2); 
+  transform: translateY(-8px);
+  border: 1px solid #d4af37;
+  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
 }
-.consejos ul
-{
-  list-style: none; 
-    padding: 0;
-    margin: 0;
-    flex-grow: 1; /* Empuja el contenido para rellenar la altura */
+
+.consejos ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  /* Empuja el contenido para rellenar la altura */
 }
+
 .consejos li::before {
-    content: "•"; 
-    color: #d4af37;
-    position: absolute;
-    left: 0;
+  content: "•";
+  color: #d4af37;
+  position: absolute;
+  left: 0;
 }
+
 .step-number {
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #d4af37;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #d4af37;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .contenedor-consejos::-webkit-scrollbar {
-    height: 8px;
+  height: 8px;
 }
 
 .perfume-sequence::-webkit-scrollbar-thumb {
-    background: #c5a059;
-    border-radius: 10px;
+  background: #c5a059;
+  border-radius: 10px;
 }
 
 h4 {
-    font-family: 'Great Vibes', cursive;
-    color: #b79067;
-    text-align: center;
-    font-weight: 400;
-    font-size: 30px;
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
 }
-.productos
-{
-    background-color: white;
+
+.productos {
+  background-color: white;
 }
+
 /* El contenedor principal */
 .cards {
   display: grid;
@@ -226,20 +240,22 @@ h4 {
 
 .btn-primario {
   background: #b79067;
-  color: #ebff00;
-  font-family: 'Great Vibes'
+  color: #464d5d;
+  font-family: 'Great Vibes';
+  font-size: 1.5em;
 }
 
 .btn-primario:hover {
-  background: #b7906785;
+  background: #c1a78e;
 }
 
 .btn-secundario {
-  background: #ebff00;
+  background: #b79067;
   color: #464d5d;
-  font-family: 'Great Vibes'
+  font-family: 'Great Vibes';
+  font-size: 1.5em;
 }
 
 .btn-secundario:hover {
-  background: #eaff0085;
+  background: #c1a78e;
 }
