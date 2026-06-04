@@ -12,7 +12,15 @@ header {
 main {
   background-color: white;
 }
-
+.logo {
+  height: 60px;
+  width: 60px;
+ justify-items: center;
+ display: block;
+  margin-bottom: 15px; 
+  border-radius: 50%;
+  background-color: #464d5d;
+} 
 h1,
 h2 {
   margin-top: 0;
