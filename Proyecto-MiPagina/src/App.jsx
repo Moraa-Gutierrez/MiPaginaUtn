@@ -1,6 +1,6 @@
 import Layout from './components/Layout/Layout'
-import Consejos from './components/consejos'
-import Cards from './components/cards'
+import Consejos from './components/Consejos'
+import Cards from './components/Cards'
 
 import './App.css'
 
