@@ -1,13 +1,11 @@
-import Layout from './components/Layout/Layout'
-import Consejos from './components/Consejos'
-import Cards from './components/Cards'
-
 import './App.css'
+import Layout from './components/Layout/Layout'
 
 function App() {
+
   return (
     <>
-   <Layout/>
+    <Layout/>
     </>
   )
 }

@@ -19,12 +19,12 @@ const Footer = () => {
             <p> 📱 WhatsApp</p>
             <ul className="footer-items">
                 <li><NavLink to="https://www.whatsapp.com/?lang=es" target="_blank"  rel="noopener noreferrer" ><i className="fa-brands fa-whatsapp fa-bounce fa-xl"
-                            style="color: white;"></i>
+                            style={{ color: 'white' }}></i>
                     <p>Mora</p>
                     </NavLink>
                 </li>
                 <li><NavLink to="https://www.whatsapp.com/?lang=es" target="_blank"  rel="noopener noreferrer"><i className="fa-brands fa-whatsapp fa-bounce fa-xl"
-                            style="color:white;"></i>
+                            style={{ color: 'white' }}></i>
                     <p>Karina</p>
                     </NavLink>
                 </li>
