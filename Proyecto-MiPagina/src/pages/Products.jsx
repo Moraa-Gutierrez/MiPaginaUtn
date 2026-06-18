@@ -18,7 +18,7 @@ function Products() {
     return (
       <>
         <div>
-          <h2> Cargando exceso de belleza...</h2>
+          <h2> Cargando exceso de belleza...🎀🪞💄🦢🕯️</h2>
         </div>
       </>
     )
