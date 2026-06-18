@@ -22,14 +22,14 @@ function ProductPage() {
             ...form,
             [name]: type === "number" ? parseInt(value) || 0 : value,
         });
-       };
-        const handleFormSubmit = async (e) => {
-            // Evita que la pagina refresque al enviar el formulario
-            e.preventDefault()
-     
+    };
+    const handleFormSubmit = async (e) => {
+        // Evita que la pagina refresque al enviar el formulario
+        e.preventDefault()
+
         const success = await postProduct(form)
         if (success) {
-           window.alert("¡Producto creado con exito!")
+            window.alert("¡Producto creado con exito!")
             // Limpiamos el form
             setForm({
                 name: "",
@@ -43,6 +43,12 @@ function ProductPage() {
             navigate("/products")
         }
 
+    };
+    const handleCategoryChange = (e) =>{
+        setForm({
+            ...form,
+            category_id:parseInt(e.target.value)
+        });
     };
     return (
         <>
@@ -74,15 +80,19 @@ function ProductPage() {
                     name="description"
                     id="description"
                 ></textarea>
-                <label htmlFor="category"></label>
-                <input
-                    onChange={handleInputChange}
-                    value={form.category}
-                    type="text"
+                <label htmlFor="category_id"></label>
+                <select
+                    onChange={handleCategoryChange}
+                    value={form.category_id}
                     required
-                    name="category"
-                    id="category"
-                />
+                    name="category_id"
+                    id="category_id"
+                    >
+                    <option value={1}>Perfumes</option>
+                    <option value={2}>Accesorios</option>
+                    <option value={3}>Velas</option>
+                    <option value={4}>Cuidados Diarios</option>
+                </select>
                 <label htmlFor="price">Precio</label>
                 <input
                     onChange={handleInputChange}
@@ -110,9 +120,9 @@ function ProductPage() {
                     name="highlighted"
                     id="highlighted"
                 />
-                <button type="submit" style={{ padding: "8px 16px", cursor: "pointer",backgroundColor:" #464d5d" }}>
-                        Guardar Producto
-                    </button>
+                <button type="submit" style={{ padding: "8px 16px", cursor: "pointer", backgroundColor: " #464d5d" }}>
+                    Guardar Producto
+                </button>
             </form>
         </>
     );
