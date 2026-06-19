@@ -1,34 +1,34 @@
-import  { useState } from 'react'
-import {NavLink} from 'react-router-dom'
+import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import './menu.css'
 
 const Menu = () => {
     return (
-      <nav className="menu">
+        <nav className="menu">
 
             <ul>
-                <li> 
-                    <NavLink aria-current="page" to="/">
-                      Home
-                    </NavLink>
-                    </li>
                 <li>
                     <NavLink aria-current="page" to="/">
-                    Perfumes
+                        Home
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink aria-current="page" to="/">
+                    <NavLink aria-current="page" to="/Products/category/perfumes">
+                        Perfumes
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink aria-current="page" to="/Products/category/Accesorios">
                         Accesorios
                     </NavLink>
                 </li>
                 <li>
-                  <NavLink aria-current="page" to="/">
-                    Velas
-                  </NavLink>
+                    <NavLink aria-current="page" to="/Products/category/Velas">
+                        Velas
+                    </NavLink>
                 </li>
                 <li>
-                    <NavLink aria-current="page" to="/">
+                    <NavLink aria-current="page" to="/Products/category/CuidadosDiarios">
                         Cuidados Diarios
                     </NavLink>
                 </li>
@@ -38,15 +38,14 @@ const Menu = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink aria-current="page" to="/" >
+                    <NavLink aria-current="page" to="/Contact" >
                         Contacto
                     </NavLink>
                 </li>
-                <li><a href="html/login-registro/registrarse.html">Registrarse</a></li>
-                <li><a href="html/login-registro/iniciarsesion.html">Iniciar Sesión</a></li>
+                <li><NavLink to="/">Registrarse</NavLink></li>
+                <li><NavLink to="/">Iniciar Sesión</NavLink></li>
             </ul>
         </nav>
     );
 }
-
 export default Menu

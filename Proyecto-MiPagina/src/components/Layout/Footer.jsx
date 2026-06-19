@@ -1,32 +1,30 @@
-import { useState } from 'react'
-import {NavLink} from 'react-router-dom'
 import './footer.css'
 const Footer = () => {
     return (
           <footer className="footer-nav">
             <ul className="footer-items">
                 <li>
-                    <NavLink to="https://facebook.com" target="_blank"  rel="noopener noreferrer">Facebook<i className="fa-brands fa-facebook fa-beat fa-xl"style={{ color: 'white' }}></i></NavLink>
+                    <a href="https://facebook.com" target="_blank"  rel="noopener noreferrer">Facebook<i className="fa-brands fa-facebook fa-beat fa-xl"style={{ color: 'white' }}></i></a>
                 </li>
                 <li>
-                    <NavLink to="https://www.instagram.com" target="_blank"  rel="noopener noreferrer">Intagram<i className="fa-brands fa-instagram fa-beat fa-xl" style={{ color: 'white' }}></i></NavLink>
+                    <a href="https://www.instagram.com" target="_blank"  rel="noopener noreferrer">Intagram<i className="fa-brands fa-instagram fa-beat fa-xl" style={{ color: 'white' }}></i></a>
                     </li>
-                <li><NavLink to="https://www.tiktok.com/" target="_blank"  rel="noopener noreferrer">Tik Tok <i className="fa-brands fa-tiktok fa-beat fa-xl" style={{ color: 'white' }}></i></NavLink>
+                <li><a href="https://www.tiktok.com/" target="_blank"  rel="noopener noreferrer">Tik Tok <i className="fa-brands fa-tiktok fa-beat fa-xl" style={{ color: 'white' }}></i></a>
                 </li>
-                <li><NavLink to="https://www.gmail.com/" target="_blank"  rel="noopener noreferrer">Correo Electronico<i className="fa-solid fa-envelope fa-beat fa-xl" style={{ color: 'white' }}></i></NavLink>
+                <li><a href="https://www.gmail.com/" target="_blank"  rel="noopener noreferrer">Correo Electronico<i className="fa-solid fa-envelope fa-beat fa-xl" style={{ color: 'white' }}></i></a>
                 </li>
             </ul>
             <p> 📱 WhatsApp</p>
             <ul className="footer-items">
-                <li><NavLink to="https://www.whatsapp.com/?lang=es" target="_blank"  rel="noopener noreferrer" ><i className="fa-brands fa-whatsapp fa-bounce fa-xl"
+                <li><a href="https://www.whatsapp.com/?lang=es" target="_blank"  rel="noopener noreferrer" ><i className="fa-brands fa-whatsapp fa-bounce fa-xl"
                             style={{ color: 'white' }}></i>
                     <p>Mora</p>
-                    </NavLink>
+                    </a>
                 </li>
-                <li><NavLink to="https://www.whatsapp.com/?lang=es" target="_blank"  rel="noopener noreferrer"><i className="fa-brands fa-whatsapp fa-bounce fa-xl"
+                <li><a href="https://www.whatsapp.com/?lang=es" target="_blank"  rel="noopener noreferrer"><i className="fa-brands fa-whatsapp fa-bounce fa-xl"
                             style={{ color: 'white' }}></i>
                     <p>Karina</p>
-                    </NavLink>
+                    </a>
                 </li>
             </ul>
             <blockquote>
