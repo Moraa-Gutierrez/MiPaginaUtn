@@ -13,22 +13,22 @@ export const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: "/Products",
+                path: "products",
                 element: <Products />
             },
             {
-                path: "/Home",
-                element: <Home />
+                path:"products/category/:category_id",
+                element:<Products/>
             },
             {
-                path: "/CreateProductPage",
+                path: "create-product",
                 element: <CreateProductPage />
             },
             {
                 path: "*",
                 element: (
                     <div>
-                        <h2>Error 404</h2>
+                        <h2>⚠️⁴⁰⁴ Error ⁴⁰⁴⚠️</h2>
                         <p>Pagina no encontrada</p>
                     </div>
                 )

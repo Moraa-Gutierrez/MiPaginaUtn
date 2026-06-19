@@ -22,6 +22,37 @@ En React, los endpoints son las URLs o rutas en el servidor (API) con las que tu
 
 Los métodos GET y POST son las dos formas principales que utiliza un navegador para enviar información a un servidor.La diferencia principal radica en dónde viajan los datos y su propósito:GET: Los datos viajan visibles en la propia URL (como parámetros). Se usa principalmente para solicitar o buscar información sin alterar el servidor.POST: Los datos viajan ocultos en el cuerpo (body) de la solicitud HTTP. Se usa para enviar información confidencial o realizar acciones que cambian el estado del servidor (como registrarse o comprar).
 
+el error debe ser de las primeras cosas que se inicializan 
+por temas de scoup debe inicializarse y despues armar la func
+cuando se quiere enviar info de claves se hace en obj
+los obj envian info de forma ordenada
+SSO
+
+// Enfoque reutilizable
+
+function Input({ label, value, onChange, labelId, type, isRequired }) {
+
+  return (
+
+    <div>
+
+      <label htmlFor={labelId}> {label} </label>
+
+      <input required={isRequired ? true : false} type={type} value={value} onChange={onChange} id={labelId} name={labelId} />
+
+    </div>
+
+  );
+
+}
+
+export default Input
+
+
+
+
+
+
 
 
 

@@ -7,7 +7,7 @@ function ProductPage() {
         name: "",
         image: "",
         description: "",
-        category: "",
+        category_id: 1,
         price: 0,
         quantity: 1,
         highlighted: false,
@@ -23,9 +23,25 @@ function ProductPage() {
             [name]: type === "number" ? parseInt(value) || 0 : value,
         });
     };
+
+    const handleCategoryChange = (e) => {
+        setForm({
+            ...form,
+            category_id: parseInt(e.target.value)
+        });
+    };
+
+    const handleHighlightedChange = (e) => {
+        setForm({
+            ...form,
+            highlighted: e.target.value === "true"
+        });
+    };
     const handleFormSubmit = async (e) => {
         // Evita que la pagina refresque al enviar el formulario
         e.preventDefault()
+
+        console.log("Formulario enviado con exito", form);
 
         const success = await postProduct(form)
         if (success) {
@@ -36,19 +52,13 @@ function ProductPage() {
                 image: "",
                 description: "",
                 price: 0,
-                category: "",
+                category_id: 1,
                 quantity: 1,
                 highlighted: false,
             })
             navigate("/products")
         }
 
-    };
-    const handleCategoryChange = (e) =>{
-        setForm({
-            ...form,
-            category_id:parseInt(e.target.value)
-        });
     };
     return (
         <>
@@ -80,14 +90,14 @@ function ProductPage() {
                     name="description"
                     id="description"
                 ></textarea>
-                <label htmlFor="category_id"></label>
+                <label htmlFor="category_id">Categoria</label>
                 <select
                     onChange={handleCategoryChange}
                     value={form.category_id}
                     required
                     name="category_id"
                     id="category_id"
-                    >
+                >
                     <option value={1}>Perfumes</option>
                     <option value={2}>Accesorios</option>
                     <option value={3}>Velas</option>
@@ -112,17 +122,21 @@ function ProductPage() {
                     id="quantity"
                 />
                 <label htmlFor="highlighted"></label>
-                <input
-                    onChange={handleInputChange}
-                    value={form.highlighted}
-                    type="text"
-                    required
+                <select
+                    onChange={handleHighlightedChange}
+                    value={form.highlighted ? "true" : "false"}
                     name="highlighted"
                     id="highlighted"
-                />
+                    required
+                >
+                    <option value="false">No, común</option>
+                    <option value="true">Sí, destacado ★</option>
+                </select>
+
                 <button type="submit" style={{ padding: "8px 16px", cursor: "pointer", backgroundColor: " #464d5d" }}>
                     Guardar Producto
                 </button>
+
             </form>
         </>
     );
