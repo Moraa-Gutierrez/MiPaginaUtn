@@ -1,12 +1,12 @@
 import { useState } from "react"
 import { API_URL } from "../../config.js"
-
+//loading si hay muchos obj o peticiones grandes
 function usePostProduct() {
     const [error, setError] = useState(null)
-
+    const [loading, setLoading] = useState(false)
     const postProduct = async (formData) => {
         setError(null)
-
+        setLoading(true)
         try {
             const response = await fetch(`${API_URL}products`, {
                 // Define el metodo http
@@ -30,9 +30,12 @@ function usePostProduct() {
             console.error("Error al crear un nuevo producto", error)
             setError(error)
             return null
+        } finally{
+            setLoading(false)
         }
     }
-    return {error, postProduct}
+    return {error,loading,postProduct}
+    //forma de react para exponer funcs. Puede usarse como callback,etc
 }
 
 export default usePostProduct

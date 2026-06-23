@@ -13,16 +13,17 @@ function useGetProducts() {
         try {
             setLoading(true)
             setError(null)
-
-           const response = await fetch(url)
+            //para limpiar
+           const response = await fetch(`${API_URL}`)
 
            if(!response.ok){
-            throw new Error("Error al traer los registros de productos", response.status)
+            throw new Error("Error al traer los registros de productos", response.status) //te hace saber cual fue el error que te llego
            }
 
-           // Convertimos la respuesta de la api en un obj de js
+           // Convertimos la respuesta de la api en un obj de js manejable si no hubo error
            const data = await response.json()
 
+           //guardamos la data de la respuesta del array
            setProducts(data)
 
         } catch (error) {
@@ -32,12 +33,14 @@ function useGetProducts() {
         } finally {
             setLoading(false)
         }
+        //si salio bien o mal, deja de cargar
     }
-
+//en el caso de los get hacemos la ejecucuion dentro del hook
+//constantemente ejecuto el hook y hago llamadas a la api cuando necesito
     useEffect(() => {
         getProducts(`${API_URL}products`)
     }, [])
-
+//como retorno pasamos la info que queremos exteriorizar. Estados
     return {products, error, loading}
 }
 

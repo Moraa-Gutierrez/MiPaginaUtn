@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import usePostProduct from "../hooks/products/usePostProduct";
+import usePostProduct from "../../hooks/products/usePostProduct";
 import { useNavigate } from "react-router-dom";
 
 function ProductPage() {
