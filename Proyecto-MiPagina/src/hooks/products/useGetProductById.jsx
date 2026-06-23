@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { API_URL } from "../../config"
 
 function useGetProductById() {
@@ -10,23 +10,22 @@ function useGetProductById() {
 
             const response = await fetch(`${API_URL}products/${productId}`)
 
-                if(!response.ok){
-                    throw new Error(
-                        "Error al traer el producto", response.status
-                    )
-                }
+            if (!response.ok) {
+                throw new Error(
+                    "Error al traer el producto", response.status
+                )
+            }
 
-                const data = await response.json()
+            const data = await response.json()
 
-                return data
+            return data
         } catch (error) {
             console.error(error)
             setError(error)
             return null
         }
     }
-    return {getProductById, error}
-  
+    return { getProductById, error }
 }
 
 export default useGetProductById

@@ -75,7 +75,7 @@ function EditProductPage() {
                             required
                             name="name"
                             id="name"
-                            placeholder="Ej: Perfume M&L Gold"
+                            placeholder="Nombre del producto..."
                         />
                     </div>
 
@@ -88,7 +88,7 @@ function EditProductPage() {
                             required
                             name="image"
                             id="image"
-                            placeholder="https://enlace-de-la-imagen.com/foto.jpg"
+                            placeholder=""
                         />
                     </div>
 
@@ -100,8 +100,9 @@ function EditProductPage() {
                             required
                             name="description"
                             id="description"
-                            placeholder="Contanos más sobre el producto..."
+                            placeholder="Ingrese una descripcion del producto..."
                             rows="4"
+                          
                         ></textarea>
                     </div>
 
@@ -114,7 +115,8 @@ function EditProductPage() {
                                 type="number"
                                 required
                                 name="price"
-                                id="price"
+                                id="price" 
+                                placeholder="$$$"
                             />
                         </div>
 
