@@ -35,7 +35,7 @@ function ProductCard({ products, onDelete }) {
               ${product.price}
             </p>
 
-            <p className="stock" style={{ fontSize: '14px', color: '#666' }}>
+            <p className="stock" >
               Stock: {product.quantity} u.
             </p>
 
@@ -45,21 +45,20 @@ function ProductCard({ products, onDelete }) {
               </p>
             )}
 
-            <div className="botones" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <a href="#" className="btn btn-secundario" style={{ fontSize: '1rem', padding: '6px' }}>Detalle</a>
+            <div className="botones" >
+              <div >
+                <a href="#" className="btn btn-secundario" >Detalle</a>
                 <button 
                   onClick={() => handleAddToCart(product)}
                   className="btn btn-primario" 
-                  style={{ fontSize: '1rem', padding: '6px' }}
                 >
                   Carrito
                 </button>
               </div>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <Link to={`/edit-product/${product.id}`} className="btn" style={{ fontSize: '1rem', padding: '6px', backgroundColor: '#b79067', color: 'white', textDecoration: 'none' }}>Editar</Link>
+              <div >
+                <Link to={`/edit-product/${product.id}`} className="btn" >Editar</Link>
                 {onDelete && (
-                  <button onClick={() => onDelete(product.id)} className="btn" style={{ fontSize: '1rem', padding: '6px', backgroundColor: '#d9534f', color: 'white' }}>Eliminar</button>
+                  <button onClick={() => onDelete(product.id)} className="btn" >Eliminar</button>
                 )}
               </div>
             </div>

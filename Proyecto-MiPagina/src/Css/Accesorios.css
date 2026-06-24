@@ -1,14 +1,88 @@
+* {
+  box-sizing: border-box;
+}
+
+body,
+header {
+  background-color: #464d5d;
+  margin: 0;
+}
+
+main {
+  background-color: white;
+}
+
+h1,
+h2 {
+  margin-top: 40px;
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 70px;
+}
+
+h3 {
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
+}
+
+h4 {
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+hr {
+  border: 0.5px solid #d1cecb;
+  width: 90%;
+  margin: 20px auto;
+}
+
+.subtitulo {
+  font-family: "Arimo", sans-serif;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+p {
+  font-family: "Arimo", sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+li,
+.pejemplos {
+  font-family: "Arimo", sans-serif;
+  color: #ffffff;
+  text-align: left;
+  font-weight: 400;
+  font-size: 15px;
+}
+
 /* El contenedor principal */
 .cards {
   display: grid;
+  /* Crea columnas automáticas de mínimo 280px y máximo 1 fracción del espacio */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
+  /* Espacio entre tarjetas */
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  /* Centra el contenedor en la pantalla */
 }
 
-/* Estilos de la tarjeta */
+/* Estilos de la tarjeta (se mantienen para que todas luzcan igual) */
 .tarjeta {
   background: #464d5d;
   border-radius: 8px;
@@ -36,32 +110,25 @@
   flex-direction: column;
 }
 
-.titulo {
-  font-family: 'Great Vibes', cursive;
-  color: #b79067;
-  text-align: center;
-  font-weight: 400;
-  font-size: 32px;
-  margin: 10px 0;
-}
-
 .descripcion {
   font-family: "Arimo", sans-serif;
   color: #ffffff;
   text-align: center;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 20px;
   flex-grow: 1;
-  margin-bottom: 10px;
+  /* Permite que la descripción ocupe el espacio disponible */
 }
 
 .precio {
   font-size: 1.4rem;
   font-weight: bold;
   color: #c9a572;
-  margin-bottom: 15px;
+  /* Combina con el título */
+  margin-bottom: 20px;
   position: relative;
   display: inline-block;
+  /* EFECTO 4: Un detalle decorativo sutil (subrayado) */
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
@@ -77,26 +144,11 @@
   opacity: 0.5;
 }
 
-.stock {
-  font-family: "Arimo", sans-serif;
-  color: #ccc !important;
-  font-size: 14px;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.destacado {
-  color: #f8ffa8;
-  font-family: "Arimo", sans-serif;
-  font-size: 14px;
-  text-align: center;
-  margin-bottom: 15px;
-}
-
 .botones {
   display: flex;
   gap: 8px;
   margin-top: auto;
+  /* Empuja los botones al fondo siempre */
 }
 
 .btn {
@@ -113,13 +165,14 @@
 
 .btn:active {
   transform: scale(0.98);
+  /* Efecto de 'presionado' */
 }
 
 .btn-primario {
   background: #b79067;
   color: #464d5d;
-  font-family: 'Great Vibes', cursive;
-  font-size: 1.2em;
+  font-family: 'Great Vibes';
+    font-size: 1.5em;
 }
 
 .btn-primario:hover {
@@ -129,8 +182,8 @@
 .btn-secundario {
   background: #b79067;
   color: #464d5d;
-  font-family: 'Great Vibes', cursive;
-  font-size: 1.2em;
+  font-family: 'Great Vibes';
+   font-size: 1.5em;
 }
 
 .btn-secundario:hover {
