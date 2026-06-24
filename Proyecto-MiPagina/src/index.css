@@ -1,0 +1,320 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+header {
+  background-color: #464d5d;
+  margin: 0;
+}
+
+main {
+  background-color: white;
+}
+.logo {
+  height: 60px;
+  width: 60px;
+ justify-items: center;
+ display: block;
+  margin-bottom: 15px; 
+  border-radius: 50%;
+  background-color: #464d5d;
+} 
+h1,
+h2 {
+  margin-top: 0;
+  padding-top: 40px;
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 70px;
+}
+
+.h1hero {
+  font-weight: 500;
+  font-size: 5em;
+  color: #b79067;
+}
+
+h3 {
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
+  margin-top: 3rem;
+}
+
+hr {
+  border: 0.5px solid #d1cecb;
+  width: 90%;
+  margin: 20px auto;
+}
+
+.subtitulo {
+  font-family: "Arimo", sans-serif;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+p {
+  font-family: "Arimo", sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.hero {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/imagen2.png') no-repeat center center/cover;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.hero-content {
+  padding: 20px;
+  animation: fadeInUp 1.2s ease-out forwards;
+}
+
+h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contenedor-botones {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.presentacion {
+  margin: 0;
+  padding: 0;
+  background-color: #464d5d;
+  position: relative;
+}
+
+.boton {
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 12px;
+  font-family: "Arimo", sans-serif;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.boton-1 {
+  background-color: #b89264;
+  color: white;
+}
+
+.boton-1:hover {
+  background-color: #c1a78e;
+}
+
+.boton-2 {
+  background-color: #b79067;
+  color: white;
+  border: 2px solid;
+}
+
+.boton-2:hover {
+  background-color: #c1a78e;
+}
+
+.boton-3 {
+  background-color: #b79067;
+  color: white;
+  border: 2px solid #464d5d;
+}
+
+.boton-3:hover {
+  background-color: #c1a78e;
+}
+
+.virtudes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  gap: 40px;
+}
+
+.tarjeta-virtud {
+  color: white;
+  background-color: #f8ffa8;
+  padding: 40px;
+  border-radius: 15px;
+  width: 40%;
+  position: relative;
+  z-index: 1;
+}
+
+.tarjeta-virtud::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 100%;
+  height: 100%;
+  background-color: #464d5d;
+  border-radius: 15px;
+  z-index: -1;
+}
+
+.tarjeta-virtud ul {
+  list-style: none;
+  padding: 0;
+}
+
+.tarjeta-virtud li {
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 25px;
+}
+
+.tarjeta-virtud li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #b79067;
+}
+
+.pvirtud {
+  font-family: "Arimo", sans-serif;
+  color: #464d5d;
+  text-align: left;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.mapa-contenedor {
+  text-align: center;
+  margin: 50px 0;
+  font-family: "Arimo", sans-serif;
+}
+
+.mapa-contenedor h2 {
+  color: #464d5d;
+  margin-bottom: 10px;
+}
+
+.mapa-contenedor p {
+  color: #b79067;
+  margin-bottom: 20px;
+}
+
+.carousel-item img {
+  max-height: 80vh;
+  object-fit: cover;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial;
+}
+
+th {
+  background-color: #464d5d;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+td {
+  color: #b79067;
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tr {
+  transition: 0.3s;
+}
+
+tbody tr:hover {
+  background-color: #f3f0ff;
+}
+
+tr a {
+  text-decoration: none;
+  color: #ebff00;
+  display: block;
+}
+
+.btn-music {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(123, 92, 255, 0.8);
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  transition: 0.3s;
+}
+
+.btn-music:hover {
+  transform: scale(1.1);
+}
+
+.music-hidden {
+  display: none;
+}
+
+.music-show {
+  display: block;
+  position: absolute;
+  bottom: 60px;
+  right: 20px;
+  width: 300px;
+  animation: aparecer 0.3s ease-out forwards;
+}
+
+#music-player iframe {
+  width: 100%;
+  height: 152px;
+  border-radius: 12px;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

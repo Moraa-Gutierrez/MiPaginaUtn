@@ -2,7 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
-import CreateProductPage from "./pages/CreateProductPage";
+import CreateProductPage from "./pages/CRUD/CreateProductPage";
+import EditProductPage from "./pages/CRUD/EditProductPage";
+import CartPage from "./pages/CartPage";
+import ContactPage from "./pages/ContactPage";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -11,6 +14,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home />
+            },
+            {
+                path: "contact",
+                element: <ContactPage />
             },
             {
                 path: "products",
@@ -23,6 +30,14 @@ export const router = createBrowserRouter([
             {
                 path: "create-product",
                 element: <CreateProductPage />
+            },
+            {
+                path: "edit-product/:id",
+                element: <EditProductPage />
+            },
+            {
+                path: "cart",
+                element: <CartPage />
             },
             {
                 path: "*",

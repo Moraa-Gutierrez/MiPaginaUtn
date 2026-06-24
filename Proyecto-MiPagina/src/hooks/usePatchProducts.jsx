@@ -4,31 +4,29 @@ import { API_URL } from '../config'
 function usePatchProducts() {
  const [error, setError ] = useState(null)
 
- const patchProduct = async = (formData,productId) => {
-
+ const patchProduct = async (formData, productId) => {
     setError(null)
     try {
-        const response = await fetch (`${API_URL}products/${productId}`,{
+        const response = await fetch(`${API_URL}products/${productId}`, {
             method: "PATCH",
             headers: {
-                "Content-type": "Application/json"
+                "Content-Type": "application/json"
             },
-            // Necesariamente se tiene que convertir formData en JSON
             body: JSON.stringify(formData)
         })
-        if(!response.ok)
-        {
-            throw new Error(
-                "Error al traer el producto",response.status
-            )
+        if (!response.ok) {
+            throw new Error("Error al modificar el producto: " + response.status)
         }
         const data = await response.json()
+        return true
     } catch (error) {
-        console.log(error)
+        console.error(error)
         setError(error)
-        return null
+        return false
     }
  }
+
+ return { patchProduct, error }
 }
 
 export default usePatchProducts

@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import useGetProductById from "../../hooks/products/useGetProductById";
 import { useNavigate, useParams } from "react-router-dom";
-import useGetProducts from "../../hooks/products/useGetProduct";
-import React from 'react'
+import usePatchProducts from "../../hooks/usePatchProducts";
 
 function EditProductPage() {
     const [form, setForm] = useState({
@@ -13,24 +12,31 @@ function EditProductPage() {
         quantity: 1,
     });
 
-    const { error, patchProduct } = usePatchProduct();
+    const { error, patchProduct } = usePatchProducts();
     const { error: getByIdError, getProductById } = useGetProductById();
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const loadProductData = async () => {
+    const loadProductData = useCallback(async () => {
+
         const response = await getProductById(id);
 
         if (response) {
-            // Destructuracion de respuesta del servidor: destructure el obj directamente
+
             const { name, image, description, price, quantity } = response;
+
             setForm({ name, image, description, price, quantity });
+
         }
-    };
-    //separe el useEffect, saque la funcion loadProduct
+
+    }, [id]);
+
     useEffect(() => {
+
         if (id) {
+
             loadProductData();
+
         } else {
             console.log("No se detectó ningún ID en los parámetros de la URL:", { id });
         }
@@ -102,7 +108,7 @@ function EditProductPage() {
                             id="description"
                             placeholder="Ingrese una descripcion del producto..."
                             rows="4"
-                          
+
                         ></textarea>
                     </div>
 
@@ -115,7 +121,7 @@ function EditProductPage() {
                                 type="number"
                                 required
                                 name="price"
-                                id="price" 
+                                id="price"
                                 placeholder="$$$"
                             />
                         </div>

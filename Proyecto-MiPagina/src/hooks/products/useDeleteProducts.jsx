@@ -15,16 +15,18 @@ const deleteProducts = async(productId) =>
                 "Content-type": "Application/json"
             }
         })
-        if(!response.ok)
+    if(!response.ok)
         {
             throw new Error(`Http error, status: ${response.status}`)
         }
+        return true
     } catch (error) {
-        console.log(error)
+        console.error(error)
         setError(error)
+        return false
     }
 }
-return{error,deleteProducts}
+return { error, deleteProducts }
 
 }
 

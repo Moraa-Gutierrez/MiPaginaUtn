@@ -1,0 +1,70 @@
+{
+  "category": [
+    {
+      "id": 1,
+      "name": "Perfumes"
+    },
+    {
+      "id": 2,
+      "name": "Accesorios"
+    },
+    {
+      "id": 3,
+      "name": "Velas"
+    },
+    {
+      "id": 4,
+      "name": "Cuidados Diarios"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Cadena",
+      "price": 2499.99,
+      "profitRate": 1.21,
+      "description": "Cadena de acero quirurgico",
+      "quantity": 45,
+      "status": "AVAILABLE",
+      "category_id": "2",
+      "highlighted": true,
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300"
+    },
+    {
+      "id": "2",
+      "name": "vela",
+      "price": 2499.99,
+      "profitRate": 1.21,
+      "description": "Vela de soja",
+      "quantity": 45,
+      "status": "AVAILABLE",
+      "category_id": "3",
+      "highlighted": true,
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300"
+    },
+    {
+      "id": "3",
+      "name": "perfume",
+      "price": 2499.99,
+      "profitRate": 1.21,
+      "description": "Perfume de hombre amadero",
+      "quantity": 45,
+      "status": "AVAILABLE",
+      "category_id": "1",
+      "highlighted": true,
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300"
+    },
+    {
+      "id": "4",
+      "name": "crema",
+      "price": 2499.99,
+      "profitRate": 1.21,
+      "description": "Crema de frutos rojos",
+      "quantity": 45,
+      "status": "AVAILABLE",
+      "category_id": "4",
+      "highlighted": true,
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { API_URL } from "../config.js"
+import { API_URL } from "../../config.js"
 
 function useGetProducts() {
     //estos datos van en estados porque se deben mostrar, tomar decisiones a partir de ellos
@@ -14,7 +14,7 @@ function useGetProducts() {
             setLoading(true)
             setError(null)
             //para limpiar
-           const response = await fetch(`${API_URL}`)
+           const response = await fetch(url)
 
            if(!response.ok){
             throw new Error("Error al traer los registros de productos", response.status) //te hace saber cual fue el error que te llego
@@ -41,7 +41,7 @@ function useGetProducts() {
         getProducts(`${API_URL}products`)
     }, [])
 //como retorno pasamos la info que queremos exteriorizar. Estados
-    return {products, error, loading}
+    return {products, error, loading, getProducts}
 }
 
 export default useGetProducts

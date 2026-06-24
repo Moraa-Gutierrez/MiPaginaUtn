@@ -1,0 +1,50 @@
+.menu {
+   box-sizing: border-box;
+  background-color: #464d5d;
+  padding: 15px 0; 
+
+}
+
+.menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.menu ul li {
+  border-radius: 10px;
+  display: inline-flex;
+  margin-right: 20px;
+  font-family: "Arimo", sans-serif;
+}
+
+.menu ul li:last-child {
+  margin-right: 0;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.menu ul li a:hover {
+  transform: translateY(3px);
+  background-color: #b79067;
+  border-radius: 10px;
+  box-shadow: #37425c 2px 2px 2px;
+}
+
+.logo {
+  height: 60px;
+  width: 60px;
+ justify-items: center;
+  margin-bottom: 15px; 
+  border-radius: 50%;
+} 

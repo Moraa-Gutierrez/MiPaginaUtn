@@ -1,12 +1,13 @@
 import './App.css'
 import Layout from './components/Layout/Layout'
+import { CartProvider } from './context/CartContext'
 
 function App() {
 
   return (
-    <>
-    <Layout/>
-    </>
+    <CartProvider>
+      <Layout/>
+    </CartProvider>
   )
 }
 

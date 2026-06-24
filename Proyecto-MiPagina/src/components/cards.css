@@ -1,0 +1,138 @@
+/* El contenedor principal */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilos de la tarjeta */
+.tarjeta {
+  background: #464d5d;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tarjeta-imagen img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  transition: transform 0.4s ease-in-out;
+}
+
+.tarjeta:hover .tarjeta-imagen img {
+  transform: scale(1.05);
+}
+
+.tarjeta-cuerpo {
+  padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo {
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 32px;
+  margin: 10px 0;
+}
+
+.descripcion {
+  font-family: "Arimo", sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  flex-grow: 1;
+  margin-bottom: 10px;
+}
+
+.precio {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #c9a572;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.precio::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background-color: #c9a572;
+  margin: 5px auto 0;
+  opacity: 0.5;
+}
+
+.stock {
+  font-family: "Arimo", sans-serif;
+  color: #ccc !important;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.destacado {
+  color: #f8ffa8;
+  font-family: "Arimo", sans-serif;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.botones {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primario {
+  background: #b79067;
+  color: #464d5d;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.2em;
+}
+
+.btn-primario:hover {
+  background: #c1a78e;
+}
+
+.btn-secundario {
+  background: #b79067;
+  color: #464d5d;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.2em;
+}
+
+.btn-secundario:hover {
+  background: #c1a78e;
+}
