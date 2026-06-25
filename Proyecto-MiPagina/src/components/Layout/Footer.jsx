@@ -1,4 +1,4 @@
-import './footer.css'
+import '../../Css/Elementos/Footer.css'
 const Footer = () => {
     return (
           <footer className="footer-nav">

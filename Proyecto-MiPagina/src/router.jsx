@@ -6,6 +6,7 @@ import CreateProductPage from "./pages/CRUD/CreateProductPage";
 import EditProductPage from "./pages/CRUD/EditProductPage";
 import CartPage from "./pages/CartPage";
 import ContactPage from "./pages/ContactPage";
+import QuienesSomos from "./pages/QuienesSomos";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -34,6 +35,11 @@ export const router = createBrowserRouter([
             {
                 path: "edit-product/:id",
                 element: <EditProductPage />
+            },
+            {
+
+                path: "quienessomos",
+               element: <QuienesSomos/>
             },
             {
                 path: "cart",

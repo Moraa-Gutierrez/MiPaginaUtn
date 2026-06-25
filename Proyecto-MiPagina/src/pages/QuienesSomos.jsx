@@ -1,12 +1,26 @@
 import React from "react";
-
+import grid1 from "../assets/QuienesSomos/imagengrid1.jpg"
+import grid2 from "../assets/QuienesSomos/imagengrid2.jpg"
+import grid3 from "../assets/QuienesSomos/imagengrid3.jpg"
+import grid4 from "../assets/QuienesSomos/imagengrid4.jpg"
+import grid5 from "../assets/QuienesSomos/imagengrid5.jpg"
+import grid6 from "../assets/QuienesSomos/imagengrid6.jpg"
+import grid7 from "../assets/QuienesSomos/imagengrid7.jpg"
+import grid8 from "../assets/QuienesSomos/imagengrid8.jpg"
+import grid9 from "../assets/QuienesSomos/imagengrid9.jpg"
+import grid10 from "../assets/QuienesSomos/imagengrid10.jpg"
+import grid11 from "../assets/QuienesSomos/imagengrid11.jpg"
+import grid12 from "../assets/QuienesSomos/imagengrid12.jpg"
+import logoimg from "../assets/QuienesSomos/imagen1.jpeg"
+import "../Css/QuienesSomos.css"
 function QuienesSomos() {
     return (
+
         <main>
             <section className="presentacion">
                 <h2>Quienes Somos</h2>
                 <h3>Conoce la historia detrás de M&L y nuestra pasión por la belleza y el bienestar.</h3>
-                <img src="/img/imagen1.jpeg" className="logo-central" alt="Logo Central M&L" />
+                <img src={logoimg} className="logo-central" alt="Logo Central M&L" />
             </section>
 
             <section className="nuestra-historia">
@@ -61,20 +75,21 @@ function QuienesSomos() {
                     <h1>M&L Beauty.</h1>
                 </div>
                 <div className="parent">
-                    <div className="div1"><img src="/img/imagengrid2.jpg" alt="imagen playa" /></div>
-                    <div className="div2"><img src="/img/imagengrid1.jpg" alt="imagen playa" /></div>
-                    <div className="div3"><img src="/img/imagengrid3.jpg" alt="imagen flores" /></div>
-                    <div className="div4"><img src="/img/imagengrid4.jpg" alt="velas" /></div>
-                    <div className="div5"><img src="/img/imagengrid5.jpg" alt="amazonas" /></div>
-                    <div className="div6"><img src="/img/imagengrid6.jpg" alt="tablas" /></div>
-                    <div className="div7"><img src="/img/imagengrid7.jpg" alt="imagen" /></div>
-                    <div className="div8"><img src="/img/imagengrid8.jpg" alt="imagen" /></div>
-                    <div className="div9"><img src="/img/imagengrid9.jpg" alt="imagen" /></div>
-                    <div className="div10"><img src="/img/imagengrid10.jpg" alt="imagen" /></div>
-                    <div className="div11"><img src="/img/imagengrid11.jpg" alt="imagen" /></div>
+                    <div className="div1"><img src={grid1} alt="imagen playa" /></div>
+                    <div className="div2"><img src={grid2} alt="imagen playa" /></div>
+                    <div className="div3"><img src={grid3} alt="imagen flores" /></div>
+                    <div className="div4"><img src={grid4} alt="velas" /></div>
+                    <div className="div5"><img src={grid5} alt="amazonas" /></div>
+                    <div className="div6"><img src={grid6} alt="tablas" /></div>
+                    <div className="div7"><img src={grid7} alt="imagen" /></div>
+                    <div className="div8"><img src={grid8} alt="imagen" /></div>
+                    <div className="div9"><img src={grid9} alt="imagen" /></div>
+                    <div className="div10"><img src={grid10} alt="imagen" /></div>
+                    <div className="div11"><img src={grid11} alt="imagen" /></div>
+                    <div className="div11"><img src={grid12} alt="imagen" /></div>
                 </div>
             </section>
         </main>
     )
 }
-export default QuienesSomos
+export default QuienesSomos;

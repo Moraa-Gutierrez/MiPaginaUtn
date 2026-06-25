@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
-import './menu.css'
+import "../../Css/Elementos/Menu.css"
 
 const Menu = () => {
     const { getCartCount } = useCart();
@@ -35,7 +35,7 @@ const Menu = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink aria-current="page" to="/">
+                    <NavLink aria-current="page" to="/quienessomos">
                         Quienes Somos
                     </NavLink>
                 </li>

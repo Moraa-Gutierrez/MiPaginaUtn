@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import './cards.css'
+import"../Css/Elementos/Cards.css"
 
 function ProductCard({ products, onDelete }) {
   const { addToCart } = useCart();
