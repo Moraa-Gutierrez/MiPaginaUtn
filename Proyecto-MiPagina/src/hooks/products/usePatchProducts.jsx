@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { API_URL } from '../config'
+import { API_URL } from '../../config'
 
 function usePatchProducts() {
  const [error, setError ] = useState(null)

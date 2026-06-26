@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../Css/Contacto.css"
 function ContactPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [form, setForm] = useState({
@@ -39,7 +40,7 @@ function ContactPage() {
                 <h3>Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto con nosotros.</h3>
                 <p>Llena el siguiente formulario</p>
                 <button
-                    type="submit"
+                    type="button"
                     id="contact-button"
                     className="btn btn-formulario"
                     onClick={() => setIsModalOpen(true)}
@@ -56,7 +57,7 @@ function ContactPage() {
                         >
                             &times;
                         </span>
-                        <p>Completa el formulario para contactarnos:</p>
+                        <p className="contenedorp">Completa el formulario para contactarnos:</p>
 
 
                         <form onSubmit={handleFormSubmit}>

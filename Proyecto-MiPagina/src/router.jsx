@@ -7,6 +7,7 @@ import EditProductPage from "./pages/CRUD/EditProductPage";
 import CartPage from "./pages/CartPage";
 import ContactPage from "./pages/ContactPage";
 import QuienesSomos from "./pages/QuienesSomos";
+import AdminProducts from "./pages/AdminProducts";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -25,8 +26,8 @@ export const router = createBrowserRouter([
                 element: <Products />
             },
             {
-                path:"products/category/:category_id",
-                element:<Products/>
+                path: "products/category/:category_id",
+                element: <Products />
             },
             {
                 path: "create-product",
@@ -39,7 +40,7 @@ export const router = createBrowserRouter([
             {
 
                 path: "quienessomos",
-               element: <QuienesSomos/>
+                element: <QuienesSomos />
             },
             {
                 path: "cart",

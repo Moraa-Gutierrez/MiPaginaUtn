@@ -75,7 +75,8 @@ p {
     padding: 20px;
 }
 
-.contenedor p {
+.contenedorp {
+    color: #b79067;
     margin: 20px 0;
     font-size: 1.5em; /* Un poco más pequeño para que no rompa el diseño */
 }
@@ -99,18 +100,18 @@ p {
 
 /* --- Estructura del Modal --- */
 .contenedor-modal {
-    position: fixed;
+position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0); /* Invisible al inicio */
+    background-color: rgba(0, 0, 0, 0.7); 
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    z-index: -1; 
-    opacity: 0;
-    pointer-events: none; /* Evita clics accidentales cuando está oculto */
+    z-index: 1000;      
+    opacity: 1;            
+    pointer-events: auto;   
     transition: all 0.4s ease;
 }
 
@@ -124,12 +125,14 @@ p {
 
 /* Caja del Formulario */
 .contenedor-modal .modal {
+    position: relative;    
     width: 90%;
-    max-width: 450px; /* En lugar de margen de 500px, usamos max-width */
+    max-width: 450px; 
     padding: 40px;
     background-color: #fff;
-    border-radius: 15px;
+    border-radius: 10px 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;

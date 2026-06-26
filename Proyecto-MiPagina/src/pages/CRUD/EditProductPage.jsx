@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import useGetProductById from "../../hooks/products/useGetProductById";
 import { useNavigate, useParams } from "react-router-dom";
-import usePatchProducts from "../../hooks/usePatchProducts";
+import usePatchProducts from "../../hooks/products/usePatchProducts";
 
 function EditProductPage() {
     const [form, setForm] = useState({
@@ -61,113 +61,153 @@ function EditProductPage() {
         }
     };
     return (
-        <div className="edit-product-container">
-            <header className="edit-product-header">
-                <h1>Panel de Edición</h1>
-                <p className="subtitle">Modificá los detalles del artículo seleccionado</p>
-                <div className="linea-decorativa"></div>
-            </header>
-
-            <div className="edit-product-grid">
-
-                {/* COLUMNA 1: Formulario Controlado */}
-                <form onSubmit={handleFormSubmit} className="edit-product-form">
-                    <div className="form-group">
-                        <label htmlFor="name">Nombre del Producto</label>
-                        <input
-                            onChange={handleInputChange}
-                            value={form.name}
-                            type="text"
-                            required
-                            name="name"
-                            id="name"
-                            placeholder="Nombre del producto..."
-                        />
+        <div className="admin-layout" style={{ minHeight: "100vh" }}>
+            <div className="admin-main">
+ 
+                {/* Header */}
+                <div className="admin-page-header">
+                    <div>
+                        <h2 className="admin-page-header__title">Editar producto</h2>
+                        <p className="admin-page-header__sub">
+                            Modificá los detalles del artículo seleccionado
+                        </p>
                     </div>
-
-                    <div className="form-group">
-                        <label htmlFor="image">URL de la Imagen</label>
-                        <input
-                            onChange={handleInputChange}
-                            value={form.image}
-                            type="text"
-                            required
-                            name="image"
-                            id="image"
-                            placeholder=""
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="description">Descripción Detallada</label>
-                        <textarea
-                            onChange={handleInputChange}
-                            value={form.description}
-                            required
-                            name="description"
-                            id="description"
-                            placeholder="Ingrese una descripcion del producto..."
-                            rows="4"
-
-                        ></textarea>
-                    </div>
-
-                    <div className="form-row-doble">
-                        <div className="form-group">
-                            <label htmlFor="price">Precio ($)</label>
-                            <input
-                                onChange={handleInputChange}
-                                value={form.price}
-                                type="number"
-                                required
-                                name="price"
-                                id="price"
-                                placeholder="$$$"
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="quantity">Stock Disponible</label>
-                            <input
-                                onChange={handleInputChange}
-                                value={form.quantity}
-                                type="number"
-                                required
-                                name="quantity"
-                                id="quantity"
-                            />
-                        </div>
-                    </div>
-
-                    <button type="submit" className="btn-guardar-cambios">
-                        Guardar Cambios
+                    <button
+                        className="btn-secondary"
+                        onClick={() => navigate("/products")}
+                        type="button"
+                    >
+                        ← Volver a la tienda
                     </button>
-
-                    {error && <p className="error-message-live">{error.message || error}</p>}
-                </form>
-
-                {/* COLUMNA 2: Vista previa interactiva */}
-                <aside className="product-preview-card">
-                    <h3>Vista Previa en Tienda</h3>
-                    <div className="preview-box">
-                        <div className="preview-image-wrapper">
-                            {form.image ? (
-                                <img src={form.image} alt="Preview" className="img-real-preview" />
-                            ) : (
-                                <div className="no-image-placeholder">Sin imagen seleccionada</div>
-                            )}
-                        </div>
-                        <div className="preview-info">
-                            <h4 className="preview-title">{form.name || "Nombre del Producto"}</h4>
-                            <p className="preview-desc">{form.description || "Aquí aparecerá la descripción..."}</p>
-                            <div className="preview-meta">
-                                <span className="preview-price">${form.price}</span>
-                                <span className="preview-stock">{form.quantity} unidades</span>
+                </div>
+ 
+                {getByIdError && (
+                    <p className="admin-form-error" style={{ marginBottom: "1rem" }}>
+                        Error al cargar el producto: {getByIdError?.message || String(getByIdError)}
+                    </p>
+                )}
+ 
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", alignItems: "start" }}>
+ 
+           
+                    <div className="admin-form-card">
+                        <form onSubmit={handleFormSubmit} className="edit-product-form">
+ 
+                            <div className="admin-form-group">
+                                <label htmlFor="name">Nombre del producto</label>
+                                <input
+                                    onChange={handleInputChange}
+                                    value={form.name}
+                                    type="text"
+                                    required
+                                    name="name"
+                                    id="name"
+                                    placeholder="Nombre del producto..."
+                                />
                             </div>
+ 
+                            <div className="admin-form-group">
+                                <label htmlFor="image">URL de la imagen</label>
+                                <input
+                                    onChange={handleInputChange}
+                                    value={form.image}
+                                    type="text"
+                                    required
+                                    name="image"
+                                    id="image"
+                                    placeholder="https://..."
+                                />
+                            </div>
+ 
+                            <div className="admin-form-group">
+                                <label htmlFor="description">Descripción detallada</label>
+                                <textarea
+                                    onChange={handleInputChange}
+                                    value={form.description}
+                                    required
+                                    name="description"
+                                    id="description"
+                                    placeholder="Ingresá una descripción del producto..."
+                                    rows="4"
+                                />
+                            </div>
+ 
+                            <div className="admin-form-row">
+                                <div className="admin-form-group">
+                                    <label htmlFor="price">Precio ($)</label>
+                                    <input
+                                        onChange={handleInputChange}
+                                        value={form.price}
+                                        type="number"
+                                        required
+                                        name="price"
+                                        id="price"
+                                        placeholder="$$$"
+                                    />
+                                </div>
+                                <div className="admin-form-group">
+                                    <label htmlFor="quantity">Stock disponible</label>
+                                    <input
+                                        onChange={handleInputChange}
+                                        value={form.quantity}
+                                        type="number"
+                                        required
+                                        name="quantity"
+                                        id="quantity"
+                                    />
+                                </div>
+                            </div>
+ 
+                            {error && (
+                                <p className="admin-form-error">
+                                    {error.message || error}
+                                </p>
+                            )}
+ 
+                            <div className="admin-form-actions">
+                                <button type="submit" className="btn-primary">
+                                    Guardar cambios
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn-secondary"
+                                    onClick={() => navigate("/products")}
+                                >
+                                    Cancelar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+ 
+                    {/* Vista previa en tiempo real */}
+                    <div className="admin-preview-card">
+                        <h3>Vista previa en tienda</h3>
+                        {form.image ? (
+                            <img
+                                className="admin-preview-img"
+                                src={form.image}
+                                alt="Preview"
+                            />
+                        ) : (
+                            <div className="admin-preview-no-img">Sin imagen seleccionada</div>
+                        )}
+                        <p className="admin-preview-name">
+                            {form.name || "Nombre del Producto"}
+                        </p>
+                        <p className="admin-preview-desc">
+                            {form.description || "Aquí aparecerá la descripción..."}
+                        </p>
+                        <div className="admin-preview-meta">
+                            <span className="admin-preview-price">
+                                ${Number(form.price).toLocaleString("es-AR")}
+                            </span>
+                            <span className="admin-preview-stock">
+                                {form.quantity} unidades
+                            </span>
                         </div>
                     </div>
-                </aside>
-
+ 
+                </div>
             </div>
         </div>
     );
