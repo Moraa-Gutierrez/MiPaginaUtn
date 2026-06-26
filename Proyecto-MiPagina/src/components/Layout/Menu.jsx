@@ -49,9 +49,15 @@ const Menu = () => {
                         Contacto
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink aria-current="page" to="/contact" >
+                        Contacto
+                    </NavLink>
+                </li>
+
                 <li><NavLink to="/">Registrarse</NavLink></li>
                 <li><NavLink to="/">Iniciar Sesión</NavLink></li>
-                <li><NavLink to="/cart" style={{ fontWeight: 'bold', color: '#f8ffa8' }}>Carrito ({getCartCount()}) 🛒</NavLink></li>
+                <li><NavLink to="/cart" >Carrito ({getCartCount()}) 🛒</NavLink></li>
             </ul>
         </nav>
     );
