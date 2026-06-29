@@ -209,10 +209,9 @@ function CreateProductPage() {
                     <div className="admin-preview-column">
                         <h3 className="admin-preview-title">Vista previa en tienda</h3>
 
-                        {/* 🌟 Añadimos la línea divisoria idéntica a la de creación */}
+
                         <hr className="admin-preview-separator" />
 
-                        {/* 🌟 Ahora enviamos previewData en vez de form */}
                         <ProductCard products={[previewData]} isPreview={true} />
                     </div>
 

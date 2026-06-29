@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 .admin-layout {
     background-color: #f8f9fa;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Arimo", sans-serif';
     color: #464d5d;
     padding: 2rem;
     box-sizing: border-box;
