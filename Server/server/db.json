@@ -65,6 +65,23 @@
       "category_id": "4",
       "highlighted": true,
       "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300"
+    },
+    {
+      "name": "cher",
+      "image": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQVota3d1ZMjQLLR2DXJOgYEoOaqxmWXu1scCVwOciI1G-q1GSp_xjiTOvBXqkZSzNdayf7YowichXY9Qso4cc7yQdsFdDA",
+      "description": "mujer",
+      "price": 106,
+      "quantity": 100,
+      "id": "7n4nVMG"
+    },
+    {
+      "name": "ueeeeee",
+      "image": "https://cdn.farmacialeloir.com.ar/img/articulos/2024/07/imagen1_cher_dieciocho_elixir_eau_de_parfum_x_100ml_imagen1.webp",
+      "description": "7u767u7",
+      "price": 89,
+      "quantity": 12,
+      "highlighted": true,
+      "id": "9-67GG_"
     }
   ]
 }
