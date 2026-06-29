@@ -7,7 +7,8 @@ import EditProductPage from "./pages/CRUD/EditProductPage";
 import CartPage from "./pages/CartPage";
 import ContactPage from "./pages/ContactPage";
 import QuienesSomos from "./pages/QuienesSomos";
-import AdminProducts from "./pages/AdminProducts";
+import AdminDropdown from "./pages/Admin/AdminPanel";
+import MenuDesplegable from "./pages/Admin/AdminPanel";
 export const router = createBrowserRouter([
     {
         path: "/",

@@ -1,0 +1,70 @@
+
+/* --- BOTÓN ADMIN --- */
+.custom-dropdown .admin-btn {
+  background-color: transparent ;
+  color: #ccff00 ; /* Color verde/amarillo fosforito */
+  border: 1px solid #ccff00 ;
+  border-radius: 12px ;
+  padding: 8px 16px ;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: none ;
+}
+
+/* Quitar la flecha por defecto de Bootstrap */
+.custom-dropdown .admin-btn::after {
+  display: none ;
+}
+
+.custom-dropdown .admin-btn .arrow {
+  font-size: 0.8rem;
+}
+
+/* --- MENÚ DESPLEGABLE (Caja Blanca) --- */
+.custom-dropdown .custom-menu {
+  background-color: #ffffff ;
+  border-radius: 24px ; /* Bordes muy redondeados como la imagen */
+  border: none ;
+  padding: 15px 10px ;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  margin-top: 10px ;
+}
+
+/* --- FILAS / ITEMS --- */
+.custom-dropdown .custom-item {
+  display: flex ;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 15px ;
+  color: #4a5568 ; /* Gris oscuro del texto */
+  font-size: 1.1rem;
+  background: transparent ;
+  transition: background 0.2s ease;
+  border-radius: 12px;
+}
+
+/* Efecto Hover */
+.custom-dropdown .custom-item:hover {
+  background-color: #f7fafc ; /* Un gris muy sutil al pasar el mouse */
+}
+
+/* Íconos (Marrón/Dorado claro) */
+.custom-dropdown .custom-item .icon {
+  color: #c49a6c; 
+  font-size: 1.4rem;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+}
+
+/* Organización del texto en dos líneas */
+.custom-dropdown .text-wrapper {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}

@@ -1,29 +1,23 @@
 import React, { useState } from "react";
 import usePostProduct from "../../hooks/products/usePostProduct";
 import { useNavigate } from "react-router-dom";
+import "../../Css/CRUD/CreateProductPage.css"
+import ProductCard from "../../components/Cards";
 
 function CreateProductPage() {
+    // Esta es la forma de tener un estado por defecto para un objeto
+    // Esto se suele hacer cuando tenes mas de dos campos relacionados
     const [form, setForm] = useState({
         name: "",
         image: "",
         description: "",
-        category_id: 1,
         price: 0,
         quantity: 1,
-        highlighted: false,
     });
-    //para navegar dentro de React
-    const navigate = useNavigate();
-    const { error, postProduct } = usePostProduct()
+    // Permite la redireccion dentro del sistema de react
+    const navigate = useNavigate()
 
-    const handleInputChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setForm({
-            ...form,
-            [name]: type === "number" ? parseInt(value) || 0 : value,
-        });
-    };
-
+    const { error, postProduct } = usePostProduct();
     const handleCategoryChange = (e) => {
         setForm({
             ...form,
@@ -37,29 +31,39 @@ function CreateProductPage() {
             highlighted: e.target.value === "true"
         });
     };
+    // Esto resuelve un problema, como yo tengo un objeto, como sabe react cual de todos los campos de mi formulario disparo el evento del cambio?
+    const handleInputChange = (e) => {
+        const { name, value, type } = e.target;
+        setForm({
+            // ... este spread operator evita que se sobreescriban los campos no editados, solo se cambia el que modificaste, el resto queda igual
+            ...form,
+            // Considera el nombre del input y el tipo del input
+            // si el input es numerico entonces convierte el valor a numero entero
+            // si llego vacio el value entonces le ponemos 0
+            // si el input no es numerico, entonces queda el valor original
+            [name]: type === "number" ? parseInt(value) || 0 : value,
+        });
+        console.log(form);
+    };
+
     const handleFormSubmit = async (e) => {
         // Evita que la pagina refresque al enviar el formulario
         e.preventDefault()
 
-        console.log("Formulario enviado con exito", form);
-
         const success = await postProduct(form)
         if (success) {
-            window.alert("¡Producto creado con exito!")
-   
+            // Limpiamos el form
             setForm({
                 name: "",
                 image: "",
                 description: "",
                 price: 0,
-                category_id: 1,
                 quantity: 1,
-                highlighted: false,
             })
-            navigate("/products")
+            //   navigate("/products")
         }
 
-    };
+    }
     return (
         <>
             <h1>Ingrese el nuevo producto</h1>
@@ -82,9 +86,10 @@ function CreateProductPage() {
                         </button>
                     </div>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", alignItems: "start" }}>
+                    {/* Grilla en dos columnas */}
+                    <div className="admin-grid-container">
 
-
+                        {/* COLUMNA IZQUIERDA: Tu Formulario Original */}
                         <div className="admin-form-card">
                             <form onSubmit={handleFormSubmit}>
 
@@ -126,22 +131,6 @@ function CreateProductPage() {
                                     />
                                 </div>
 
-                                <div className="admin-form-group">
-                                    <label htmlFor="category_id">Categoría</label>
-                                    <select
-                                        onChange={handleCategoryChange}
-                                        value={form.category_id}
-                                        required
-                                        name="category_id"
-                                        id="category_id"
-                                    >
-                                        <option value={1}>Perfumes</option>
-                                        <option value={2}>Accesorios</option>
-                                        <option value={3}>Velas</option>
-                                        <option value={4}>Cuidados Diarios</option>
-                                    </select>
-                                </div>
-
                                 <div className="admin-form-row">
                                     <div className="admin-form-group">
                                         <label htmlFor="price">Precio ($)</label>
@@ -169,20 +158,6 @@ function CreateProductPage() {
                                     </div>
                                 </div>
 
-                                <div className="admin-form-group">
-                                    <label htmlFor="highlighted">¿Es producto destacado?</label>
-                                    <select
-                                        onChange={handleHighlightedChange}
-                                        value={form.highlighted ? "true" : "false"}
-                                        name="highlighted"
-                                        id="highlighted"
-                                        required
-                                    >
-                                        <option value="false">No — producto común</option>
-                                        <option value="true">Sí — producto destacado ★</option>
-                                    </select>
-                                </div>
-
                                 {error && (
                                     <p className="admin-form-error">
                                         {error?.message || String(error)}
@@ -190,56 +165,16 @@ function CreateProductPage() {
                                 )}
 
                                 <div className="admin-form-actions">
-                                    <button type="submit" className="btn-primary">
-                                        Guardar producto
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="btn-secondary"
-                                        onClick={() => setForm(INITIAL_FORM)}
-                                    >
-                                        Limpiar
-                                    </button>
+                                    <button className="btn-secondary" type="submit"> Crear Producto </button>
+                                    <button className="btn-secondary" type="reset"> Borrar form </button>
                                 </div>
                             </form>
                         </div>
-
-                        {/* Vista previa */}
-                        <div className="admin-preview-card">
-                            <h3>Vista previa en tienda</h3>
-                            {form.image ? (
-                                <img
-                                    className="admin-preview-img"
-                                    src={form.image}
-                                    alt="Preview"
-                                />
-                            ) : (
-                                <div className="admin-preview-no-img">Sin imagen seleccionada</div>
-                            )}
-                            <p className="admin-preview-name">
-                                {form.name || "Nombre del producto"}
-                            </p>
-                            <p className="admin-preview-desc">
-                                {form.description || "Aquí aparecerá la descripción..."}
-                            </p>
-                            <div className="admin-preview-meta">
-                                <span className="admin-preview-price">
-                                    ${Number(form.price).toLocaleString("es-AR")}
-                                </span>
-                                <span className="admin-preview-stock">
-                                    {form.quantity} unidades
-                                </span>
-                            </div>
-                            {form.highlighted && (
-                                <span
-                                    className="admin-badge highlight"
-                                    style={{ marginTop: "12px", display: "inline-flex" }}
-                                >
-                                    ★ Destacado
-                                </span>
-                            )}
-                        </div>
-
+                    </div>
+                    {/* COLUMNA DERECHA: Vista previa */}
+                    <div className="admin-preview-column">
+                        <h3 className="admin-preview-title">Vista previa en tienda</h3>
+                        <ProductCard products={[form]} isPreview={true} />
                     </div>
                 </div>
             </div>

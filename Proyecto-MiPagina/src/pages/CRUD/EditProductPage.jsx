@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import useGetProductById from "../../hooks/products/useGetProductById";
 import { useNavigate, useParams } from "react-router-dom";
 import usePatchProducts from "../../hooks/products/usePatchProducts";
+import ProductCard from "../../components/Cards";
+import "../../Css/CRUD/EditProductPage.css"
 
 function EditProductPage() {
     const [form, setForm] = useState({
@@ -63,8 +65,7 @@ function EditProductPage() {
     return (
         <div className="admin-layout" style={{ minHeight: "100vh" }}>
             <div className="admin-main">
- 
-                {/* Header */}
+
                 <div className="admin-page-header">
                     <div>
                         <h2 className="admin-page-header__title">Editar producto</h2>
@@ -80,19 +81,19 @@ function EditProductPage() {
                         ← Volver a la tienda
                     </button>
                 </div>
- 
+
                 {getByIdError && (
-                    <p className="admin-form-error" style={{ marginBottom: "1rem" }}>
+                    <p className="admin-form-error" >
                         Error al cargar el producto: {getByIdError?.message || String(getByIdError)}
                     </p>
                 )}
- 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", alignItems: "start" }}>
- 
-           
+
+                <div className="admin-grid-container">
+
+                    {/* COLUMNA IZQUIERDA: Tu Formulario Original */}
                     <div className="admin-form-card">
                         <form onSubmit={handleFormSubmit} className="edit-product-form">
- 
+
                             <div className="admin-form-group">
                                 <label htmlFor="name">Nombre del producto</label>
                                 <input
@@ -105,7 +106,7 @@ function EditProductPage() {
                                     placeholder="Nombre del producto..."
                                 />
                             </div>
- 
+
                             <div className="admin-form-group">
                                 <label htmlFor="image">URL de la imagen</label>
                                 <input
@@ -118,7 +119,7 @@ function EditProductPage() {
                                     placeholder="https://..."
                                 />
                             </div>
- 
+
                             <div className="admin-form-group">
                                 <label htmlFor="description">Descripción detallada</label>
                                 <textarea
@@ -131,7 +132,7 @@ function EditProductPage() {
                                     rows="4"
                                 />
                             </div>
- 
+
                             <div className="admin-form-row">
                                 <div className="admin-form-group">
                                     <label htmlFor="price">Precio ($)</label>
@@ -157,13 +158,13 @@ function EditProductPage() {
                                     />
                                 </div>
                             </div>
- 
+
                             {error && (
                                 <p className="admin-form-error">
                                     {error.message || error}
                                 </p>
                             )}
- 
+
                             <div className="admin-form-actions">
                                 <button type="submit" className="btn-primary">
                                     Guardar cambios
@@ -178,35 +179,12 @@ function EditProductPage() {
                             </div>
                         </form>
                     </div>
- 
-                    {/* Vista previa en tiempo real */}
-                    <div className="admin-preview-card">
-                        <h3>Vista previa en tienda</h3>
-                        {form.image ? (
-                            <img
-                                className="admin-preview-img"
-                                src={form.image}
-                                alt="Preview"
-                            />
-                        ) : (
-                            <div className="admin-preview-no-img">Sin imagen seleccionada</div>
-                        )}
-                        <p className="admin-preview-name">
-                            {form.name || "Nombre del Producto"}
-                        </p>
-                        <p className="admin-preview-desc">
-                            {form.description || "Aquí aparecerá la descripción..."}
-                        </p>
-                        <div className="admin-preview-meta">
-                            <span className="admin-preview-price">
-                                ${Number(form.price).toLocaleString("es-AR")}
-                            </span>
-                            <span className="admin-preview-stock">
-                                {form.quantity} unidades
-                            </span>
-                        </div>
+                    {/* COLUMNA DERECHA: Vista previa */}
+                    <div className="admin-preview-column">
+                        <h3 className="admin-preview-title">Vista previa en tienda</h3>
+                        <ProductCard products={[form]} isPreview={true} />
                     </div>
- 
+
                 </div>
             </div>
         </div>

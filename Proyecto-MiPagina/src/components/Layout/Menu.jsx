@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
+import AdminDropdown from '../../pages/Admin/AdminPanel'
 import "../../Css/Elementos/Menu.css"
 
 const Menu = () => {
@@ -45,14 +46,7 @@ const Menu = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink aria-current="page" to="/contact" >
-                        Contacto
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink aria-current="page" to="/contact" >
-                        Contacto
-                    </NavLink>
+                    <AdminDropdown />
                 </li>
 
                 <li><NavLink to="/">Registrarse</NavLink></li>
