@@ -62,6 +62,13 @@ function EditProductPage() {
             navigate("/products");
         }
     };
+      const previewData = {
+        ...form,
+        name: form.name || "Nombre del producto",
+        image: form.image || "", // Si se borra la URL, ProductCard activará el bloque HTML gris
+        description: form.description || "La descripción aparecerá aquí...",
+    };
+
     return (
         <div className="admin-layout" style={{ minHeight: "100vh" }}>
             <div className="admin-main">
@@ -133,6 +140,8 @@ function EditProductPage() {
                                 />
                             </div>
 
+                            
+
                             <div className="admin-form-row">
                                 <div className="admin-form-group">
                                     <label htmlFor="price">Precio ($)</label>
@@ -166,12 +175,12 @@ function EditProductPage() {
                             )}
 
                             <div className="admin-form-actions">
-                                <button type="submit" className="btn-primary">
+                                <button type="submit" className="admin-form-card">
                                     Guardar cambios
                                 </button>
                                 <button
                                     type="button"
-                                    className="btn-secondary"
+                                    className="admin-form-card"
                                     onClick={() => navigate("/products")}
                                 >
                                     Cancelar
@@ -182,8 +191,14 @@ function EditProductPage() {
                     {/* COLUMNA DERECHA: Vista previa */}
                     <div className="admin-preview-column">
                         <h3 className="admin-preview-title">Vista previa en tienda</h3>
-                        <ProductCard products={[form]} isPreview={true} />
+                        
+                        {/* 1. Agregamos la línea divisora */}
+                        <hr className="admin-preview-separator" />
+                        
+                        {/* 2. Reemplazamos [form] por [previewData] */}
+                        <ProductCard products={[previewData]} isPreview={true} />
                     </div>
+
 
                 </div>
             </div>

@@ -1,0 +1,12 @@
+.sin-productos {
+  grid-column: 1 / -1;      
+  text-align: center;       
+  color: #b79067;            
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 40px 20px;
+  background-color: #464d5d;  
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 600px;          
+}

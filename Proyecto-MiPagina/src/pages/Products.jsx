@@ -4,6 +4,7 @@ import useGetProducts from '../hooks/products/useGetProduct'
 import useGetProductsByCategory from '../hooks/products/useGetProductByCategory'
 import ProductCard from '../components/Cards'
 import useDeleteProducts from '../hooks/products/useDeleteProducts'
+import "../Css/Products.css"
 
 function Products() {
   const { category_id } = useParams()
@@ -58,7 +59,7 @@ return(
                 {products.length > 0 ? (
                     <ProductCard products={products} onDelete={handleDelete} />
                 ) : (
-                    <p style={{ textAlign: 'center' }}>No hay productos disponibles por el momento.</p>
+                    <h2 className='sin-productos'>No hay productos disponibles por el momento.</h2>
                 )}
             </div>
         </>

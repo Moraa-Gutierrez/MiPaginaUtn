@@ -15,11 +15,12 @@
 h1 {
     display: none;
 }
-.grid{
+
+.grid {
     display: "grid";
-     grid-template-columns: "1fr 1fr";
-      gap: "2rem";
-      align-items: "start";
+    grid-template-columns: "1fr 1fr";
+    gap: "2rem";
+    align-items: "start";
 }
 
 .admin-page-header {
@@ -89,6 +90,8 @@ h1 {
 .admin-form-card textarea {
     min-height: 100px;
     resize: vertical;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 
@@ -119,7 +122,7 @@ h1 {
     color: #ffffff;
     border: none;
     padding: 0.75rem 3rem;
-  
+
     font-size: 1rem;
     font-weight: 600;
     border-radius: 6px;
@@ -152,36 +155,7 @@ h1 {
     background-color: rgba(70, 77, 93, 0.05);
     border-color: #464d5d;
 }
-.btn-secundary a
-{
-     background-color: #b79067;
-    color: #464d5d;
-    border: 1px solid #464d5d;
-    padding: 0.6rem 1.5rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border-radius: 6px;
-    cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.btn-secondary  {
-    background-color: #b79067;
-    color: #464d5d;
-    border: 1px solid #464d5d;
-    padding: 0.6rem 1.5rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border-radius: 6px;
-    cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.btn-secondary:hover {
-    background-color: #b69877;
-    color: #ffffff;
-    transform: translateY(-5px); 
-    box-shadow: 0 12px 20px rgba(70, 77, 93, 0.15);
-}
 
 .admin-form-error {
     background-color: #fdf2f2;
@@ -195,44 +169,42 @@ h1 {
     margin-bottom: 1rem;
 }
 
-.admin-preview-container {
-    position: sticky;
-    top: 2rem;
-    /* Se queda fijo al hacer scroll si el form es muy largo */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-.admin-preview-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #464d5d;
-    align-self: flex-start;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 .admin-grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: start;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start; /* Evita que la tarjeta se estire verticalmente */
+  margin-top: 24px;
 }
 
-/* Columna derecha encargada de ordenar la vista previa */
+/* Columna del formulario (Izquierda) */
+.admin-form-card {
+  flex: 1.5; /* Ocupa más espacio de la pantalla */
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Columna de la vista previa (Derecha) */
 .admin-preview-column {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  flex: 1; /* Ocupa menos espacio */
+  position: sticky;
+  top: 24px; /* Se queda fija arriba cuando el usuario hace scroll */
+  height: max-content;
 }
 
-/* Estilo del título de la vista previa */
 .admin-preview-title {
-    color: #464d5d;
-    font-size: 1.2rem;
-    margin: 0;
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.admin-preview-separator {
+  border: 0;
+  height: 1px;
+  background-color: #e2e8f0; /* Color gris suave */
+  margin-top: 8px;
+  margin-bottom: 24px; /* Espaciado generoso antes de la Card */
+  width: 100%;
 }

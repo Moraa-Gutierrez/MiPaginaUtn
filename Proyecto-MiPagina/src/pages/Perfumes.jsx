@@ -27,7 +27,7 @@ function Perfumes() {
             {products.length > 0 ?(
                 <ProductCard products={products}/>
             ):(
-                <h2>No hay productos disponibles en este momento. Por favor, vuelva mas tarde</h2>
+               <h2>No hay productos disponibles en esta seccion</h2>
             )}
          </div>
         </>

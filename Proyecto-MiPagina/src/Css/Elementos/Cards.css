@@ -1,16 +1,12 @@
 .cards {
-  display: grid;
-  /* Crea columnas automáticas de mínimo 280px y máximo 1 fracción del espacio */
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+ display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 25px;
-  /* Espacio entre tarjetas */
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  /* Centra el contenedor en la pantalla */
 }
 
-/* Estilos de la tarjeta (se mantienen para que todas luzcan igual) */
 .tarjeta {
   background: #464d5d;
   border-radius: 8px;
@@ -51,7 +47,7 @@
 .precio {
   font-size: 1.4rem;
   font-weight: bold;
-  color: #c9a572;
+  color: #b79067;
   /* Combina con el título */
   margin-bottom: 20px;
   position: relative;
@@ -67,62 +63,93 @@
   display: block;
   width: 40px;
   height: 1px;
-  background-color: #c9a572;
+  background-color: #b79067;
   margin: 5px auto 0;
   opacity: 0.5;
 }
 
-.botones {
+.contenedor-botones-tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto; /* Empuja los botones al fondo de la tarjeta */
+  width: 100%;
+}
+
+/* Cada fila horizontal ocupa todo el ancho */
+.fila-botones {
   display: flex;
   gap: 8px;
-  margin-top: auto;
-  /* Empuja los botones al fondo siempre */
+  width: 100%;
 }
 
-.btn {
+/* Estilos base para todos los botones de la fila */
+.fila-botones .btn,
+.fila-botones .btn-admin-disabled {
   flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 10px 5px;
+  font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
+  border-radius: 4px;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.1s ease;
+  display: inline-block;
+  box-sizing: border-box;
 }
 
-.btn:active {
-  transform: scale(0.98);
-  /* Efecto de 'presionado' */
-}
-
+/* Colores de tus botones principales */
 .btn-primario {
-  background: #b79067;
-  color: #464d5d;
-  font-family: 'Great Vibes';
-    font-size: 1.5em;
+  background-color: #b79067;
+  color: #ffffff;
+  border: none;
 }
 
 .btn-primario:hover {
-  background: #c1a78e;
+  background-color: #a47f56;
 }
 
 .btn-secundario {
-  background: #b79067;
-  color: #464d5d;
-  font-family: 'Great Vibes';
-   font-size: 1.5em;
+  background-color: transparent;
+  color: #b79067;
+  border: 1px solid #b79067;
 }
 
 .btn-secundario:hover {
-  background: #c1a78e;
+  background-color: rgba(183, 144, 103, 0.1);
 }
 
-.tarjeta-cuerpo .descripcion {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;        
-    -webkit-box-orient: vertical;  
-    overflow: hidden;              
-    text-overflow: ellipsis;        
-    min-height: 4.5em;              
+/* Botones de administración reales (para la tienda) */
+.btn-editar {
+  background-color: #4a5160;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-eliminar {
+  background-color: #de3a3a;
+  color: #ffffff;
+  border: none;
+}
+
+/* Botones grises y bloqueados para el panel de vista previa (Sin !important) */
+.fila-botones .btn-admin-disabled {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Estilo estético para la etiqueta de categoría */
+.categoria-tag {
+  background-color: rgba(183, 144, 103, 0.15);
+  color: #b79067;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  width: fit-content;
+  margin: 0 auto 12px auto;
+  letter-spacing: 0.5px;
 }
