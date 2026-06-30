@@ -9,6 +9,9 @@ import ContactPage from "./pages/ContactPage";
 import QuienesSomos from "./pages/QuienesSomos";
 import AdminDropdown from "./pages/Admin/AdminPanel";
 import MenuDesplegable from "./pages/Admin/AdminPanel";
+
+import Login from "./pages/Login-Registro/Login";
+import Register from "./pages/Login-Registro/Register";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -46,6 +49,14 @@ export const router = createBrowserRouter([
             {
                 path: "cart",
                 element: <CartPage />
+            },
+            {
+                 path: "register",
+                element: <Register />
+            },
+             {
+                 path: "log-in",
+                element: <Login/>
             },
             {
                 path: "*",

@@ -1,19 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
-body,header
-{
+
+body,
+header {
     background-color: #464d5d;
     margin: 0;
 
 }
-main 
-{
+
+main {
     background-color: white;
 }
-h1
-{
- margin-top: 0;
+
+h1 {
+    margin-top: 0;
     padding-top: 40px;
     font-family: 'Great Vibes', cursive;
     color: #b79067;
@@ -21,11 +22,12 @@ h1
     font-weight: 400;
     font-size: 70px;
 }
+
 h2 {
 
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s ease forwards;
     margin-top: 0;
     padding-top: 40px;
     font-family: 'Great Vibes', cursive;
@@ -36,25 +38,26 @@ h2 {
 }
 
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-h3
-{
- font-family: 'Great Vibes', cursive;
+
+h3 {
+    font-family: 'Great Vibes', cursive;
     color: #b79067;
     text-align: center;
     font-weight: 400;
     font-size: 50px;
 }
-hr
-{
+
+hr {
     border: 0.5px solid #d1cecb;
     width: 90%;
     margin: 20px auto;
 }
+
 .subtitulo {
     font-family: "Arimo", sans-serif;
     color: #b79067;
@@ -70,25 +73,48 @@ p {
     font-weight: 400;
     font-size: 20px;
 }
+
 /* --- Estilos Generales --- */
 .contenedor {
+position: relative;
+  min-height: 80vh; /* O el alto que quieras que ocupe */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 40px 20px;
+}
+
+.contenedor::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    min-height: 100px; /* Cambiado a min-height para que crezca con el contenido */
-    text-align: center;
-    padding: 20px;
+    height: 100%;
+    background-image: url('../assets/contacto.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: 1;
 }
 
 .contenedorp {
     color: #b79067;
     margin: 20px 0;
-    font-size: 1.5em; /* Un poco más pequeño para que no rompa el diseño */
+    font-size: 1.5em;
+    /* Un poco más pequeño para que no rompa el diseño */
 }
 
 .btn {
-    display: inline-block; /* Para que el padding funcione correctamente */
+    display: inline-block;
+    /* Para que el padding funcione correctamente */
     padding: 12px 30px;
     border-radius: 50px;
-    background-color: #b79067; /* Color dorado/café de tu marca */
+    background-color: #b79067;
+    /* Color dorado/café de tu marca */
     border: none;
     color: #fff;
     cursor: pointer;
@@ -98,43 +124,45 @@ p {
 
 .btn:hover {
     background-color: #967554;
-    transform: scale(1.05); /* Efecto de crecimiento suave */
+    transform: scale(1.05);
+    /* Efecto de crecimiento suave */
 }
 
 /* --- Estructura del Modal --- */
 .contenedor-modal {
-position: fixed;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); 
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: left;
     align-items: center;
-    z-index: 1000;      
-    opacity: 1;            
-    pointer-events: auto;   
+    z-index: 1000;
+    opacity: 1;
+    pointer-events: auto;
     transition: all 0.4s ease;
 }
 
 /* Estado Activo del Modal */
 .contenedor-modal.mostrar {
-    z-index: 1000; /* Siempre arriba */
+    z-index: 1000;
+    /* Siempre arriba */
     opacity: 1;
-    background-color: rgba(0, 0, 0, 0.7); 
+    background-color: rgba(0, 0, 0, 0.7);
     pointer-events: auto;
 }
 
 /* Caja del Formulario */
 .contenedor-modal .modal {
-    position: relative;    
+    position: relative;
     width: 90%;
-    max-width: 450px; 
+    max-width: 450px;
     padding: 40px;
     background-color: #fff;
     border-radius: 10px 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -154,14 +182,15 @@ form label {
     color: #555;
 }
 
-form input, 
+form input,
 form textarea {
     margin: 8px 0 15px 0;
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
     width: 100%;
-    box-sizing: border-box; /* Importante para que no se salga de la caja */
+    box-sizing: border-box;
+    /* Importante para que no se salga de la caja */
 }
 
 form input[type="submit"] {
@@ -175,8 +204,10 @@ form input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-    background-color: #464d5d; /* Color oscuro como el de tu tarjeta */
+    background-color: #464d5d;
+    /* Color oscuro como el de tu tarjeta */
 }
+
 /* Posicionamiento de la X */
 .cerrar-modal {
     position: absolute;
@@ -186,57 +217,64 @@ form input[type="submit"]:hover {
     font-weight: bold;
     color: #aaa;
     cursor: pointer;
-    line-height: 1; /* Para que no ocupe espacio extra */
+    line-height: 1;
+    /* Para que no ocupe espacio extra */
     transition: color 0.3s;
 }
 
 .cerrar-modal:hover {
-    color: #464d5d; /* Color oscuro al pasar el mouse */
+    color: #464d5d;
+    /* Color oscuro al pasar el mouse */
 }
 
 /* Aseguramos que el modal tenga posición relativa para que la X se ubique bien */
 .contenedor-modal .modal {
-    position: relative; /* Indispensable para la X absoluta */
+    position: relative;
+    /* Indispensable para la X absoluta */
 }
-.contacto
-{
-   display: flex;
-   flex-direction: column;
+
+.contacto {
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
 }
+
 .btn {
     width: 20%;
-    
-  margin: 10px;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5em;
-  transition: all 0.3s ease;
+
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: all 0.3s ease;
 
 }
-.btn-formulario
-{
-background-color: #b79067;
-  color: white;
-  animation: pulse 1.5s infinite;
+
+.btn-formulario {
+    background-color: #b79067;
+    color: white;
+    animation: pulse 1.5s infinite;
 }
+
 @keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
- .img-contacto
- {
-     width: 100%;
+
+.img-contacto {
+    width: 100%;
     height: 250px;
     object-fit: cover;
     border-radius: 8px;
-    opacity:  0.8;
- }
+    opacity: 0.8;
+}

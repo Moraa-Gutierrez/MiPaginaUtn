@@ -17,5 +17,21 @@
       "name": "Cuidados Diarios"
     }
   ],
-  "products": []
+  "products": [
+    {
+
+    }
+  ],
+  "user": [
+    {
+      "id":"111",
+      "email":"mora@maora.com",
+      "name":"mora",
+      "lastname":"gutierrez",
+      "date":"09/11/06",
+      "password":"091106",
+      "confrimpassword":"091106"
+    }
+  ]
+
 }

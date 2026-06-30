@@ -1,14 +1,16 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import EditProductPage from '../CRUD/EditProductPage';
 import CreateProductPage from '../CRUD/CreateProductPage';
+import { useState } from 'react';
 import "../../Css/Admin/AdminPanel.css"
 function MenuDesplegable() {
+  const[isOpen, setIsOpen]= useState(false);
   return (
- <Dropdown className="custom-dropdown">
-  <Dropdown.Toggle id="dropdown-basic" className="admin-btn">
-    Admin <span className="arrow">▲</span>
-  </Dropdown.Toggle>
-
+   <Dropdown className="custom-dropdown" onToggle={(nextShow) => setIsOpen(nextShow)}>
+      <Dropdown.Toggle id="dropdown-basic" className="admin-btn">
+        Admin{' '}
+        <span className={`arrow ${isOpen ? 'rotated' : ''}`}>▼</span>
+      </Dropdown.Toggle>
   <Dropdown.Menu className="custom-menu">
     <Dropdown.Item href="/create-product" className="custom-item">
       <span className="icon">+</span>

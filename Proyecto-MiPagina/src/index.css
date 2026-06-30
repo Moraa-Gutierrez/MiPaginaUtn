@@ -12,6 +12,10 @@ header {
 main {
   background-color: white;
 }
+.home-container h1, 
+main h1 {
+    display: block;
+}
 .logo {
   height: 60px;
   width: 60px;
@@ -87,10 +91,6 @@ p {
   animation: fadeInUp 1.2s ease-out forwards;
 }
 
-h1 {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-}
 
 p {
   font-size: 1.2rem;

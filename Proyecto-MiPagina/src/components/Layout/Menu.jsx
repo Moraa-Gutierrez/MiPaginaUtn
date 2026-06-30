@@ -49,8 +49,8 @@ const Menu = () => {
                     <AdminDropdown />
                 </li>
 
-                <li><NavLink to="/">Registrarse</NavLink></li>
-                <li><NavLink to="/">Iniciar Sesión</NavLink></li>
+                <li><NavLink to="/register">Registrarse</NavLink></li>
+                <li><NavLink to="/log-in">Iniciar Sesión</NavLink></li>
                 <li><NavLink to="/cart" >Carrito ({getCartCount()}) 🛒</NavLink></li>
             </ul>
         </nav>

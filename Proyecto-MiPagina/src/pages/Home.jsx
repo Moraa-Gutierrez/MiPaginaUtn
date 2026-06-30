@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+
 import CarouselFadeExample from '../components/Carrousel';
 import '../../src/index.css'
 function Home() {
@@ -13,10 +14,11 @@ function Home() {
   };
 
   return (
-    <> {/* Fragmento contenedor obligatorio */}
+    <>
       <header>
-        <h1>M&L</h1>
-        <p className="subtitulo">Tu mejor version todos los dias</p>
+            <h1>M&L</h1>
+        <p className="subtitulo">Tu mejor version, todos los dias</p> 
+   
         <hr />
       </header>
 
@@ -25,7 +27,7 @@ function Home() {
           <section className="hero">
             <div className="hero-container">
               <div className="hero-content">
-                <h1 className="h1hero">Tu mejor versión, todos los días</h1>
+                <h1 className="h1hero">Se tu mejor version cada dia</h1>
                 <p>
                   Descubre nuestra exclusiva colección de perfumes, bijouterie, velas aromáticas y productos de
                   cuidado personal que realzarán tu belleza natural.
@@ -78,7 +80,7 @@ function Home() {
               Desde perfumes cautivadores hasta bijouterie sofisticada, velas aromáticas y productos
               de cuidado personal premium, cada artículo ha sido elegido pensando en ti.
             </p>
-            <Link className="boton boton-3" to="/quienes-somos">Conoce nuestra historia</Link>
+            <Link className="boton boton-3" to="/quienessomos">Conoce nuestra historia</Link>
           </div>
           <div className="tarjeta-virtud">
             <h3>¿Por Que elegirnos?</h3>

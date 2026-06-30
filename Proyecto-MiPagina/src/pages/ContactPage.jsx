@@ -35,17 +35,18 @@ function ContactPage() {
 
         <main>
             <div className="contacto">
-            
-                <h2>Contacto</h2>
-                <h3>Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto con nosotros.</h3>
-                <p>Llena el siguiente formulario</p>
-                <button
-                    type="button"
-                    id="contact-button"
-                    className="btn btn-formulario"
-                    onClick={() => setIsModalOpen(true)}
-                >
-                    Formulario</button>
+                <div className="contacto-content">
+                    <h2>Contacto</h2>
+                    <h3>Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto con nosotros.</h3>
+                    <p>Llena el siguiente formulario</p>
+                    <button
+                        type="button"
+                        id="contact-button"
+                        className="btn btn-formulario"
+                        onClick={() => setIsModalOpen(true)}
+                    >
+                        Formulario</button>
+                </div>
             </div>
             {isModalOpen && (
                 <div className="contenedor-modal">
