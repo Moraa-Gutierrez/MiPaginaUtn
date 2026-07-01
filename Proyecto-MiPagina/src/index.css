@@ -154,6 +154,7 @@ p {
   background-color: #b79067;
   color: white;
   border: 2px solid #464d5d;
+   display: inline-block;
 }
 
 .boton-3:hover {
@@ -173,7 +174,9 @@ p {
   background-color: #f8ffa8;
   padding: 40px;
   border-radius: 15px;
-  width: 40%;
+    width: 100%;
+  max-width: 450px; 
+    inset: 0; 
   position: relative;
   z-index: 1;
 }
@@ -199,13 +202,19 @@ p {
   margin-bottom: 15px;
   position: relative;
   padding-left: 25px;
+  padding-left: 30px;       
+  font-size: 1.1rem;        
+  line-height: 1.4;    
 }
-
+.tarjeta-virtud li:last-child {
+  margin-bottom: 0;
+}
 .tarjeta-virtud li::before {
   content: "✓";
   position: absolute;
   left: 0;
   color: #b79067;
+  top: 2px; 
 }
 
 .pvirtud {
@@ -316,5 +325,51 @@ tr a {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) 
+{
+ .tarjeta-virtud {
+    max-width: 450px;       /* En PC se frena en un tamaño elegante */
+    padding: 40px;          /* Más espacio interno en pantallas grandes */
+  }
+
+  .tarjeta-virtud::before {
+    transform: translate(-15px, -15px); 
+  }
+
+  .boton-3 {
+    width: auto;           
+  }
+   .virtudes 
+    {
+      flex:1;
+      align-items: center;
+    }
+    h3
+    {
+      font-size: 2rem;
+
+    }
+    .pvirtud {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+}
+
+  @media (min-width: 769px) and (max-width: 1024px) 
+  {
+  .tarjeta-virtud 
+  {
+    text-align: center;
+    flex-direction: column;
+    padding: 30px;
+    gap: 30px;
+    }
+ .pvirtud {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
   }
 }

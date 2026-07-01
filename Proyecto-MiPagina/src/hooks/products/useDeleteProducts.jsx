@@ -21,11 +21,11 @@ const deleteProducts = async(productId) =>
         }
         return true
     } catch (error) {
-        console.error(error)
         setError(error)
         return false
     }
 }
+
 return { error, deleteProducts }
 
 }

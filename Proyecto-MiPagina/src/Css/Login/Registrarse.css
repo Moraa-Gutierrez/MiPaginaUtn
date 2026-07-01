@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 * {
     box-sizing: border-box;
 }
@@ -65,9 +68,11 @@ p {
 .contenedor-login {
     background-color: #ffffff;
     display: flex;
-    height: 100vh;
-    /* Ocupa todo el alto de la pantalla */
-    font-family: Arial, sans-serif
+     min-height: 100vh;        
+    margin: 40px auto;     
+    padding: 20px;
+     border-radius: 20px;
+    font-family: Arimo, sans-serif;
 }
 
 .formulario,
@@ -79,8 +84,7 @@ p {
 }
 
 .formulario {
-    padding: 0 10%;
-    /* Espaciado lateral para que el form no toque los bordes */
+   padding: 0  40px ;
 }
 
 .input-group label {
@@ -161,8 +165,9 @@ p {
     background-image: url('../../assets/Login-Registro/Tarjeta\ de\ presentación\ psicóloga\ floral\ beige.png');
     background-size: cover;
     background-position: center;
+     background-position: right bottom;
     border-radius: 40px 0 0 40px;
-    /* Bordes redondeados del lado izquierdo */
+
 }
 .afooter
 {
