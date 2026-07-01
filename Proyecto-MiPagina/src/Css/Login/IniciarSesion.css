@@ -115,8 +115,7 @@ p {
 }
 .image-section {
     background-image: url('../../img/Tarjeta de presentación psicóloga floral beige.png');
-   background-size: cover;
+    background-size: cover;
     background-position: center;
-     background-position: right bottom;
-    border-radius: 40px 0 0 40px;
+    border-radius: 40px 0 0 40px; /* Bordes redondeados del lado izquierdo */
 }

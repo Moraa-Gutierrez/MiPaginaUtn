@@ -1,0 +1,37 @@
+{
+  "category": [
+    {
+      "id": 1,
+      "name": "Perfumes"
+    },
+    {
+      "id": 2,
+      "name": "Accesorios"
+    },
+    {
+      "id": 3,
+      "name": "Velas"
+    },
+    {
+      "id": 4,
+      "name": "Cuidados Diarios"
+    }
+  ],
+  "products": [
+    {
+
+    }
+  ],
+  "user": [
+    {
+      "id":"111",
+      "email":"mora@maora.com",
+      "name":"mora",
+      "lastname":"gutierrez",
+      "date":"09/11/06",
+      "password":"091106",
+      "confrimpassword":"091106"
+    }
+  ]
+
+}
