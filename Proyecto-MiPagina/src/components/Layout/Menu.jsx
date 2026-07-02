@@ -8,42 +8,60 @@ import "../../Css/Elementos/Menu.css"
 const Menu = () => {
     const { getCartCount } = useCart();
     const { user, logout, isAuthenticated } = useAuth();
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const closeMenu = () => {
+        setIsOpen(false);
+    };
+
     return (
         <nav className="menu">
+            <div className="menu-mobile-header">
+                <NavLink to="/" className="menu-brand" onClick={closeMenu}>
+                    M&L
+                </NavLink>
+                <button className="menu-toggle" onClick={toggleMenu} aria-label="Abrir menú">
+                    <i className={isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
+                </button>
+            </div>
 
-            <ul>
+            <ul className={isOpen ? "menu-links open" : "menu-links"}>
                 <li>
-                    <NavLink aria-current="page" to="/">
+                    <NavLink aria-current="page" to="/" onClick={closeMenu}>
                         Home
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink aria-current="page" to="/products/category/1">
+                    <NavLink aria-current="page" to="/products/category/1" onClick={closeMenu}>
                         Perfumes
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink aria-current="page" to="/products/category/2">
+                    <NavLink aria-current="page" to="/products/category/2" onClick={closeMenu}>
                         Accesorios
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink aria-current="page" to="/products/category/3">
+                    <NavLink aria-current="page" to="/products/category/3" onClick={closeMenu}>
                         Velas
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink aria-current="page" to="/products/category/4">
+                    <NavLink aria-current="page" to="/products/category/4" onClick={closeMenu}>
                         Cuidados Diarios
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink aria-current="page" to="/quienessomos">
+                    <NavLink aria-current="page" to="/quienessomos" onClick={closeMenu}>
                         Quienes Somos
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink aria-current="page" to="/contact" >
+                    <NavLink aria-current="page" to="/contact" onClick={closeMenu}>
                         Contacto
                     </NavLink>
                 </li>
@@ -55,16 +73,16 @@ const Menu = () => {
 
                 {!isAuthenticated ? (
                     <>
-                        <li><NavLink to="/register">Registrarse</NavLink></li>
-                        <li><NavLink to="/log-in">Iniciar Sesión</NavLink></li>
+                        <li><NavLink to="/register" onClick={closeMenu}>Registrarse</NavLink></li>
+                        <li><NavLink to="/log-in" onClick={closeMenu}>Iniciar Sesión</NavLink></li>
                     </>
                 ) : (
                     <>
                         <li><span className="menu-user-greeting">Hola, {user.name} 👋</span></li>
-                        <li><button onClick={logout} className="menu-btn-logout">Cerrar Sesión</button></li>
+                        <li><button onClick={() => { logout(); closeMenu(); }} className="menu-btn-logout">Cerrar Sesión</button></li>
                     </>
                 )}
-                <li><NavLink to="/cart" >Carrito ({getCartCount()}) 🛒</NavLink></li>
+                <li><NavLink to="/cart" onClick={closeMenu}>Carrito ({getCartCount()}) 🛒</NavLink></li>
             </ul>
         </nav>
     );

@@ -49,7 +49,7 @@ p {
 {
     background-color: #ffffff;
     display: flex;
-    height: 100vh; /* Ocupa todo el alto de la pantalla */
+    height: 100vh; 
     font-family: Arial, sans-serif
 }
 .formulario, .image-section {
@@ -59,7 +59,7 @@ p {
     justify-content: center;
 }
 .formulario {
-    padding: 0 10%; /* Espaciado lateral para que el form no toque los bordes */
+    padding: 0 10%; 
 }
 .input-group label {
     display: block;
@@ -79,7 +79,7 @@ p {
 {
     width: 100%;
     padding: 12px;
-    background-color: #3a5a40; /* Verde oscuro similar al de la imagen */
+    background-color: #3a5a40; 
     color: white;
     border-radius: 8px;
     cursor: pointer;
@@ -96,7 +96,7 @@ p {
 {
     width: 100%;
     padding: 12px;
-    background-color: #b79067; /* Verde oscuro similar al de la imagen */
+    background-color: #b79067; 
     color: #464d5d;
     border-radius: 8px;
     cursor: pointer;
@@ -106,7 +106,7 @@ p {
 {
     width: 100%;
     padding: 12px;
-    background-color: #464d5d; /* Verde oscuro similar al de la imagen */
+    background-color: #464d5d; 
     color: #b79067;
     border-radius: 8px;
     cursor: pointer;
@@ -114,8 +114,8 @@ p {
     margin-top: 10px;
 }
 .image-section {
-    background-image: url('../../img/Tarjeta de presentación psicóloga floral beige.png');
+    background-image: url('../../assets/Login-Registro/Tarjeta\ de\ presentación\ psicóloga\ floral\ beige.png');
     background-size: cover;
     background-position: center;
-    border-radius: 40px 0 0 40px; /* Bordes redondeados del lado izquierdo */
+    border-radius: 40px 0 0 40px; 
 }

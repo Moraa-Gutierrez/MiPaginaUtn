@@ -13,7 +13,7 @@ main {
 }
 
 h1 {
-    margin-top: 40px;
+    padding-bottom: 3rem;
     font-family: 'Great Vibes', cursive;
     color: #b79067;
     text-align: center;
@@ -66,7 +66,6 @@ p {
     background-color: #ffffff;
     display: flex;
     height: 100vh;
-    /* Ocupa todo el alto de la pantalla */
     font-family: Arial, sans-serif
 }
 
@@ -80,7 +79,6 @@ p {
 
 .formulario {
     padding: 0 10%;
-    /* Espaciado lateral para que el form no toque los bordes */
 }
 
 .input-group label {
@@ -103,7 +101,6 @@ p {
     width: 100%;
     padding: 12px;
     background-color: #3a5a40;
-    /* Verde oscuro similar al de la imagen */
     color: white;
     border-radius: 8px;
     cursor: pointer;
@@ -113,18 +110,20 @@ p {
 
 .social-contenedor {
   display: flex;
-  gap: 15px;         /* Espacio entre el botón de Google y el de Apple */
-  margin-top: 15px;
+  gap: 15px;        
+  margin-top: 10px;
+  margin-bottom: 0px;
   width: 100%;
 }
 
-/* El botón social en sí */
+
 .social-btn {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;                 
+  gap: 10px;     
+  padding-bottom: 0%;            
   background-color: #464d5d; 
   color: #b79067;            
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -149,31 +148,34 @@ p {
     width: 100%;
     padding: 12px;
     background-color: #464d5d;
-    /* Verde oscuro similar al de la imagen */
     color: #b79067;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    margin-top: 10px;
 }
+
 
 .image-section {
     background-image: url('../../assets/Login-Registro/Tarjeta\ de\ presentación\ psicóloga\ floral\ beige.png');
     background-size: cover;
     background-position: center;
     border-radius: 40px 0 0 40px;
-    /* Bordes redondeados del lado izquierdo */
+
 }
 .afooter
 {
     padding: 10px;
+    padding-top: 20px;
     color: #b79067;
     font-family: 'Great Vibes', cursive;
     text-decoration: none;
     font-weight: bold;
     font-size: 30px;
 }
-.footer-form
+.footer-form 
 {
+     margin-bottom: 5rem;
+padding: 20px;
+align-items: center;
  color: #464d5d;
 }

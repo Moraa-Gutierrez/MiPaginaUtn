@@ -19,19 +19,92 @@
   ],
   "products": [
     {
-
+      "id": "1",
+      "name": "Noir Extrême Perfume",
+      "price": 12500,
+      "description": "Fragancia intensa con notas orientales, cardamomo y madera de sándalo. Ideal para la noche.",
+      "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=500&auto=format&fit=crop&q=60",
+      "category_id": 1,
+      "quantity": 15,
+      "active": true,
+      "highlighted": true
+    },
+    {
+      "id": "3",
+      "name": "Collar Luna de Plata",
+      "price": 3200,
+      "description": "Collar artesanal de plata esterlina 925 con un delicado dije en forma de media luna brillante.",
+      "image": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&auto=format&fit=crop&q=60",
+      "category_id": 2,
+      "quantity": 10,
+      "active": true,
+      "highlighted": true
+    },
+    {
+      "id": "4",
+      "name": "Aros Geométricos Oro",
+      "price": 4500,
+      "description": "Aros de diseño moderno con formas geométricas sutiles, chapados en oro de 18k.",
+      "image": "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&auto=format&fit=crop&q=60",
+      "category_id": 2,
+      "quantity": 8,
+      "active": true,
+      "highlighted": false
+    },
+    {
+      "id": "5",
+      "name": "Vela Lavanda y Vainilla",
+      "price": 1800,
+      "description": "Vela aromática de cera de soja 100% natural, con aceites esenciales relajantes de lavanda y vainilla dulce.",
+      "image": "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=500&auto=format&fit=crop&q=60",
+      "category_id": 3,
+      "quantity": 30,
+      "active": true,
+      "highlighted": true
+    },
+    {
+      "id": "6",
+      "name": "Vela Canela y Naranja",
+      "price": 1800,
+      "description": "Vela de soja artesanal en frasco de vidrio, con un aroma cálido y estimulante de canela y cáscaras de naranja.",
+      "image": "https://images.unsplash.com/photo-1572726729207-a78d6fed347e?w=500&auto=format&fit=crop&q=60",
+      "category_id": 3,
+      "quantity": 25,
+      "active": true,
+      "highlighted": false
+    },
+    {
+      "id": "7",
+      "name": "Crema Hidratante de Coco",
+      "price": 2400,
+      "description": "Loción corporal profundamente hidratante formulada con aceite de coco orgánico y manteca de karité.",
+      "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop&q=60",
+      "category_id": 4,
+      "quantity": 12,
+      "active": true,
+      "highlighted": true
+    },
+    {
+      "id": "8",
+      "name": "Sérum Facial Vitamina C",
+      "price": 5600,
+      "description": "Sérum concentrado iluminador y antioxidante para combatir manchas y rejuvenecer la piel.",
+      "image": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&auto=format&fit=crop&q=60",
+      "category_id": 4,
+      "quantity": 15,
+      "active": true,
+      "highlighted": false
     }
   ],
   "user": [
     {
-      "id":"111",
-      "email":"mora@maora.com",
-      "name":"mora",
-      "lastname":"gutierrez",
-      "date":"09/11/06",
-      "password":"091106",
-      "confrimpassword":"091106"
+      "id": "111",
+      "email": "mora@mora.com",
+      "name": "mora",
+      "lastname": "gutierrez",
+      "date": "09/11/06",
+      "password": "091106",
+      "confrimpassword": "091106"
     }
   ]
-
 }
