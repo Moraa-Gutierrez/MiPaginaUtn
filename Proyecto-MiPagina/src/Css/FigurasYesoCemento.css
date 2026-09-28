@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+*{
+  box-sizing: border-box;
+}
+body,
+header {
+  background-color: #464d5d;
+  margin: 0;
+}
+
+main {
+  background-color: white;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+  padding-top: 40px;
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 70px;
+}
+
+h3 {
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 50px;
+}
+
+hr {
+  border: 0.5px solid #d1cecb;
+  width: 90%;
+  margin: 20px auto;
+}
+
+.subtitulo {
+  font-family: "Arimo", sans-serif;
+  color: #b79067;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+p {
+  font-family: "Arimo", sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+}

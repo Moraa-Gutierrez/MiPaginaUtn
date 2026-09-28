@@ -51,6 +51,11 @@ const Menu = () => {
                     </NavLink>
                 </li>
                 <li>
+                    <NavLink aria-current="page" to="/products/category/5" onClick={closeMenu}>
+                        Figuras de Yeso y Cemento
+                    </NavLink>
+                </li>
+                <li>
                     <NavLink aria-current="page" to="/products/category/4" onClick={closeMenu}>
                         Cuidados Diarios
                     </NavLink>
