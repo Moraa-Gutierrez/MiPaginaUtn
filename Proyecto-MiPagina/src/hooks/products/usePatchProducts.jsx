@@ -7,7 +7,7 @@ function usePatchProducts() {
  const patchProduct = async (formData, productId) => {
     setError(null)
     try {
-        const response = await fetch(`${API_URL}products/${productId}`, {
+       const response = await fetch(`${API_URL}/products/${productId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

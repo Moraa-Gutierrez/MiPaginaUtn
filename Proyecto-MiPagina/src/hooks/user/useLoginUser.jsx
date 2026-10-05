@@ -16,23 +16,21 @@ function useLoginUser() {
         }
 
         try {
-           const response = await fetch(`${API_URL}user`)
+           // Cambiamos /user a /users para consultar el array principal
+           const response = await fetch(`${API_URL}/user`);
             if(!response.ok){
                 throw new Error(`Error al leer usuarios, ${response.status}`)
-                }
+            }
             const users = await response.json()
 
-            // Lo ideal seria tener un getUserByEmail y no tener que buscar al usuario entre los datos
-            // No es escalable por encima de los 10000 users deja de ser optimo
-             const userFound = users.find((user) => user.email === email && user.password === pass)
+            // Verificamos coincidencia de email y password
+            const userFound = users.find((user) => user.email === email && user.password === pass)
             
             if(!userFound){
-                console.log(userFound)
                 setError("Credenciales incorrectas")
                 return null
             }
 
-            // No retornamos la password por seguridad
             const { password: _, ...userSinPassword } = userFound
 
             return userSinPassword
@@ -43,7 +41,7 @@ function useLoginUser() {
             return null
         }
     }
-    return {error, loginUser}
+    return { error, loginUser }
 }
-
+console.log(API_URL)
 export default useLoginUser

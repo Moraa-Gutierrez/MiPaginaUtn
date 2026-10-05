@@ -12,6 +12,7 @@ function CreateProductPage() {
         description: "",
         price: 0,
         quantity: 1,
+        
         highlighted: false, // Inicializado para evitar problemas visuales
     });
 
@@ -63,6 +64,7 @@ function CreateProductPage() {
         name: form.name || "Nombre del producto",
         image: form.image || "https://placehold.co/600x400?text=Sin+Imagen",
         description: form.description || "La descripción aparecerá aquí...",
+        material: Number(form.category_id) === 5 ? (form.material || "yeso") : null
     };
 
     return (
@@ -144,8 +146,24 @@ function CreateProductPage() {
                                     <option value={2}>Accesorios</option>
                                     <option value={3}>Velas</option>
                                     <option value={4}>Cuidados Diarios</option>
+                                    <option value={5}>Figuras de Yeso y Cemento</option>
                                 </select>
                             </div>
+                            {Number(form.category_id) === 5 && (
+                                <div className="admin-form-group">
+                                    <label htmlFor="material">Material de la figura</label>
+                                    <select
+                                        name="material"
+                                        id="material"
+                                        value={form.material || "yeso"}
+                                        onChange={handleInputChange}
+                                    >
+                                        <option value="yeso">Yeso</option>
+                                        <option value="cemento">Cemento</option>
+                                        <option value="resina">Resina</option>
+                                    </select>
+                                </div>
+                            )}
 
                             <div className="admin-form-row">
                                 <div className="admin-form-group">
@@ -196,7 +214,7 @@ function CreateProductPage() {
                                 <button
                                     className="admin-form-card"
                                     type="button"
-                                    onClick={() => setForm({ id: "preview-new", name: "", image: "", description: "", price: 0, quantity: 1 })}
+                                    onClick={() => setForm({ id: "", name: "", image: "", description: "", price: 0, quantity: 1 })}
                                 >
                                     Borrar form
                                 </button>

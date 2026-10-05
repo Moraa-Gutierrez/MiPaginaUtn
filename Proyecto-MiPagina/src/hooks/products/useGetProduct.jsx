@@ -9,7 +9,7 @@ function useGetProducts() {
 
     // url va a ser la direccion de la API
     
-    const getProducts = async (url = `${API_URL}products`) => {
+  const getProducts = async (url = `${API_URL}/products`) => {
         try {
             setLoading(true)
             setError(null)
@@ -38,7 +38,7 @@ function useGetProducts() {
 //en el caso de los get hacemos la ejecucuion dentro del hook
 //constantemente ejecuto el hook y hago llamadas a la api cuando necesito
     useEffect(() => {
-        getProducts(`${API_URL}products`)
+       getProducts(`${API_URL}/products`);
     }, [])
 //como retorno pasamos la info que queremos exteriorizar. Estados
     return {products, error, loading, getProducts}

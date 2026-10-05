@@ -62,11 +62,12 @@ function EditProductPage() {
             navigate("/products");
         }
     };
-      const previewData = {
+    const previewData = {
         ...form,
         name: form.name || "Nombre del producto",
-        image: form.image || "", // Si se borra la URL, ProductCard activará el bloque HTML gris
+        image: form.image || "https://picsum.photos/300/300", // Si se borra la URL, ProductCard activará el bloque HTML gris
         description: form.description || "La descripción aparecerá aquí...",
+       material: Number(form.category_id) === 5 ? form.material : null
     };
 
     return (
@@ -140,7 +141,21 @@ function EditProductPage() {
                                 />
                             </div>
 
-                            
+                            {Number(form.category_id) === 5 && (
+                                <div className="admin-form-group">
+                                    <label htmlFor="material">Material de la figura</label>
+                                    <select
+                                        name="material"
+                                        id="material"
+                                        value={form.material || "yeso"}
+                                        onChange={handleInputChange}
+                                    >
+                                        <option value="yeso">Yeso</option>
+                                        <option value="cemento">Cemento</option>
+                                        <option value="resina">Resina</option>
+                                    </select>
+                                </div>
+                            )}
 
                             <div className="admin-form-row">
                                 <div className="admin-form-group">
@@ -191,12 +206,13 @@ function EditProductPage() {
                     {/* COLUMNA DERECHA: Vista previa */}
                     <div className="admin-preview-column">
                         <h3 className="admin-preview-title">Vista previa en tienda</h3>
-                        
+
                         {/* 1. Agregamos la línea divisora */}
                         <hr className="admin-preview-separator" />
-                        
+
                         {/* 2. Reemplazamos [form] por [previewData] */}
                         <ProductCard products={[previewData]} isPreview={true} />
+                        
                     </div>
 
 

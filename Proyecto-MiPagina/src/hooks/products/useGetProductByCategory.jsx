@@ -15,7 +15,9 @@ function useGetProductsByCategory(categoriaId) {
             setError(null);
 
             // JSON Server filtra automáticamente usando ?categoria_id=EL_ID
-            const response = await fetch(`${API_URL}products?category_id=${id}`);
+            const response = await fetch(`${API_URL}/products?category_id=${id}`);
+    
+
 
             if (!response.ok) {
                 throw new Error("Error al traer los productos de esta categoría");

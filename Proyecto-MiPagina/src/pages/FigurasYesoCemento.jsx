@@ -4,7 +4,7 @@ import useGetProductsByCategory from "../hooks/products/useGetProductByCategory"
 import React from 'react'
 
 function FigurasYesoCemento() {
-    const { error, loading, products } = useGetProductsByCategory(4)
+    const { error, loading, products } = useGetProductsByCategory(5)
     if (error) {
         <>
             <div>

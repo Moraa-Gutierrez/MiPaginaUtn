@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import useGetProductById from '../hooks/products/useGetProductById';
-import "../Css/Elementos/Cards.css"
+import "../Css/Elementos/Cards.css";
 
 function ProductCard({ products, onDelete, isPreview }) {
   const { addToCart } = useCart();
@@ -20,39 +20,44 @@ function ProductCard({ products, onDelete, isPreview }) {
     );
   };
 
- if (isPreview) {
+  if (isPreview) {
     return (
       <>
         {products.map((product) => (
           <article className="tarjeta" key={product.id || 'preview'}>
             <div className="tarjeta-imagen">
-              <img src={product.image || "https://via.placeholder.com/150"} alt={product.name} />
+              <img src={product.image || "https://picsum.photos/200/300"} alt={product.name} />
             </div>
 
             <div className="tarjeta-cuerpo">
               <h3 className="titulo">{product.name || "Nombre del producto"}</h3>
-              
+
               <p className="descripcion">
                 {product.description || "Aquí aparecerá la descripción..."}
               </p>
 
               <p className="categoria-tag">
-                {product.category_id === 1 && "Perfumes"}
-                {product.category_id === 2 && "Accesorios"}
-                {product.category_id === 3 && "Velas"}
-                {product.category_id === 4 && "Cuidados Diarios"}
+                {Number(product.category_id) === 1 && "Perfumes"}
+                {Number(product.category_id) === 2 && "Accesorios"}
+                {Number(product.category_id) === 3 && "Velas"}
+                {Number(product.category_id) === 4 && "Cuidados Diarios"}
+                {Number(product.category_id) === 5 && "Figuras de Yeso y Cemento"}
               </p>
 
+              {product.material && Number(product.category_id) === 5 && (
+                <p className="material-tag">
+                  Material: {product.material}
+                </p>
+              )}
+            
               <p className="precio">${product.price || 0}</p>
               <p className="stock">Stock: {product.quantity || 0} u.</p>
 
               <div className="contenedor-botones-tarjeta">
-                {/* Piso 1: Botones simulados de usuario */}
                 <div className="fila-botones">
                   <span className="btn btn-secundario">Detalle</span>
                   <span className="btn btn-primario">Carrito</span>
                 </div>
-                {/* Piso 2: Botones bloqueados de administración */}
                 <div className="fila-botones">
                   <span className="btn btn-admin-disabled">Editar</span>
                   <span className="btn btn-admin-disabled">Eliminar</span>
@@ -64,6 +69,7 @@ function ProductCard({ products, onDelete, isPreview }) {
       </>
     );
   }
+
   return (
     <section className="cards">
       {products.map((product, index) => (
@@ -74,15 +80,23 @@ function ProductCard({ products, onDelete, isPreview }) {
 
           <div className="tarjeta-cuerpo">
             <h3 className="titulo">{product.name}</h3>
-            
+
             <p className="descripcion">{product.description}</p>
 
             <p className="categoria-tag">
-              {product.category_id === 1 && "Perfumes"}
-              {product.category_id === 2 && "Accesorios"}
-              {product.category_id === 3 && "Velas"}
-              {product.category_id === 4 && "Cuidados Diarios"}
+              {Number(product.category_id) === 1 && "Perfumes"}
+              {Number(product.category_id) === 2 && "Accesorios"}
+              {Number(product.category_id) === 3 && "Velas"}
+              {Number(product.category_id) === 4 && "Cuidados Diarios"}
+              {Number(product.category_id) === 5 && "Figuras de Yeso y Cemento"}
             </p>
+
+           
+            {product.material && Number(product.category_id) === 5 && (
+              <p className="material-tag">
+                Material: {product.material}
+              </p>
+            )}
 
             <p className="precio">${product.price}</p>
             <p className="stock">Stock: {product.quantity} u.</p>
@@ -92,15 +106,13 @@ function ProductCard({ products, onDelete, isPreview }) {
             )}
 
             <div className="contenedor-botones-tarjeta">
-              {/* Piso 1: Botones del Cliente */}
               <div className="fila-botones">
                 <button onClick={() => handleShowDetails(product)} className="btn btn-secundario">Detalle</button>
                 <button onClick={() => handleAddToCart(product)} className="btn btn-primario">
                   Carrito
                 </button>
               </div>
-              
-              {/* Piso 2: Botones del Administrador */}
+
               <div className="fila-botones">
                 <Link to={`/edit-product/${product.id}`} className="btn btn-editar">Editar</Link>
                 {onDelete && (

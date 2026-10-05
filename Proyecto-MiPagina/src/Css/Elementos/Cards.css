@@ -143,8 +143,8 @@
   pointer-events: none;
 }
 
-/* Estilo estético para la etiqueta de categoría */
-.categoria-tag {
+
+.categoria-tag, .material-tag {
   background-color: rgba(183, 144, 103, 0.15);
   color: #b79067;
   font-size: 0.8rem;

@@ -8,12 +8,10 @@ function useGetProductById() {
         try {
             setError(null)
 
-            const response = await fetch(`${API_URL}products/${productId}`)
+           const response = await fetch(`${API_URL}/products/${productId}`)
 
             if (!response.ok) {
-                throw new Error(
-                    "Error al traer el producto", response.status
-                )
+                throw new Error(`Error al traer el producto (Código ${response.status})`);
             }
 
             const data = await response.json()

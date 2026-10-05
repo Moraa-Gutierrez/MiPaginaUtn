@@ -8,7 +8,7 @@ function usePostProduct() {
         setError(null)
         setLoading(true)
         try {
-            const response = await fetch(`${API_URL}products`, {
+            const response = await fetch(`${API_URL}/products`, {
                 // Define el metodo http
                 method: "POST",
                 // Define el tipo de informacion que viaja, en este caso es texto
