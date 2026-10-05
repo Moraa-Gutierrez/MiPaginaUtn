@@ -1,37 +1,33 @@
 import React from "react";
-import ProductCard from "../components/Cards";
+import ProductCard from "../components/cards";
 import useGetProductsByCategory from "../hooks/products/useGetProductByCategory";
-import React from 'react'
 
 function Perfumes() {
-    const { error, loading, products } = useGetProductsByCategory(1)
+    const { error, loading, products } = useGetProductsByCategory(1);
+    
     if (error) {
-        <>
+        return (
             <div>
                 <h2>Se ha producido un error en la carga de los productos. Por favor, espere o recargue la pagina</h2>
-                <p> {error?.message || String(error)} </p> {/*tengo error? si tengo error, hay mensaje. Si no, paso el error por string*/}
+                <p> {error?.message || String(error)} </p>
             </div>
-        </>
+        );
     }
-    if(loading){
-        <>
-        <div>
-            <h2>Cargando exceso de belleza...⋆.ೃ࿔🌸*:･</h2>
-        </div>
-        </>
+    
+    if (loading) {
+        return (
+            <div>
+                <h2>Cargando exceso de belleza...⋆.ೃ࿔🌸*:･</h2>
+            </div>
+        );
     }
+    
     return (
-        <>
-         <div>
+        <div>
             <h1>Perfumes</h1>
-            {products.length > 0 ?(
-                <ProductCard products={products}/>
-            ):(
-               <h2>No hay productos disponibles en esta seccion</h2>
-            )}
-         </div>
-        </>
+            <ProductCard products={products} />
+        </div>
     );
 }
 
-export default Perfumes
+export default Perfumes;

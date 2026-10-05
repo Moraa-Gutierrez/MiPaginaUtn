@@ -56,20 +56,12 @@ function Products() {
       </>
     )
   }
-return(
-        <>
-            <div style={{ padding: '20px' }}>
-                <h1 style={{ textAlign: 'center' }}>Nuestra Tienda</h1>
-                
-                {/* Si hay productos los mostramos, si está vacío avisamos */}
-                {activeProducts.length > 0 ? (
-                    <ProductCard products={activeProducts} onDelete={handleDelete} />
-                ) : (
-                    <h2 className='sin-productos'>No hay productos disponibles por el momento.</h2>
-                )}
-            </div>
-        </>
-    );
+return (
+    <div style={{ padding: '20px' }}>
+      <h1 style={{ textAlign: 'center' }}>Nuestra Tienda</h1>
+      <ProductCard products={activeProducts} onDelete={handleDelete} />
+    </div>
+  );
 }
 
-export default Products
+export default Products;

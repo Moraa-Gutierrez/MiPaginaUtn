@@ -1,40 +1,149 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
-.cards {
- display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
-  padding: 20px;
-  max-width: 1200px;
+
+/* ==========================================================================
+   1. CONTENEDOR Y GRILLA RESPONSIVA
+   ========================================================================== */
+.cards-wrapper {
+  width: 100%;
+  max-width: 1320px;
   margin: 0 auto;
+  padding: 20px 15px;
+  box-sizing: border-box;
 }
 
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  align-items: stretch;
+}
+
+/* Breakpoint Tablet */
+@media (min-width: 600px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Breakpoint Tablet Grande / Laptop */
+@media (min-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Breakpoint Escritorio */
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ==========================================================================
+   2. TARJETA DE PRODUCTO (UNIFORMIDAD & MICROINTERACCIONES)
+   ========================================================================== */
 .tarjeta {
-  background: #464d5d;
-  border-radius: 8px;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  background-color: #464d5d;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
+  height: 100%;
   overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  border-color: rgba(183, 144, 103, 0.4);
+}
+
+/* Imagen con Proporción Uniforme */
+.tarjeta-imagen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: #383e4b;
 }
 
 .tarjeta-imagen img {
   width: 100%;
-  height: 200px;
-  object-fit: contain;
-  transition: transform 0.4s ease-in-out;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .tarjeta:hover .tarjeta-imagen img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
+/* Badge de producto destacado */
+.destacado-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #b79067;
+  color: #ffffff;
+  font-family: "Arimo", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   3. CUERPO DE LA TARJETA Y TIPOGRAFÍA
+   ========================================================================== */
 .tarjeta-cuerpo {
-  padding: 15px;
+  padding: 20px 18px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+}
+
+.categoria-tag, 
+.material-tag {
+  background-color: rgba(183, 144, 103, 0.18);
+  color: #b79067;
+  font-family: "Arimo", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  width: fit-content;
+  margin: 0 auto 8px auto;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(183, 144, 103, 0.3);
+}
+
+.material-tag {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.tarjeta .titulo {
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  font-size: 2.2rem;
+  font-weight: 400;
+  text-align: center;
+  margin: 8px 0 10px 0;
+  line-height: 1.2;
 }
 
 .descripcion {
@@ -42,73 +151,102 @@
   color: #ffffff;
   text-align: center;
   font-weight: 400;
-  font-size: 20px;
-  flex-grow: 1;
-  /* Permite que la descripción ocupe el espacio disponible */
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  margin-bottom: 15px;
+  
+  /* Clamping a 3 líneas para mantener simetría perfecta */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tarjeta-info-meta {
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .precio {
-  font-size: 1.4rem;
-  font-weight: bold;
+  font-family: "Arimo", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: #b79067;
-  /* Combina con el título */
-  margin-bottom: 20px;
+  margin-bottom: 4px;
   position: relative;
   display: inline-block;
-  /* EFECTO 4: Un detalle decorativo sutil (subrayado) */
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .precio::after {
   content: '';
   display: block;
-  width: 40px;
-  height: 1px;
+  width: 45px;
+  height: 1.5px;
   background-color: #b79067;
-  margin: 5px auto 0;
-  opacity: 0.5;
+  margin: 6px auto 0;
+  opacity: 0.6;
 }
 
+.stock-info {
+  display: block;
+  font-family: "Arimo", sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 6px;
+}
+
+/* ==========================================================================
+   4. ALINEACIÓN Y SEPARACIÓN DE ACCIONES (CLIENTE VS ADMIN)
+   ========================================================================== */
 .contenedor-botones-tarjeta {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: auto; /* Empuja los botones al fondo de la tarjeta */
+  margin-top: auto; /* Empuja el bloque completo al fondo de la tarjeta */
   width: 100%;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Cada fila horizontal ocupa todo el ancho */
 .fila-botones {
   display: flex;
   gap: 8px;
   width: 100%;
 }
 
-/* Estilos base para todos los botones de la fila */
 .fila-botones .btn,
 .fila-botones .btn-admin-disabled {
   flex: 1;
-  padding: 10px 5px;
-  font-size: 0.9rem;
+  padding: 10px 8px;
+  font-family: "Arimo", sans-serif;
+  font-size: 0.88rem;
   font-weight: 600;
   text-align: center;
-  border-radius: 4px;
+  border-radius: 6px;
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
   box-sizing: border-box;
+  transition: all 0.25s ease;
 }
 
-/* Colores de tus botones principales */
+/* --- Botones Cliente --- */
 .btn-primario {
   background-color: #b79067;
   color: #ffffff;
-  border: none;
+  border: 1px solid #b79067;
+  box-shadow: 0 2px 6px rgba(183, 144, 103, 0.25);
 }
 
 .btn-primario:hover {
   background-color: #a47f56;
+  border-color: #a47f56;
+  box-shadow: 0 4px 12px rgba(183, 144, 103, 0.4);
+  transform: translateY(-1px);
 }
 
 .btn-secundario {
@@ -118,41 +256,368 @@
 }
 
 .btn-secundario:hover {
-  background-color: rgba(183, 144, 103, 0.1);
+  background-color: rgba(183, 144, 103, 0.15);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
-/* Botones de administración reales (para la tienda) */
+/* --- Botones Administrador --- */
+.fila-botones-admin {
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 6px;
+  border-radius: 8px;
+}
+
 .btn-editar {
   background-color: #4a5160;
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.btn-editar:hover {
+  background-color: #3b414d;
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
 .btn-eliminar {
   background-color: #de3a3a;
   color: #ffffff;
   border: none;
+  box-shadow: 0 2px 6px rgba(222, 58, 58, 0.25);
 }
 
-/* Botones grises y bloqueados para el panel de vista previa (Sin !important) */
+.btn-eliminar:hover {
+  background-color: #c42f2f;
+  box-shadow: 0 4px 10px rgba(222, 58, 58, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Deshabilitados para Modo Vista Previa */
 .fila-botones .btn-admin-disabled {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.05);
   cursor: not-allowed;
   pointer-events: none;
 }
 
+/* ==========================================================================
+   5. MODAL INTERACTIVO DE DETALLES DEL PRODUCTO
+   ========================================================================== */
+.product-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  animation: fadeInModal 0.25s ease-out forwards;
+}
 
-.categoria-tag, .material-tag {
-  background-color: rgba(183, 144, 103, 0.15);
-  color: #b79067;
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.product-modal-card {
+  background-color: #464d5d;
+  width: 100%;
+  max-width: 820px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(183, 144, 103, 0.4);
+  position: relative;
+  animation: scaleInModal 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes scaleInModal {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.product-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-modal-close:hover {
+  background: #de3a3a;
+  transform: rotate(90deg);
+}
+
+.product-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .product-modal-grid {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+
+.product-modal-image-container {
+  position: relative;
+  background-color: #383e4b;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.destacado-badge-modal {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: #b79067;
+  color: #ffffff;
+  font-family: "Arimo", sans-serif;
   font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  padding: 4px 10px;
+  font-weight: 700;
+  padding: 5px 12px;
   border-radius: 20px;
-  width: fit-content;
-  margin: 0 auto 12px auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.product-modal-details {
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-modal-tags {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.product-modal-title {
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  font-size: 2.8rem;
+  font-weight: 400;
+  margin: 0 0 15px 0;
+  text-align: left;
+  line-height: 1.1;
+}
+
+.product-modal-price-stock {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.precio-modal {
+  font-family: "Arimo", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #b79067;
+}
+
+.stock-badge-modal {
+  font-family: "Arimo", sans-serif;
+  font-size: 0.9rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.product-modal-description-box {
+  margin-bottom: 25px;
+  flex-grow: 1;
+}
+
+.description-label {
+  font-family: "Arimo", sans-serif;
+  color: #b79067;
+  font-size: 0.9rem;
+  text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.descripcion-modal {
+  font-family: "Arimo", sans-serif;
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: left;
+  opacity: 0.95;
+}
+
+.product-modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.btn-modal-cart {
+  padding: 12px 20px;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   6. SISTEMA ELEGANTE DE TOAST NOTIFICATIONS
+   ========================================================================== */
+.toast-notification {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #383e4b;
+  color: #ffffff;
+  border-left: 4px solid #b79067;
+  border-radius: 8px;
+  padding: 14px 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  z-index: 2000;
+  min-width: 280px;
+  max-width: 420px;
+  animation: slideInToast 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden;
+}
+
+@keyframes slideInToast {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toast-icon {
+  font-size: 1.4rem;
+  color: #b79067;
+}
+
+.toast-message {
+  font-family: "Arimo", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.toast-close:hover {
+  color: #ffffff;
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background-color: #b79067;
+  width: 100%;
+  animation: toastProgress 3.5s linear forwards;
+}
+
+@keyframes toastProgress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+/* ==========================================================================
+   7. ESTADO VACÍO (EMPTY STATE)
+   ========================================================================== */
+.empty-state-container {
+  background-color: #464d5d;
+  border-radius: 16px;
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 600px;
+  margin: 40px auto;
+  border: 1px dashed rgba(183, 144, 103, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.empty-state-icon {
+  font-size: 3.5rem;
+  color: #b79067;
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+.empty-state-title {
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.empty-state-message {
+  font-family: "Arimo", sans-serif;
+  color: #ffffff;
+  font-size: 1.05rem;
+  opacity: 0.85;
+  max-width: 440px;
+  margin: 0 auto;
+  line-height: 1.6;
 }

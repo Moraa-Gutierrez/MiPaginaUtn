@@ -1,33 +1,33 @@
 import React from "react";
-import ProductCard from "../components/Cards";
+import ProductCard from "../components/cards";
 import useGetProductsByCategory from "../hooks/products/useGetProductByCategory";
-import React from 'react'
 
 function FigurasYesoCemento() {
-    const { error, loading, products } = useGetProductsByCategory(5)
+    const { error, loading, products } = useGetProductsByCategory(5);
+
     if (error) {
-        <>
+        return (
             <div>
                 <h2>Se ha producido un error en la carga de los productos. Por favor, espere o recargue la pagina</h2>
-                <p> {error?.message || String(error)} </p> {/*tengo error? si tengo error, hay mensaje. Si no, paso el error por string*/}
+                <p> {error?.message || String(error)} </p>
             </div>
-        </>
+        );
     }
+
     if (loading) {
-        <h2>Cargando exceso de belleza...𓂃˖˳·˖ ִֶָ ⋆🪷⋆ ִֶָ˖·˳˖𓂃 ִֶָ.</h2>
-    }
-    return (
-        <>
+        return (
             <div>
-                <h1>Figuras en Yeso y Cemento</h1>
-                {products.length > 0 ? (
-                    <ProductCard products={products} />
-                ) : (
-                    <h2>No hay productos disponibles en este momento. Por favor, vuelva mas tarde</h2>
-                )}
+                <h2>Cargando exceso de belleza...𓂃˖˳·˖ ִֶָ ⋆🪷⋆ ִֶָ˖·˳˖𓂃 ִֶָ.</h2>
             </div>
-        </>
+        );
+    }
+
+    return (
+        <div>
+            <h1>Figuras en Yeso y Cemento</h1>
+            <ProductCard products={products} />
+        </div>
     );
 }
 
-export default FigurasYesoCemento
+export default FigurasYesoCemento;

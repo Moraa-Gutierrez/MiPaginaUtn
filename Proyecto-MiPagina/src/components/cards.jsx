@@ -1,129 +1,71 @@
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
-import useGetProductById from '../hooks/products/useGetProductById';
 import "../Css/Elementos/Cards.css";
+import ProductCardItem from './cards/ProductCardItem';
+import ProductModal from './cards/ProductModal';
+import ToastNotification from './cards/ToastNotification';
+import EmptyState from './cards/EmptyState';
 
 function ProductCard({ products, onDelete, isPreview }) {
   const { addToCart } = useCart();
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [toast, setToast] = useState(null);
+
+  const showToast = (message, type = 'success') => {
+    setToast({ message, type });
+  };
 
   const handleAddToCart = (product) => {
-    addToCart(product);
-    window.alert(`¡${product.name} añadido al carrito! 🛒`);
+    if (addToCart) {
+      addToCart(product);
+    }
+    showToast(`¡${product.name || 'Producto'} añadido al carrito! 🛒`, 'success');
   };
 
-  const handleShowDetails = (product) => {
-    window.alert(
-      `✨ ${product.name} ✨\n\n` +
-      `Descripción: ${product.description}\n\n` +
-      `Precio: $${product.price}\n` +
-      `Stock disponible: ${product.quantity} u.`
-    );
+  const handleOpenDetails = (product) => {
+    setSelectedProduct(product);
   };
 
-  if (isPreview) {
+  const handleCloseModal = () => {
+    setSelectedProduct(null);
+  };
+
+  if (!products || products.length === 0) {
     return (
-      <>
-        {products.map((product) => (
-          <article className="tarjeta" key={product.id || 'preview'}>
-            <div className="tarjeta-imagen">
-              <img src={product.image || "https://picsum.photos/200/300"} alt={product.name} />
-            </div>
-
-            <div className="tarjeta-cuerpo">
-              <h3 className="titulo">{product.name || "Nombre del producto"}</h3>
-
-              <p className="descripcion">
-                {product.description || "Aquí aparecerá la descripción..."}
-              </p>
-
-              <p className="categoria-tag">
-                {Number(product.category_id) === 1 && "Perfumes"}
-                {Number(product.category_id) === 2 && "Accesorios"}
-                {Number(product.category_id) === 3 && "Velas"}
-                {Number(product.category_id) === 4 && "Cuidados Diarios"}
-                {Number(product.category_id) === 5 && "Figuras de Yeso y Cemento"}
-              </p>
-
-              {product.material && Number(product.category_id) === 5 && (
-                <p className="material-tag">
-                  Material: {product.material}
-                </p>
-              )}
-            
-              <p className="precio">${product.price || 0}</p>
-              <p className="stock">Stock: {product.quantity || 0} u.</p>
-
-              <div className="contenedor-botones-tarjeta">
-                <div className="fila-botones">
-                  <span className="btn btn-secundario">Detalle</span>
-                  <span className="btn btn-primario">Carrito</span>
-                </div>
-                <div className="fila-botones">
-                  <span className="btn btn-admin-disabled">Editar</span>
-                  <span className="btn btn-admin-disabled">Eliminar</span>
-                </div>
-              </div>
-            </div>
-          </article>
-        ))}
-      </>
+      <section className="cards-wrapper">
+        <EmptyState />
+      </section>
     );
   }
 
   return (
-    <section className="cards">
-      {products.map((product, index) => (
-        <article className="tarjeta" key={product.id || index}>
-          <div className="tarjeta-imagen">
-            <img src={product.image} alt={product.name} />
-          </div>
+    <section className="cards-wrapper">
+      <div className="cards">
+        {products.map((product, index) => (
+          <ProductCardItem
+            key={product.id || index}
+            product={product}
+            onDelete={onDelete}
+            isPreview={isPreview}
+            onOpenDetails={handleOpenDetails}
+            onAddToCart={handleAddToCart}
+          />
+        ))}
+      </div>
 
-          <div className="tarjeta-cuerpo">
-            <h3 className="titulo">{product.name}</h3>
+      {/* Modal interactivo de Detalles del producto */}
+      <ProductModal
+        product={selectedProduct}
+        onClose={handleCloseModal}
+        onAddToCart={handleAddToCart}
+        isPreview={isPreview}
+      />
 
-            <p className="descripcion">{product.description}</p>
-
-            <p className="categoria-tag">
-              {Number(product.category_id) === 1 && "Perfumes"}
-              {Number(product.category_id) === 2 && "Accesorios"}
-              {Number(product.category_id) === 3 && "Velas"}
-              {Number(product.category_id) === 4 && "Cuidados Diarios"}
-              {Number(product.category_id) === 5 && "Figuras de Yeso y Cemento"}
-            </p>
-
-           
-            {product.material && Number(product.category_id) === 5 && (
-              <p className="material-tag">
-                Material: {product.material}
-              </p>
-            )}
-
-            <p className="precio">${product.price}</p>
-            <p className="stock">Stock: {product.quantity} u.</p>
-
-            {(product.highlighted === true || product.highlighted === "true") && (
-              <p className="destacado">★ Producto destacado</p>
-            )}
-
-            <div className="contenedor-botones-tarjeta">
-              <div className="fila-botones">
-                <button onClick={() => handleShowDetails(product)} className="btn btn-secundario">Detalle</button>
-                <button onClick={() => handleAddToCart(product)} className="btn btn-primario">
-                  Carrito
-                </button>
-              </div>
-
-              <div className="fila-botones">
-                <Link to={`/edit-product/${product.id}`} className="btn btn-editar">Editar</Link>
-                {onDelete && (
-                  <button onClick={() => onDelete(product.id)} className="btn btn-eliminar">Eliminar</button>
-                )}
-              </div>
-            </div>
-
-          </div>
-        </article>
-      ))}
+      {/* Notificaciones Toast elegantes */}
+      <ToastNotification
+        toast={toast}
+        onClose={() => setToast(null)}
+      />
     </section>
   );
 }
