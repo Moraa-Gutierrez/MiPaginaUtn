@@ -1,15 +1,19 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import useGetProducts from '../hooks/products/useGetProduct'
-import useGetProductsByCategory from '../hooks/products/useGetProductByCategory'
-import ProductCard from '../components/Cards'
-import useDeleteProducts from '../hooks/products/useDeleteProducts'
-import "../Css/Products.css"
+import React, { useState, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
+import useGetProducts from '../hooks/products/useGetProduct';
+import useGetProductsByCategory from '../hooks/products/useGetProductByCategory';
+import ProductCard from '../components/Cards';
+import { SkeletonGrid } from '../components/cards/SkeletonCard';
+import useDeleteProducts from '../hooks/products/useDeleteProducts';
+import { normalizeText } from '../components/Cards';
+import "../Css/Products.css";
 
 function Products() {
-  const { category_id } = useParams()
-  const allProductsData = useGetProducts()
-  const categoryProductsData = useGetProductsByCategory(category_id)
+  const { category_id } = useParams();
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const allProductsData = useGetProducts();
+  const categoryProductsData = useGetProductsByCategory(category_id);
 
   const { error, products, loading, getProducts } = category_id 
     ? { 
@@ -18,50 +22,88 @@ function Products() {
       } 
     : allProductsData;
 
-  const { deleteProducts } = useDeleteProducts()
+  const { deleteProducts } = useDeleteProducts();
 
   const handleDelete = async (id) => {
     if (window.confirm("¿Estás seguro de que deseas eliminar este producto?")) {
-      const success = await deleteProducts(id)
+      const success = await deleteProducts(id);
       if (success) {
-        window.alert("Producto eliminado con éxito.")
-        // Refresh products list (respects category if filtered)
-        getProducts()
-      } else {
-        window.alert("Ocurrió un error al intentar eliminar el producto.")
+        getProducts();
       }
     }
-  }
+  };
 
-  // Filtramos los productos para no mostrar los inactivos (soft delete)
-  const activeProducts = products.filter(p => p.active !== false)
+  // Filtrar productos activos y por búsqueda de texto
+  const filteredProducts = useMemo(() => {
+    if (!products) return [];
+    const searchNormalized = normalizeText(searchTerm.trim());
+    return products.filter(p => {
+      const isActive = p.active !== false;
+      const matchesSearch = searchTerm.trim() === '' || 
+        (p.name && p.name.toLowerCase().includes(searchNormalized)) ||
+        (p.description && p.description.toLowerCase().includes(searchNormalized));
+      return isActive && matchesSearch;
+    });
+  }, [products, searchTerm]);
 
-  if (error) {
-    return (
-      <>
-        <div>
-          <h2>Se ha producido un error en la carga de los productos. Por favor, espere o recargue la pagina</h2>
-          <p> {error?.message || String(error)} </p> {/*tengo error? si tengo error, hay mensaje. Si no, paso el error por string*/}
+  return (
+    <div className="catalog-page">
+      <div className="catalog-container">
+        
+        {/* Encabezado elegante de Sección */}
+        <header className="catalog-header">
+          <h1 className="catalog-title">Nuestra Tienda</h1>
+          <p className="catalog-subtitle">
+            Explorá nuestra colección exclusiva de aromas, velas artesanales, accesorios elegantes y artículos de cuidado personal.
+          </p>
+          <hr className="catalog-divider" />
+        </header>
+
+        {/* Barra de Herramientas Superior: Solo Buscador */}
+        <div className="catalog-toolbar">
+          <div className="catalog-search-box">
+            <i className="fa-solid fa-magnifying-glass catalog-search-icon"></i>
+            <input
+              type="text"
+              className="catalog-search-input"
+              placeholder="Buscar producto por nombre..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
         </div>
-      </>
 
-    )
-  }
-  if (loading) {
-    return (
-      <>
-        <div>
-          <h2> Cargando exceso de belleza...🎀🪞💄🦢🕯️</h2>
-        </div>
-      </>
-    )
-  }
-return (
-    <div style={{ padding: '20px' }}>
-      <h1 style={{ textAlign: 'center' }}>Nuestra Tienda</h1>
-      <ProductCard products={activeProducts} onDelete={handleDelete} />
+        {/* Contador discreto de resultados */}
+        {!loading && !error && (
+          <div className="catalog-results-count">
+            Mostrando {filteredProducts.length} {filteredProducts.length === 1 ? 'producto' : 'productos'}
+          </div>
+        )}
+
+        {/* Estado de Error */}
+        {error && (
+          <div className="empty-state-container" style={{ margin: '30px auto' }}>
+            <div className="empty-state-icon" style={{ color: '#de3a3a' }}>
+              <i className="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 className="empty-state-title" style={{ color: '#de3a3a' }}>Error al cargar</h3>
+            <p className="empty-state-message">
+              {error?.message || "Se produjo un problema al obtener los productos. Por favor recargá la página."}
+            </p>
+          </div>
+        )}
+
+        {/* Indicador de Carga Discreto (Skeleton Loader) */}
+        {loading && <SkeletonGrid count={8} />}
+
+        {/* Grilla Principal de Productos */}
+        {!loading && !error && (
+          <ProductCard products={filteredProducts} onDelete={handleDelete} />
+        )}
+
+      </div>
     </div>
   );
 }
 
-export default Products;
+export default Products;

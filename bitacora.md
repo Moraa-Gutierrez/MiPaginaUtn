@@ -78,3 +78,20 @@ ToastNotification.jsx
 
 
 EmptyState.jsx
+🌟 Resumen de Cambios y Mejoras Aplicadas
+🚨 1. Corrección Crítica en Vista Previa (CreateProductPage y EditProductPage)
+Proporciones e Identidad de Tarjeta Real: Se corrigió el contenedor de vista previa (isPreview). Se fijaron dimensiones mínimas (min-width: 310px, max-width: 360px) y relativas para evitar que la tarjeta se achique, se deforme o se apriete.
+Espaciado y Mantenibilidad: La tarjeta en vista previa mantiene exactamente la misma tipografía, badges, badges de material (para la categoría 5 "Figuras de Yeso y Cemento"), precios y botones deshabilitados que una tarjeta real dentro de la tienda.
+Layout Balanceado en 2 Columnas: Se organizaron las vistas en un diseño de grilla en dos columnas (grid-template-columns: minmax(0, 1fr) 360px; gap: 40px). La columna de vista previa cuenta con comportamiento sticky (position: sticky; top: 24px) para permanecer visible al deslizar el formulario en escritorio, y se apila de forma prolija en dispositivos móviles.
+🛒 2. Rediseño Elegante del Catálogo de Productos (Products.jsx)
+Encabezado Sobrio y Fino (.catalog-header): Título "Nuestra Tienda" jerarquizado en tipografía Great Vibes, acompañado de un subtítulo discreto en Arimo y una línea divisora en tono dorado #b79067.
+Barra de Herramientas Horizontal (.catalog-toolbar):
+Contenedor horizontal refinado con fondo translúcido, bordes finos y sombra suave.
+Buscador Dinámico por Texto: Campo de entrada con icono flotante para buscar productos por nombre o descripción en tiempo real.
+Filtros Rápidos por Categoría: Selector de botones (pills) por categoría (Todas las categorías, Perfumes, Accesorios, Velas, Cuidados Diarios, Figuras de Yeso y Cemento), con el estado activo resaltado en dorado.
+Indicador de Carga Discreto (SkeletonCard.jsx): Se integraron tarjetas Skeleton Loader con animación de pulso (shimmer) que sustituyen los mensajes de carga en texto plano durante la obtención de datos desde la API.
+Estado Vacío Estructurado (EmptyState.jsx): Cuando la búsqueda o filtro no arroja productos, se presenta un contenedor prolijo con icono temático e instrucciones.
+🔒 3. Respeto Estricto de Restricciones
+Página Home Intacta: No se realizó ninguna modificación en los estilos ni componentes de la página Home.
+Branding e Identidad: Se mantuvieron estrictamente los colores originales de la marca (#464d5d, #b79067, #a47f56, #ffffff, #de3a3a) y las familias tipográficas.
+CSS Puro: Todos los estilos están entregados en CSS puro sin dependencias externas adicionales.

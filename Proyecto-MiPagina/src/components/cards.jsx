@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
-import { useCart } from '../context/CartContext';
-import "../Css/Elementos/Cards.css";
 import ProductCardItem from './cards/ProductCardItem';
 import ProductModal from './cards/ProductModal';
 import ToastNotification from './cards/ToastNotification';
 import EmptyState from './cards/EmptyState';
+import { useCart } from '../context/CartContext';
+import "../Css/Elementos/Cards.css";
+
+// Helper para ignorar acentos y mayúsculas en búsquedas
+export const normalizeText = (text) => {
+  if (!text || typeof text !== "string") return "";
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+};
 
 function ProductCard({ products, onDelete, isPreview }) {
   const { addToCart } = useCart();
@@ -18,8 +27,8 @@ function ProductCard({ products, onDelete, isPreview }) {
   const handleAddToCart = (product) => {
     if (addToCart) {
       addToCart(product);
+      showToast(`¡${product.name || "Producto"} agregado al carrito!`, 'success');
     }
-    showToast(`¡${product.name || 'Producto'} añadido al carrito! 🛒`, 'success');
   };
 
   const handleOpenDetails = (product) => {
@@ -31,41 +40,37 @@ function ProductCard({ products, onDelete, isPreview }) {
   };
 
   if (!products || products.length === 0) {
-    return (
-      <section className="cards-wrapper">
-        <EmptyState />
-      </section>
-    );
+    return <EmptyState />;
   }
 
   return (
-    <section className="cards-wrapper">
-      <div className="cards">
-        {products.map((product, index) => (
-          <ProductCardItem
-            key={product.id || index}
-            product={product}
-            onDelete={onDelete}
-            isPreview={isPreview}
-            onOpenDetails={handleOpenDetails}
-            onAddToCart={handleAddToCart}
-          />
-        ))}
-      </div>
+    <section className="cards">
+      {products.map((product, index) => (
+        <ProductCardItem
+          key={product.id || index}
+          product={product}
+          onDelete={onDelete}
+          isPreview={isPreview}
+          onOpenDetails={handleOpenDetails}
+          onAddToCart={handleAddToCart}
+        />
+      ))}
 
-      {/* Modal interactivo de Detalles del producto */}
-      <ProductModal
-        product={selectedProduct}
-        onClose={handleCloseModal}
-        onAddToCart={handleAddToCart}
-        isPreview={isPreview}
-      />
+      {selectedProduct && (
+        <ProductModal
+          product={selectedProduct}
+          onClose={handleCloseModal}
+          onAddToCart={handleAddToCart}
+          isPreview={isPreview}
+        />
+      )}
 
-      {/* Notificaciones Toast elegantes */}
-      <ToastNotification
-        toast={toast}
-        onClose={() => setToast(null)}
-      />
+      {toast && (
+        <ToastNotification
+          toast={toast}
+          onClose={() => setToast(null)}
+        />
+      )}
     </section>
   );
 }

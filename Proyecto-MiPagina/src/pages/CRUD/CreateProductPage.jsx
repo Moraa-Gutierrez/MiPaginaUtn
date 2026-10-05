@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import usePostProduct from "../../hooks/products/usePostProduct";
-import useGetProductById from "../../hooks/products/useGetProductById";
 import { useNavigate } from "react-router-dom";
-import "../../Css/CRUD/CreateProductPage.css"
+import "../../Css/CRUD/CreateProductPage.css";
 import ProductCard from "../../components/Cards";
+
 function CreateProductPage() {
     const [form, setForm] = useState({
-        id: "preview-new", // ID temporal indispensable para el .map() de tu Card
+        id: "preview-new",
         name: "",
         image: "",
         description: "",
         price: 0,
         quantity: 1,
-        
-        highlighted: false, // Inicializado para evitar problemas visuales
+        category_id: 1,
+        material: "yeso",
+        highlighted: false,
     });
 
     const navigate = useNavigate();
@@ -53,41 +54,42 @@ function CreateProductPage() {
                 description: "",
                 price: 0,
                 quantity: 1,
+                category_id: 1,
+                material: "yeso",
                 highlighted: false,
             });
         }
     };
 
-    // Objeto temporal para la vista previa que previene que la Card se vea rota sin datos
     const previewData = {
         ...form,
         name: form.name || "Nombre del producto",
-        image: form.image || "https://placehold.co/600x400?text=Sin+Imagen",
-        description: form.description || "La descripción aparecerá aquí...",
+        image: form.image || "https://picsum.photos/400/400",
+        description: form.description || "Aquí aparecerá la descripción del producto...",
         material: Number(form.category_id) === 5 ? (form.material || "yeso") : null
     };
 
     return (
-        <div className="admin-layout" style={{ minHeight: "100vh" }}>
+        <div className="admin-layout">
             <div className="admin-main">
 
                 <div className="admin-page-header">
                     <div>
-                        <h2 className="admin-page-header__title">Nuevo producto</h2>
+                        <h2 className="admin-page-header__title">Agregar Nuevo Producto</h2>
                         <p className="admin-page-header__sub">
-                            Completá los datos para agregar un artículo al catálogo
+                            Completá los datos requeridos para publicar un nuevo artículo en la tienda
                         </p>
                     </div>
                     <button
-                        className="btn-secondary"
+                        className="btn-secondary-admin"
                         onClick={() => navigate("/products")}
                         type="button"
                     >
-                        ← Volver a la tienda
+                        <i className="fa-solid fa-arrow-left"></i> Volver a la tienda
                     </button>
                 </div>
 
-                {/* CONTENEDOR PRINCIPAL DE LA GRILLA */}
+                {/* GRILLA PRINCIPAL DE 2 COLUMNAS */}
                 <div className="admin-grid-container">
 
                     {/* COLUMNA IZQUIERDA: Formulario */}
@@ -95,7 +97,9 @@ function CreateProductPage() {
                         <form onSubmit={handleFormSubmit}>
 
                             <div className="admin-form-group">
-                                <label htmlFor="name">Nombre del producto</label>
+                                <label htmlFor="name">
+                                    <i className="fa-solid fa-tag" style={{ color: '#b79067' }}></i> Nombre del producto
+                                </label>
                                 <input
                                     onChange={handleInputChange}
                                     value={form.name}
@@ -108,7 +112,9 @@ function CreateProductPage() {
                             </div>
 
                             <div className="admin-form-group">
-                                <label htmlFor="image">URL de la imagen</label>
+                                <label htmlFor="image">
+                                    <i className="fa-solid fa-image" style={{ color: '#b79067' }}></i> URL de la imagen
+                                </label>
                                 <input
                                     onChange={handleInputChange}
                                     value={form.image}
@@ -121,7 +127,9 @@ function CreateProductPage() {
                             </div>
 
                             <div className="admin-form-group">
-                                <label htmlFor="description">Descripción</label>
+                                <label htmlFor="description">
+                                    <i className="fa-solid fa-align-left" style={{ color: '#b79067' }}></i> Descripción
+                                </label>
                                 <textarea
                                     onChange={handleInputChange}
                                     value={form.description}
@@ -134,7 +142,9 @@ function CreateProductPage() {
                             </div>
 
                             <div className="admin-form-group">
-                                <label htmlFor="category_id">Categoría</label>
+                                <label htmlFor="category_id">
+                                    <i className="fa-solid fa-layer-group" style={{ color: '#b79067' }}></i> Categoría
+                                </label>
                                 <select
                                     name="category_id"
                                     id="category_id"
@@ -149,9 +159,12 @@ function CreateProductPage() {
                                     <option value={5}>Figuras de Yeso y Cemento</option>
                                 </select>
                             </div>
+
                             {Number(form.category_id) === 5 && (
                                 <div className="admin-form-group">
-                                    <label htmlFor="material">Material de la figura</label>
+                                    <label htmlFor="material">
+                                        <i className="fa-solid fa-cube" style={{ color: '#b79067' }}></i> Material de la figura
+                                    </label>
                                     <select
                                         name="material"
                                         id="material"
@@ -167,7 +180,9 @@ function CreateProductPage() {
 
                             <div className="admin-form-row">
                                 <div className="admin-form-group">
-                                    <label htmlFor="price">Precio ($)</label>
+                                    <label htmlFor="price">
+                                        <i className="fa-solid fa-dollar-sign" style={{ color: '#b79067' }}></i> Precio ($)
+                                    </label>
                                     <input
                                         onChange={handleInputChange}
                                         value={form.price}
@@ -179,7 +194,9 @@ function CreateProductPage() {
                                     />
                                 </div>
                                 <div className="admin-form-group">
-                                    <label htmlFor="quantity">Stock</label>
+                                    <label htmlFor="quantity">
+                                        <i className="fa-solid fa-boxes-stacked" style={{ color: '#b79067' }}></i> Stock disponible
+                                    </label>
                                     <input
                                         onChange={handleInputChange}
                                         value={form.quantity}
@@ -191,18 +208,22 @@ function CreateProductPage() {
                                     />
                                 </div>
                             </div>
+
                             <div className="admin-form-group">
-                                <label htmlFor="highlighted">¿Destacar producto?</label>
+                                <label htmlFor="highlighted">
+                                    <i className="fa-solid fa-star" style={{ color: '#b79067' }}></i> ¿Destacar producto?
+                                </label>
                                 <select
                                     name="highlighted"
                                     id="highlighted"
                                     value={form.highlighted ? "true" : "false"}
                                     onChange={handleHighlightedChange}
                                 >
-                                    <option value="false">No, normal</option>
-                                    <option value="true">Sí, destacado ★</option>
+                                    <option value="false">No, catálogo normal</option>
+                                    <option value="true">Sí, producto destacado ★</option>
                                 </select>
                             </div>
+
                             {error && (
                                 <p className="admin-form-error">
                                     {error?.message || String(error)}
@@ -210,29 +231,43 @@ function CreateProductPage() {
                             )}
 
                             <div className="admin-form-actions">
-                                <button className="admin-form-card" type="submit"> Crear Producto </button>
+                                <button className="btn-admin-submit" type="submit">
+                                    <i className="fa-solid fa-plus" style={{ marginRight: '8px' }}></i> Crear Producto
+                                </button>
                                 <button
-                                    className="admin-form-card"
+                                    className="btn-admin-reset"
                                     type="button"
-                                    onClick={() => setForm({ id: "", name: "", image: "", description: "", price: 0, quantity: 1 })}
+                                    onClick={() => setForm({ 
+                                        id: "preview-new", 
+                                        name: "", 
+                                        image: "", 
+                                        description: "", 
+                                        price: 0, 
+                                        quantity: 1,
+                                        category_id: 1,
+                                        material: "yeso",
+                                        highlighted: false
+                                    })}
                                 >
-                                    Borrar form
+                                    Limpiar
                                 </button>
                             </div>
                         </form>
                     </div>
 
-                    {/* COLUMNA DERECHA: Vista previa */}
+                    {/* COLUMNA DERECHA: Vista Previa Fija */}
                     <div className="admin-preview-column">
-                        <h3 className="admin-preview-title">Vista previa en tienda</h3>
-
-
-                        <hr className="admin-preview-separator" />
-
-                        <ProductCard products={[previewData]} isPreview={true} />
+                        <div className="admin-preview-header">
+                            <h3 className="admin-preview-title">
+                                <i className="fa-regular fa-eye" style={{ color: '#b79067' }}></i> Vista previa en tienda
+                            </h3>
+                        </div>
+                        <div className="admin-preview-card-wrapper">
+                            <ProductCard products={[previewData]} isPreview={true} />
+                        </div>
                     </div>
 
-                </div> {/* CIERRE DE admin-grid-container */}
+                </div>
             </div>
         </div>
     );

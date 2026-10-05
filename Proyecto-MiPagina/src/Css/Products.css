@@ -1,3 +1,205 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
+
+.catalog-page {
+  background-color: #ffffff;
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+.catalog-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+.catalog-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px 10px 0 10px;
+}
+
+.catalog-title {
+  font-family: 'Great Vibes', cursive;
+  color: #b79067;
+  font-size: 4.5rem;
+  font-weight: 400;
+  margin: 0 0 10px 0;
+  line-height: 1.1;
+}
+
+.catalog-subtitle {
+  font-family: "Arimo", sans-serif;
+  color: #464d5d;
+  font-size: 1.1rem;
+  font-weight: 400;
+  max-width: 680px;
+  margin: 0 auto 20px auto;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.catalog-divider {
+  width: 80px;
+  height: 2px;
+  background-color: #b79067;
+  margin: 0 auto;
+  opacity: 0.7;
+  border: none;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   2. BARRA DE HERRAMIENTAS (TOOLBAR - SOLO BUSCADOR CENTRADO)
+   ========================================================================== */
+.catalog-toolbar {
+  background-color: #ffffff;
+  border: 1px solid rgba(70, 77, 93, 0.12);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Caja de Búsqueda */
+.catalog-search-box {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+.catalog-search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b79067;
+  font-size: 1.05rem;
+}
+
+.catalog-search-input {
+  width: 100%;
+  padding: 12px 18px 12px 46px;
+  font-family: "Arimo", sans-serif;
+  font-size: 0.95rem;
+  color: #464d5d;
+  background-color: #f8f9fa;
+  border: 1px solid rgba(70, 77, 93, 0.2);
+  border-radius: 25px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+}
+
+.catalog-search-input::placeholder {
+  color: #9ea4b0;
+}
+
+.catalog-search-input:focus {
+  border-color: #b79067;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3.5px rgba(183, 144, 103, 0.2);
+}
+
+/* Contador de resultados */
+.catalog-results-count {
+  font-family: "Arimo", sans-serif;
+  font-size: 0.9rem;
+  color: #717784;
+  margin-bottom: 15px;
+  padding-left: 5px;
+}
+
+/* ==========================================================================
+   3. INDICADOR DE CARGA (SKELETON LOADER EN FONDO CLARO)
+   ========================================================================== */
+.skeleton-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(70, 77, 93, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 380px;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(90deg, #e2e8f0 25%, #edf2f7 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-body {
+  padding: 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-tag {
+  width: 90px;
+  height: 20px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #e2e8f0 25%, #edf2f7 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  margin: 0 auto;
+}
+
+.skeleton-title {
+  width: 70%;
+  height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #e2e8f0 25%, #edf2f7 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  margin: 0 auto;
+}
+
+.skeleton-line {
+  width: 90%;
+  height: 14px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #e2e8f0 25%, #edf2f7 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  margin: 0 auto;
+}
+
+.skeleton-line.short {
+  width: 50%;
+}
+
+.skeleton-footer {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+}
+
+.skeleton-btn {
+  flex: 1;
+  height: 36px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #e2e8f0 25%, #edf2f7 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Compatibilidad con clase sin-productos anterior */
 .sin-productos {
   grid-column: 1 / -1;      
   text-align: center;       
@@ -5,8 +207,9 @@
   font-size: 1.2rem;
   font-weight: 500;
   padding: 40px 20px;
-  background-color: #464d5d;  
+  background-color: #ffffff;  
   border-radius: 8px;
   margin: 20px auto;
-  max-width: 600px;          
+  max-width: 600px;
+  border: 1px dashed #b79067;
 }
