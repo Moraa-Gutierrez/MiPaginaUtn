@@ -15,33 +15,58 @@ function Products() {
   const allProductsData = useGetProducts();
   const categoryProductsData = useGetProductsByCategory(category_id);
 
-  const { error, products, loading, getProducts } = category_id 
-    ? { 
-        ...categoryProductsData, 
-        getProducts: () => categoryProductsData.getProductsByCategory(category_id) 
-      } 
+  // Extraemos setProducts de allProductsData o del hook correspondiente
+  const { error, products, loading, getProducts, setProducts } = category_id
+    ? {
+      ...categoryProductsData,
+      setProducts: () => {}, // fallback si estás en vista por categoría
+      getProducts: () => categoryProductsData.getProductsByCategory(category_id)
+    }
     : allProductsData;
 
   const { deleteProducts } = useDeleteProducts();
 
   const handleDelete = async (id) => {
-    if (window.confirm("¿Estás seguro de que deseas eliminar este producto?")) {
-      const success = await deleteProducts(id);
-      if (success) {
+    const confirmDelete = window.confirm("¿Estás seguro de que querés eliminar este producto?");
+    if (!confirmDelete) return false;
+
+    const success = await deleteProducts(id);
+
+    if (success) {
+      // ⚡ Si setProducts existe, filtramos la lista en vivo
+      if (typeof setProducts === 'function') {
+        setProducts((prevProducts) => prevProducts.filter((p) => p.id !== id));
+      } else {
+        // En caso de estar filtrando por categoría, recargamos los datos
         getProducts();
       }
+
+      return true; // Retorna true para que Cards.jsx muestre el Toast
     }
+
+    return false;
   };
 
-  // Filtrar productos activos y por búsqueda de texto
+  // Filtrar productos activos e insensible a tildes/mayúsculas
   const filteredProducts = useMemo(() => {
     if (!products) return [];
+    
+    // Normalizamos el término de búsqueda
     const searchNormalized = normalizeText(searchTerm.trim());
+
     return products.filter(p => {
       const isActive = p.active !== false;
-      const matchesSearch = searchTerm.trim() === '' || 
-        (p.name && p.name.toLowerCase().includes(searchNormalized)) ||
-        (p.description && p.description.toLowerCase().includes(searchNormalized));
+
+      if (!searchNormalized) return isActive;
+
+      // Normalizamos nombre y descripción
+      const nameNormalized = normalizeText(p.name);
+      const descNormalized = normalizeText(p.description);
+
+      const matchesSearch =
+        nameNormalized.includes(searchNormalized) ||
+        descNormalized.includes(searchNormalized);
+
       return isActive && matchesSearch;
     });
   }, [products, searchTerm]);
@@ -49,7 +74,7 @@ function Products() {
   return (
     <div className="catalog-page">
       <div className="catalog-container">
-        
+
         {/* Encabezado elegante de Sección */}
         <header className="catalog-header">
           <h1 className="catalog-title">Nuestra Tienda</h1>

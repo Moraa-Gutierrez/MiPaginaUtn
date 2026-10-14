@@ -30,7 +30,14 @@ function ProductCard({ products, onDelete, isPreview }) {
       showToast(`¡${product.name || "Producto"} agregado al carrito!`, 'success');
     }
   };
-
+const handleDeleteProduct = async (id) => {
+    if (onDelete) {
+      const success = await onDelete(id);
+      if (success) {
+        showToast("Producto eliminado con éxito", 'danger'); // O 'info' / 'success'
+      }
+    }
+  };
   const handleOpenDetails = (product) => {
     setSelectedProduct(product);
   };
@@ -49,7 +56,7 @@ function ProductCard({ products, onDelete, isPreview }) {
         <ProductCardItem
           key={product.id || index}
           product={product}
-          onDelete={onDelete}
+          onDelete={handleDeleteProduct}
           isPreview={isPreview}
           onOpenDetails={handleOpenDetails}
           onAddToCart={handleAddToCart}

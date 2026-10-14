@@ -41,7 +41,7 @@ function useGetProducts() {
        getProducts(`${API_URL}/products`);
     }, [])
 //como retorno pasamos la info que queremos exteriorizar. Estados
-    return {products, error, loading, getProducts}
+    return {products, error, loading, setProducts}
 }
 
 export default useGetProducts
