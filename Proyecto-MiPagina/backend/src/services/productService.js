@@ -1,4 +1,4 @@
-import { Product } from "../models/products.js";
+import { Product } from "../models/product.js";
 import { ErrorApp } from "../utils/ErrorApp.js";
 
 // 1. Get all products with optional filters
