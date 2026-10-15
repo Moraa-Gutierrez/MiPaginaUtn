@@ -125,3 +125,41 @@ Sincronización automática de índices únicos (syncIndexes).
 Inserción masiva de datos iniciales representativos del negocio (productos de perfumería, accesorios, velas, cuidados diarios y el catálogo de figuras con materiales específicos).
 
 Creación de usuarios de prueba iniciales (perfil comprador y perfil administrador con sus credenciales correspondientes).
+
+## Resumen actual 15/10
+
+Resumen de Avances del Proyecto 
+# 1 Diseño y Modelado de la Base de Datos (NoSQL / MongoDB)
+
+Se diseñó la estructura relacional/documental para el e-commerce M&L utilizando dbdiagram.io.
+
+Se definieron tres colecciones principales con sus respectivos tipos de datos y restricciones:
+
+# users: 
+Para la gestión de cuentas (clientes y administradores) con campos como name, lastname, email (único), date, password, active y role.
+
+# products:
+ Con control de stock, precios numéricos y categorías embebidas para productos de perfumería, cuidados diarios, velas, accesorios y figuras de yeso/cemento.
+
+# orders: 
+Diseñada con una referencia al usuario (user_id), estados de la orden (draft, pending, confirmed, shipped), un array de items (que guarda el snapshot de los productos al momento de la compra para evitar inconsistencias si cambian de precio o se eliminan) y un objeto embebido shipping para los datos de envío.
+
+# 2 Estructura Inicial del Backend (Node.js & Express)
+
+Se configuró el servidor básico con Express, incorporando los middlewares esenciales como cors y express.json().
+
+Se programó la conexión a la base de datos utilizando Mongoose (db.js), asegurando el manejo de errores y la lectura de la URI de MongoDB desde la configuración del entorno.
+
+# 3 Preparación de Datos de Prueba (Seeds)
+
+Se estructuraron los scripts de inicialización (seed.js / seed_2.js) para poblar automáticamente la base de datos con usuarios de prueba (incluyendo roles administrativos y de clientes) y productos reales adaptados al catálogo del emprendimiento familiar.
+
+Se contempló la correcta sincronización de índices únicos (como los emails de los usuarios) y el borrado ordenado de colecciones de afuera hacia adentro antes de cada inserción.
+
+# 4 Lógica de Servicios y Helpers
+
+Se adaptaron funciones lógicas esenciales para el backend, como:
+
+El servicio de verificación de existencia de usuarios utilizando el método .exists() de Mongoose.
+
+La función de mapeo de datos públicos de usuario (datosPublicosUsuario) para enviar al frontend únicamente información segura y filtrada, omitiendo datos sensibles como las contraseñas.
