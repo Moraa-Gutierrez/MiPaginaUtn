@@ -24,10 +24,10 @@
 * **Casting Seguro:** Se aplicó `Number(product.category_id) === 5` en las comparaciones para evitar fallos entre textos y números.
 
 🎨 Resumen del Rediseño y Mejoras Implementadas
-1. Eliminación Total de window.alert y Nueva UI/UX Profesional
+1. # Eliminación Total de window.alert y Nueva UI/UX Profesional
 Sistema de Notificaciones Toast (ToastNotification.jsx): Sustituye las alertas nativas al añadir al carrito. Presenta animaciones fluidas de entrada (slideIn), temporizador visual de auto-cierre y un diseño que respeta los colores de la marca (#464d5d, #b79067).
 Modal Interactivo de Detalle (ProductModal.jsx): Al presionar "Detalle", en lugar de lanzar una alerta de texto, se despliega un panel modal centrado con fondo con efecto blur (backdrop-filter). Muestra la imagen completa en alta definición, badges de categoría y material, precio destacado, stock disponible, descripción estructurada y botón directo de compra.
-2. Modularización y Estructura de Componentes
+2. # Modularización y Estructura de Componentes
 El componente monolítico original ha sido descompuesto en subcomponentes limpios y mantenibles dentro de src/components/cards/:
 
 cards.jsx (Componente contenedor principal que maneja los estados de Modal y Toast)
@@ -47,15 +47,15 @@ ToastNotification.jsx
 
 EmptyState.jsx
  (Estado vacío estructurado cuando una categoría no contiene productos)
-3. Maquetación con Grilla CSS Adaptable (Responsive Grid)
+3. # Maquetación con Grilla CSS Adaptable (Responsive Grid)
 Layout adaptable: 1 columna en móviles (<600px), 2 columnas en tablets (600px - 900px), 3 columnas en laptops (900px - 1200px) y 4 columnas en monitores de escritorio (>1200px), con gap: 25px uniforme.
 Simetría y Proporciones: Se fijó la proporción de imagen (aspect-ratio: 4 / 3 con object-fit: cover) e igualación de alturas para evitar descuadres entre tarjetas con descripciones cortas o largas.
-4. Alineación y Separación Visual de Acciones (Cliente vs Admin)
+4. # Alineación y Separación Visual de Acciones (Cliente vs Admin)
 Alineación Inferior: margin-top: auto en la botonera garantiza que todos los botones queden perfectamente alineados en el fondo de las tarjetas.
 Separación de roles:
 Acciones del Cliente (.fila-botones-cliente): Botones prominentes para "Detalle" (borde y texto dorado) y "Carrito" (fondo dorado con sombra suave).
 Herramientas del Administrador (.fila-botones-admin): Agrupadas en una barra inferior diferenciada en tono oscuro con botones claros para "Editar" y "Eliminar" (rojo carmesí #de3a3a).
-5. Microinteracciones y Respeto de la Identidad de Marca
+5. # Microinteracciones y Respeto de la Identidad de Marca
 Animaciones y Microinteracciones: Elevación de tarjeta al hacer hover (transform: translateY(-6px)), sombras dinámicas profundas, resaltado de borde dorado y zoom suave en las imágenes.
 Identidad de Marca intacta: Se mantuvieron de forma estricta los tonos #464d5d, #b79067, #a47f56, #ffffff, #de3a3a, y las fuentes tipográficas "Arimo" y "Great Vibes".
 Lógica de negocio preservada: Soporte total para la Categoría 5 ("Figuras de Yeso y Cemento") con el campo de material y compatibilidad completa para el modo isPreview en el panel de administración.
@@ -96,5 +96,32 @@ Página Home Intacta: No se realizó ninguna modificación en los estilos ni com
 Branding e Identidad: Se mantuvieron estrictamente los colores originales de la marca (#464d5d, #b79067, #a47f56, #ffffff, #de3a3a) y las familias tipográficas.
 CSS Puro: Todos los estilos están entregados en CSS puro sin dependencias externas adicionales.
 
-Actualizacion Bitacora
+#### Actualizacion Bitacora
 14 de octubre
+
+1. # Estructura y Arquitectura del Servidor
+Organización de Carpetas: Se diseñó y estructuró el proyecto bajo una arquitectura modular profesional, separando responsabilidades en directorios específicos: config/, controllers/, middleware/, models/, routes/, services/, test/ y utils/.
+
+Configuración del Servidor: Inicialización de Node.js con Express y configuración de middlewares esenciales (cors para la comunicación con el frontend de React y express.json() para el manejo de payloads JSON).
+
+2. # Capa de Datos y Persistencia (MongoDB & Mongoose)
+Conexión a Base de Datos (config/db.js): Implementación del módulo de conexión asincrónica utilizando Mongoose para vincular la aplicación con la base de datos de MongoDB.
+
+Definición de Modelos (Schemas):
+
+Product: Esquema robusto para el catálogo del e-commerce, contemplando nombre, descripción, precio, stock, imagen, category_id y la propiedad condicional material (específica para soportar la Categoría 5: "Figuras de Yeso y Cemento").
+
+User: Modelo de usuarios con gestión de roles (comprador y admin) y campos obligatorios de seguridad e identificación.
+
+Cart: Modelo relacional vinculado por referencias (ObjectId) para la gestión del carrito de compras por usuario.
+
+3. # Script de Poblado de Datos (seed.js)
+Se desarrolló un script de automatización para la base de datos (npm run seed) que realiza lo siguiente:
+
+Limpieza y vaciado seguro de colecciones (Cart, Product, User) de afuera hacia adentro para mantener la integridad referencial.
+
+Sincronización automática de índices únicos (syncIndexes).
+
+Inserción masiva de datos iniciales representativos del negocio (productos de perfumería, accesorios, velas, cuidados diarios y el catálogo de figuras con materiales específicos).
+
+Creación de usuarios de prueba iniciales (perfil comprador y perfil administrador con sus credenciales correspondientes).

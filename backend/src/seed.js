@@ -1,71 +1,185 @@
-//La idea es crear un script independiente que se conecte a tu MongoDB, borre los datos viejos (para evitar duplicados), inserte los productos de prueba oficiales de tu tienda M&L y desconecte la base de datos de forma limpia.
-// =====================================================================
-//  src/utils/seed.js — Script para poblar la BD de M&L
-//  Correr con: npm run seed
-// =====================================================================
-
 import mongoose from "mongoose";
-import { connectDB } from "../config/db.js";
-import { Product } from "../models/product.model.js";
-// Si ya tienes tu modelo de usuario creado, descomenta la siguiente línea:
-// import { User } from "../models/user.model.js";
+import { conectarDB } from "./db.js"; // Asegúrate de tener tu archivo de conexión o ajústalo según tu estructura
+import { MONGO_URI } from "./utils/config.js"; // Ajusta la ruta según tu estructura de proyecto
+import User from "./models/user.js";
+import Product from "./models/product.js";
+import Order from "./models/order.js";
 
-await connectDB();
+await conectarDB();
 
-// 1. Limpieza de colecciones de afuera hacia adentro
+// Se borra de afuera hacia adentro: las órdenes apuntan a usuarios y productos.
+await Order.deleteMany({});
 await Product.deleteMany({});
+await User.deleteMany({});
+console.log("🧹 Colecciones vaciadas");
 
-// if (typeof User !== 'undefined') await User.deleteMany({});
-console.log("🧹 Colecciones vaciadas correctamente");
-
-// 2. Sincronización de índices únicos (como emails o SKUs si los hubiera)
+// Sincronizar índices únicos (como el email de usuarios)
+await User.syncIndexes();
 await Product.syncIndexes();
-// if (typeof User !== 'undefined') await User.syncIndexes();
+await Order.syncIndexes();
 
-// 3. Creación de productos basados en tu catálogo inicial
-await Product.create([
+// 1. Crear Productos con tus categorías exactas
+const [bodySplash, cremaManos, perfumeHumor, velaVainilla, bandejaCemento, bustoYeso, soporteJoystick] = await Product.create([
     {
-        name: "Noir Extrême Perfume",
-        price: 12500,
-        description: "Fragancia intensa con notas orientales, cardamomo y madera de sándalo. Ideal para la noche.",
-        image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=500&auto=format&fit=crop&q=60",
-        category_id: 1, // Perfumes
-        stock: 15,
-        material: null
+        product_name: "Natura Ekos Body Splash Maracuyá",
+        price: 18500.00,
+        description: "Aroma fresco y relajante para el uso diario, enriquecido con óleo esencial de maracuyá.",
+        image_url: "https://images.example.com/bodysplash-maracuya.jpg",
+        stock_quantity: 15,
+        active: true,
+        highlighted: true,
+        category: { name: "Cuidados Diarios" }
     },
     {
-        name: "Collar Luna de Plata",
-        price: 3200,
-        description: "Collar artesanal de plata esterlina 925 con un delicado dije en forma de media luna brillante.",
-        image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&auto=format&fit=crop&q=60",
-        category_id: 2, // Accesorios
-        stock: 10,
-        material: null
+        product_name: "Crema Hidratante para Manos Natura Tododia",
+        price: 7800.00,
+        description: "Nutrición prebiótica para la piel de las manos con fragancia a Nuez Pecán y Cacao.",
+        image_url: "https://images.example.com/crema-manos.jpg",
+        stock_quantity: 20,
+        active: true,
+        highlighted: false,
+        category: { name: "Cuidados Diarios" }
     },
     {
-        name: "Vela Canela y Naranja",
-        price: 1800,
-        description: "Vela de soja artesanal en frasco de vidrio, con un aroma cálido y estimulante de canela y cáscaras de naranja.",
-        image: "https://images.unsplash.com/photo-1572726729207-a78d6fed347e?w=500&auto=format&fit=crop&q=60",
-        category_id: 3, // Velas
-        stock: 25,
-        material: null
+        product_name: "Perfume Natura Humor Próprio 75ml",
+        price: 32000.00,
+        description: "Fragancia dulce y frutal con notas de cereza, ámbar y vainilla.",
+        image_url: "https://images.example.com/humor-proprio.jpg",
+        stock_quantity: 10,
+        active: true,
+        highlighted: true,
+        category: { name: "Perfumes" }
     },
     {
-        name: "Crema Hidratante de Coco",
-        price: 2400,
-        description: "Loción corporal profundamente hidratante formulada con aceite de coco orgánico y manteca de karité.",
-        image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop&q=60",
-        category_id: 4, // Cuidados Diarios
-        stock: 12,
-        material: null
+        product_name: "Vela Aromática en Frasco de Vidrio (Vainilla & Coco)",
+        price: 9500.00,
+        description: "Vela artesanal de cera de soja con pabilo de madera de encendido duradero.",
+        image_url: "https://images.example.com/vela-soja-vainilla.jpg",
+        stock_quantity: 12,
+        active: true,
+        highlighted: true,
+        category: { name: "Velas" }
+    },
+    {
+        product_name: "Bandeja Macetera Ovalada de Cemento",
+        price: 6500.00,
+        description: "Bandeja de diseño minimalista hecha en cemento impermeabilizado para velas o accesorios.",
+        image_url: "https://images.example.com/bandeja-cemento.jpg",
+        stock_quantity: 8,
+        active: true,
+        highlighted: false,
+        category: { name: "Figuras de Yeso y Cemento" }
+    },
+    {
+        product_name: "Busto Escultura David en Yeso",
+        price: 8900.00,
+        description: "Figura decorativa tipo busto clásico en yeso sellado blanco matte.",
+        image_url: "https://images.example.com/busto-yeso.jpg",
+        stock_quantity: 6,
+        active: true,
+        highlighted: true,
+        category: { name: "Figuras de Yeso y Cemento" }
+    },
+    {
+        product_name: "Soporte Dual 3D para Joysticks y Auriculares",
+        price: 14500.00,
+        description: "Soporte organizador impreso en 3D en material biodegradable reforzado.",
+        image_url: "https://images.example.com/soporte-joystick.jpg",
+        stock_quantity: 10,
+        active: true,
+        highlighted: false,
+        category: { name: "Accesorios" }
     }
 ]);
 
-// 4. Reporte detallado en consola (al estilo de tu ejemplo)
-console.log(`🌱 Se cargaron exitosamente ${await Product.countDocuments()} productos.`);
-console.log("   Categorías incluidas: Perfumes, Accesorios, Velas, Cuidados Diarios.");
-console.log("   Base de datos lista para las pruebas del e-commerce M&L.");
+// 2. Crear Usuarios (incluyendo rol admin y cliente)
+const [mora, camila, mateo] = await User.create([
+    {
+        name: "Mora",
+        lastname: "Gutierrez",
+        email: "mora.admin@ml.com",
+        date: new Date('2001-05-14'),
+        password: "$2b$10$encryptedpasswordhash1",
+        active: true,
+        role: "admin"
+    },
+    {
+        name: "Camila",
+        lastname: "Rios",
+        email: "camila.rios@example.com",
+        date: new Date('1997-08-19'),
+        password: "$2b$10$encryptedpasswordhash2",
+        active: true,
+        role: "client"
+    },
+    {
+        name: "Mateo",
+        lastname: "Lopez",
+        email: "mateo.lopez@example.com",
+        date: new Date('1994-03-10'),
+        password: "$2b$10$encryptedpasswordhash3",
+        active: true,
+        role: "client"
+    }
+]);
 
-// 5. Cierre limpio de la conexión
+// 3. Crear Órdenes de prueba vinculando los IDs correspondientes
+await Order.create([
+    {
+        order_number: "ORD-2026-001",
+        user_id: camila._id,
+        status: "confirmed",
+        total_amount: 28000.00,
+        items: [
+            {
+                product_id: bodySplash._id,
+                product_name: bodySplash.product_name,
+                unit_price: bodySplash.price,
+                quantity: 1
+            },
+            {
+                product_id: velaVainilla._id,
+                product_name: velaVainilla.product_name,
+                unit_price: velaVainilla.price,
+                quantity: 1
+            }
+        ],
+        shipping: {
+            street: "Calle 61 2450",
+            city: "Necochea",
+            zip_code: "7630"
+        }
+    },
+    {
+        order_number: null, // Borrador / Carrito activo
+        user_id: mateo._id,
+        status: "draft",
+        total_amount: 15400.00,
+        items: [
+            {
+                product_id: bandejaCemento._id,
+                product_name: bandejaCemento.product_name,
+                unit_price: bandejaCemento.price,
+                quantity: 1
+            },
+            {
+                product_id: bustoYeso._id,
+                product_name: bustoYeso.product_name,
+                unit_price: bustoYeso.price,
+                quantity: 1
+            }
+        ],
+        shipping: {
+            street: "Av. 2 y Calle 79",
+            city: "Necochea",
+            zip_code: "7630"
+        }
+    }
+]);
+
+console.log(`🌱 Seed completado con éxito:`);
+console.log(`   - Usuarios creados: ${await User.countDocuments()}`);
+console.log(`   - Productos creados: ${await Product.countDocuments()}`);
+console.log(`   - Órdenes creadas: ${await Order.countDocuments()}`);
+
 await mongoose.connection.close();
