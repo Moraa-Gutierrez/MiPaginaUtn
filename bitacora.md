@@ -79,7 +79,7 @@ ToastNotification.jsx
 
 EmptyState.jsx
 🌟 Resumen de Cambios y Mejoras Aplicadas
-🚨 1. Corrección Crítica en Vista Previa (CreateProductPage y EditProductPage)
+🚨  1. Corrección Crítica en Vista Previa (CreateProductPage y EditProductPage)
 Proporciones e Identidad de Tarjeta Real: Se corrigió el contenedor de vista previa (isPreview). Se fijaron dimensiones mínimas (min-width: 310px, max-width: 360px) y relativas para evitar que la tarjeta se achique, se deforme o se apriete.
 Espaciado y Mantenibilidad: La tarjeta en vista previa mantiene exactamente la misma tipografía, badges, badges de material (para la categoría 5 "Figuras de Yeso y Cemento"), precios y botones deshabilitados que una tarjeta real dentro de la tienda.
 Layout Balanceado en 2 Columnas: Se organizaron las vistas en un diseño de grilla en dos columnas (grid-template-columns: minmax(0, 1fr) 360px; gap: 40px). La columna de vista previa cuenta con comportamiento sticky (position: sticky; top: 24px) para permanecer visible al deslizar el formulario en escritorio, y se apila de forma prolija en dispositivos móviles.
@@ -163,3 +163,10 @@ Se adaptaron funciones lógicas esenciales para el backend, como:
 El servicio de verificación de existencia de usuarios utilizando el método .exists() de Mongoose.
 
 La función de mapeo de datos públicos de usuario (datosPublicosUsuario) para enviar al frontend únicamente información segura y filtrada, omitiendo datos sensibles como las contraseñas.
+
+## 19 de octubre Resumen para la Bitácora — Módulo de Órdenes y Carrito (M&L)
+## Capa de Servicios (orderService.js):
+Implementación del patrón de "Carrito como Borrador" (status: 'draft') utilizando una única colección en MongoDB.   Programación de la lógica de stock atómico mediante operadores $gte y $inc para prevenir condiciones de carrera (race conditions).  
+ Incorporación de un bloque de compensación (rollback) en el checkout para restablecer el stock automáticamente en caso de errores de transacción.   Cálculo seguro de los montos totales en el servidor utilizando métodos .reduce().  
+  Capa de Controladores (orderController.js):Conexión entre los endpoints HTTP de Express y los servicios de negocio.Extracción segura del ID de usuario directamente desde el token JWT (req.usuario.id) para evitar vulnerabilidades de manipulación en el cliente.
+  Manejo estandarizado de respuestas JSON y derivación de errores hacia el middleware centralizado.Capa de Enrutamiento (orderRoutes.js)Definición de endpoints limpios para el carrito (/cart, /items), el proceso de compra (/checkout), y el historial de compras (/my-orders).   Protección de rutas mediante middlewares de autenticación (verificarToken) y validación de privilegios según roles (permitirRoles(ROLES.COMPRADOR)).

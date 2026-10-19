@@ -2,7 +2,7 @@ import { Product } from "../models/product.js";
 import { ErrorApp } from "../utils/ErrorApp.js";
 
 // 1. Get all products with optional filters
-export const getProductsService = async ({ category_id, active, highlighted } = {}) => {
+export const getProductService = async ({ category_id, active, highlighted } = {}) => {
     const filter = {};
     
     if (category_id) filter.category_id = Number(category_id);

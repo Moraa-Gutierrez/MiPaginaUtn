@@ -1,0 +1,14 @@
+import {Router} from "express";
+import * as userController from "../controllers/userController.js";
+import { permitirRoles } from "../middleware/permitirRoles.js";
+import { verificarToken } from "../middleware/verificarToken.js";
+import { ROLES } from "../utils/constants.js";
+
+const router = Router();
+
+router.use(verificarToken, permitirRoles(ROLES.ADMIN));
+router.get("/", userController.getUsers);
+router.get("/:id", userController.getUserById);
+router.post("/", userController.createUser);
+
+export default router;
