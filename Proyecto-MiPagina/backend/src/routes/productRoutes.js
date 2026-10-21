@@ -2,7 +2,7 @@ import {Router} from "express";
 import * as productController from "../controllers/productController.js";
 import { soloStaff } from "../utils/constants.js";
 
-import{subirImagenes,manejarErroresDeMulter} from "../middleware/subirImagenes.js";
+import{subirImagen,manejarErroresDeMulter} from "../middleware/subirImagen.js";
 
 const router = Router();
 router.get("/", productController.getProducts);
