@@ -7,8 +7,8 @@ import { ROLES } from "../utils/constants.js";
 const router = Router();
 
 router.use(verificarToken, permitirRoles(ROLES.ADMIN));
-router.get("/", userController.getUsers);
-router.get("/:id", userController.getUserById);
-router.post("/", userController.createUser);
+router.get("/", userController.getUsersController);
+router.get("/:id", userController.getUserByIdController);
+router.post("/", userController.createUserController);
 
 export default router;

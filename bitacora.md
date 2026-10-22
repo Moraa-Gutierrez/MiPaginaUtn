@@ -170,3 +170,19 @@ Implementación del patrón de "Carrito como Borrador" (status: 'draft') utiliza
  Incorporación de un bloque de compensación (rollback) en el checkout para restablecer el stock automáticamente en caso de errores de transacción.   Cálculo seguro de los montos totales en el servidor utilizando métodos .reduce().  
   Capa de Controladores (orderController.js):Conexión entre los endpoints HTTP de Express y los servicios de negocio.Extracción segura del ID de usuario directamente desde el token JWT (req.usuario.id) para evitar vulnerabilidades de manipulación en el cliente.
   Manejo estandarizado de respuestas JSON y derivación de errores hacia el middleware centralizado.Capa de Enrutamiento (orderRoutes.js)Definición de endpoints limpios para el carrito (/cart, /items), el proceso de compra (/checkout), y el historial de compras (/my-orders).   Protección de rutas mediante middlewares de autenticación (verificarToken) y validación de privilegios según roles (permitirRoles(ROLES.COMPRADOR)).
+
+  21 de octubre
+ ## Estructura y Servidor: 
+ Se configuró correctamente el punto de entrada principal del servidor (src/index.js) y su integración con la conexión a la base de datos y la arquitectura modular de Express.
+
+## Gestión de Módulos y Dependencias:
+ Se instalaron las dependencias necesarias (bcryptjs) y se corrigieron las rutas de importación de archivos de configuración y middlewares (config.js, subirImagen.js).
+
+## Depuración y Corrección de Código: 
+Se practicó el análisis de errores de consola para resolver conflictos de sintaxis (como imports duplicados en productRoutes.js).
+
+## Documentación API (Swagger): 
+Se definieron y adaptaron los schemas de componentes (Productos, Usuarios, Carrito/Órdenes) orientados al e-commerce de M&L Beauty.
+
+## Entorno de Desarrollo: 
+Se configuró exitosamente el script de ejecución con recarga automática (npm run dev) en el package.json.

@@ -4,44 +4,41 @@ import { API_URL } from "../../config"
 function useLoginUser() {
     const [error, setError] = useState(null)
 
-    const loginUser = async (emailOrForm, password) => {
+    const loginUser = async (email, password) => {
         setError(null)
         
-        let email = emailOrForm;
-        let pass = password;
-        
-        if (typeof emailOrForm === 'object' && emailOrForm !== null) {
-            email = emailOrForm.email;
-            pass = emailOrForm.password;
-        }
-
         try {
-           // Cambiamos /user a /users para consultar el array principal
-           const response = await fetch(`${API_URL}/user`);
+           // Apuntamos a tu ruta de login en el backend (ej: /api/auth/login o /api/users/login)
+           const response = await fetch(`${API_URL}/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email, password })
+            });
+
             if(!response.ok){
-                throw new Error(`Error al leer usuarios, ${response.status}`)
-            }
-            const users = await response.json()
-
-            // Verificamos coincidencia de email y password
-            const userFound = users.find((user) => user.email === email && user.password === pass)
-            
-            if(!userFound){
-                setError("Credenciales incorrectas")
-                return null
+                const errData = await response.json();
+                throw new Error(errData.error || "Credenciales incorrectas");
             }
 
-            const { password: _, ...userSinPassword } = userFound
+            const data = await response.json(); // Retorna { usuario, token } del loginService
 
-            return userSinPassword
+            // Opcional: si guardas el token en sessionStorage para futuras peticiones protegidas
+            if (data.token) {
+                sessionStorage.setItem("token", data.token);
+            }
+
+            // Retornamos el objeto usuario (que ya incluye .name para el Login.jsx)
+            return data.usuario;
 
         } catch (error) {
-            console.error("Error al loggear usuario", error)
-            setError(error)
-            return null
+            console.error("Error al loggear usuario", error);
+            setError(error.message || "Credenciales incorrectas");
+            return null;
         }
     }
     return { error, loginUser }
 }
-console.log(API_URL)
-export default useLoginUser
+
+export default useLoginUser;

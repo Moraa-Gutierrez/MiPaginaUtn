@@ -3,7 +3,7 @@ import multer from "multer";
 const storage = multer.memoryStorage();
 
 const soloImagen = (req, file, cb) => {
-    if (!file.mimetype.startsWith("image/")) {
+    if (file.mimetype.startsWith("image/")) {
        cb(null,true);
     } else {
        cb(new Error("Solo se permiten archivos de imagen"), false);

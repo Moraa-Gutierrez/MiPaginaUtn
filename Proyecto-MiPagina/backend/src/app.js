@@ -17,7 +17,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(especificacion, {
     customSiteTitle: "Api Docs - M&L Beauty",
     swaggerOptions: { persistAuthorization: true }
 }))
-app.use(`/${CARPETA_IMAGENES}`, express.static(CARPETA_IMAGENES))
+//app.use(`/${CARPETA_IMAGENES}`, express.static(CARPETA_IMAGENES))
 app.get ("/api-docs.json", (req, res) => {
     res.json(especificacion);
 });
