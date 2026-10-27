@@ -4,6 +4,7 @@ import cors from "cors";
 import orderRoutes from "./routes/orderRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import authRoutes from "./routes/authRoutes.js"
 import swaggerUi from "swagger-ui-express";
 import {manejarErrores} from "./middleware/manejarErrores.js";
 import {especificacion }from "./docs/swagger.js";
@@ -24,6 +25,7 @@ app.get ("/api-docs.json", (req, res) => {
 app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/auth",authRoutes);
 
 
 app.use((req, res) => {
