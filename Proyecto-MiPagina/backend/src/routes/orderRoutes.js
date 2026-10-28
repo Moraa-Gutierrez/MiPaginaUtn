@@ -9,7 +9,8 @@ const router = Router();
 router.use(verificarToken);
 
 // 🛒 RUTAS DEL CARRITO (status: 'draft')
-router.get("/orders", permitirRoles(ROLES.COMPRADOR), orderController.getOrCreateCartController);
+// 🛒 RUTAS DEL CARRITO (status: 'draft')
+router.get("/cart", permitirRoles(ROLES.COMPRADOR), orderController.getOrCreateCartController);
 router.post("/items", permitirRoles(ROLES.COMPRADOR), orderController.addToCartController);
 router.delete("/items/:productId", permitirRoles(ROLES.COMPRADOR), orderController.removeFromCartController);
 

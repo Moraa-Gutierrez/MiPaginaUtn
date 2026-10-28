@@ -186,3 +186,13 @@ Se definieron y adaptaron los schemas de componentes (Productos, Usuarios, Carri
 
 ## Entorno de Desarrollo: 
 Se configuró exitosamente el script de ejecución con recarga automática (npm run dev) en el package.json.
+
+Resumen 28 de octubre
+## 1. Módulo de Almacenamiento e Imágenes (storage)supabase.js: 
+Se corrigió la importación innecesaria del módulo node:inspector.   Se agregó la importación de la función nombreUnico desde ./nombreUnico.js.Se pulió la lógica de subida al bucket de Supabase utilizando file.buffer, especificando el contentType y obteniendo la URL pública con bucket().getPublicUrl(nombre).   Se mantuvo la función de borrado para remover archivos del bucket mediante el nombre extraído de la URL.   
+## 2. Configuración de Rutas de Autenticación (authRoutes.js): 
+Se definió el router con los endpoints /registro, /login y la ruta protegida /perfil mediante el middleware verificarToken.   Se solucionó un error de ruta no encontrada (404) añadiendo la exportación por defecto del router (export default router;) al final del archivo.
+## 3. Depuración del Servidor y DependenciasConexión entre Servicios:
+ Se resolvió el error de sintaxis en authService.js al corregir el nombre e importación de las funciones exportadas desde userService.js (buscarUsuarioPorEmail).   Levantamiento del Servidor: Se confirmó el correcto inicio del servidor Node.js corriendo en el puerto 3000 con la conexión activa a la base de datos MongoDB ("M&L").  
+ ## 4. Validación en PostmanPrueba de Enrutamiento:
+  Se validó que el middleware de autenticación bloquea correctamente las rutas protegidas devolviendo un estado 401 Unauthorized si no se envía el header Authorization.   Control de Excepciones: Se identificó que las peticiones POST a /api/auth/login sin cuerpo (Body) desencadenaban un error 500 ("Faltan el email y/o la contraseña"), confirmando la necesidad de enviar siempre el payload estructurado en JSON. 

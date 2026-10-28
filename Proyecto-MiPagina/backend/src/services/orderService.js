@@ -37,9 +37,10 @@ export const addToCartService = async (usuarioId, productId, quantity) => {
     let cart = await getOrCreateCartService(usuarioId);
 
     // Check if the product is already in the cart items array
-    const itemIndex = cart.items.findIndex(
-        (item) => item.product_id._id.toString() === productId
-    );
+    const itemIndex = cart.items.findIndex((item) => {
+    const idEnCart = item.product_id._id ? item.product_id._id.toString() : item.product_id.toString();
+    return idEnCart === productId;
+});
 
     if (itemIndex > -1) {
         cart.items[itemIndex].quantity += quantity;

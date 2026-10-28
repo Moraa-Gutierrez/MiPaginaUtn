@@ -4,7 +4,7 @@ import {buscarPorEmailConPasswordService,createUserService,datosPublicosUsuario}
 import { ErrorApp } from "../utils/ErrorApp.js";
 
 const firmarToken = (usuario) => {
-return jwt.sign({ id: usuario._id, rol: usuario.rol }, JWT_SECRET, {
+return jwt.sign({ id: usuario._id, role: usuario.role }, JWT_SECRET, {
     expiresIn: JWT_EXPIRATION,
   });
 };
@@ -16,9 +16,9 @@ export const registrarService = async (formData = {}) => {
   const { email, password } = formData;
 
   const usuario = await createUserService({
-    nombre,
-    apellido,
-    fechaNacimiento,
+    name: nombre,         
+    lastname: apellido,   
+    date: fechaNacimiento, 
     email,
     password,
   });
