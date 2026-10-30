@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "../components/cards";
+import ProductCard from "../components/Cards";
 import useGetProductsByCategory from "../hooks/products/useGetProductByCategory";
 
 function Accesorios() {
@@ -22,8 +22,8 @@ function Accesorios() {
     }
     return (
         <div>
-             <h1>Accesorios</h1>
-             <ProductCard products={products} />
+            <h1>Accesorios</h1>
+            <ProductCard products={products} />
         </div>
     );
 }

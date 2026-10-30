@@ -1,10 +1,10 @@
 import React from "react";
-import ProductCard from "../components/cards";
+import ProductCard from "../components/Cards";
 import useGetProductsByCategory from "../hooks/products/useGetProductByCategory";
 
 function Perfumes() {
     const { error, loading, products } = useGetProductsByCategory(1);
-    
+
     if (error) {
         return (
             <div>
@@ -13,7 +13,7 @@ function Perfumes() {
             </div>
         );
     }
-    
+
     if (loading) {
         return (
             <div>
@@ -21,7 +21,7 @@ function Perfumes() {
             </div>
         );
     }
-    
+
     return (
         <div>
             <h1>Perfumes</h1>
@@ -30,4 +30,4 @@ function Perfumes() {
     );
 }
 
-export default Perfumes;
+export default Perfumes;

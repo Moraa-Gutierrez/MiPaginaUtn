@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "../components/cards";
+import ProductCard from "../components/Cards";
 import useGetProductsByCategory from "../hooks/products/useGetProductByCategory";
 
 function FigurasYesoCemento() {
@@ -30,4 +30,4 @@ function FigurasYesoCemento() {
     );
 }
 
-export default FigurasYesoCemento;
+export default FigurasYesoCemento;

@@ -18,11 +18,11 @@ export const verificarUsuarioService = async (usuarioId) => {
     throw new ErrorApp(`No existe ningún usuario con el id ${usuarioId}`, 404);
   }
 }
-export const buscarPorEmailConPasswordService = async (email = "") => {
+export const findByEmailWithPasswordService = async (email = "") => {
 return await Usuario.findOne({ email: email.toLowerCase().trim() }).select("+password")
 }
 
-export const datosPublicosUsuario = (usuario) => ({
+export const dataPublicUser = (usuario) => ({
     _id: usuario._id,
     nombre: usuario.name,
     apellido: usuario.lastname,

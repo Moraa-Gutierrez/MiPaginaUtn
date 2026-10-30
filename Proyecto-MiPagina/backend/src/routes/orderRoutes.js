@@ -15,7 +15,7 @@ router.post("/items", permitirRoles(ROLES.COMPRADOR), orderController.addToCartC
 router.delete("/items/:productId", permitirRoles(ROLES.COMPRADOR), orderController.removeFromCartController);
 
 // 💳 CHECKOUT Y COMPRA
-router.post("/checkout", permitirRoles(ROLES.COMPRADOR), orderController.checkoutOrderController);
+router.post("/checkout", verificarToken, permitirRoles(ROLES.COMPRADOR), orderController.checkoutOrderController);
 
 // 📜 HISTORIAL DE PEDIDOS CONFIRMADOS
 router.get("/my-orders", permitirRoles(ROLES.COMPRADOR), orderController.getUserOrderController);

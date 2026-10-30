@@ -1,10 +1,10 @@
 import React from "react";
-import ProductCard from "../components/cards";
+import ProductCard from "../components/Cards";
 import useGetProductsByCategory from "../hooks/products/useGetProductByCategory";
 
 function Velas() {
     const { error, loading, products } = useGetProductsByCategory(3);
-    
+
     if (error) {
         return (
             <div>
@@ -13,7 +13,7 @@ function Velas() {
             </div>
         );
     }
-    
+
     if (loading) {
         return (
             <div>
@@ -21,7 +21,7 @@ function Velas() {
             </div>
         );
     }
-    
+
     return (
         <div>
             <h1>Velas</h1>
@@ -30,4 +30,4 @@ function Velas() {
     );
 }
 
-export default Velas;
+export default Velas;

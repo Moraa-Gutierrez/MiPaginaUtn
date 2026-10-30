@@ -4,7 +4,7 @@ import useGetProductsByCategory from "../hooks/products/useGetProductByCategory"
 
 function CuidadosDiarios() {
     const { error, loading, products } = useGetProductsByCategory(4);
-    
+
     if (error) {
         return (
             <div>
@@ -13,7 +13,7 @@ function CuidadosDiarios() {
             </div>
         );
     }
-    
+
     if (loading) {
         return (
             <div>

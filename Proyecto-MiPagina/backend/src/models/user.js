@@ -61,7 +61,7 @@ usuarioSchema.pre("save", async function () {
     this.password = await bcrypt.hash(this.password, VUELTAS);
 });
 
-usuarioSchema.methods.compararPassword = function (password) {
+usuarioSchema.methods.matchPassword = function (password) {
     return bcrypt.compare(password, this.password);
 };
 

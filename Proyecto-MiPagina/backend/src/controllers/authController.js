@@ -2,7 +2,7 @@ import * as authService from "../services/authService.js"
 import * as userService from "../services/userService.js"
 export const registrarController = async (req,res) =>
 {
-    const datos = await authService.registrarService(req.body)
+    const datos = await authService.registerService(req.body)
     res.status (201).json(datos)
 }
 export const loginController = async(req,res)=>

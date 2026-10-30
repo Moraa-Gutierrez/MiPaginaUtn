@@ -162,7 +162,7 @@ Se adaptaron funciones lógicas esenciales para el backend, como:
 
 El servicio de verificación de existencia de usuarios utilizando el método .exists() de Mongoose.
 
-La función de mapeo de datos públicos de usuario (datosPublicosUsuario) para enviar al frontend únicamente información segura y filtrada, omitiendo datos sensibles como las contraseñas.
+La función de mapeo de datos públicos de usuario (dataPublicUser) para enviar al frontend únicamente información segura y filtrada, omitiendo datos sensibles como las contraseñas.
 
 ## 19 de octubre Resumen para la Bitácora — Módulo de Órdenes y Carrito (M&L)
 ## Capa de Servicios (orderService.js):
@@ -196,3 +196,40 @@ Se definió el router con los endpoints /registro, /login y la ruta protegida /p
  Se resolvió el error de sintaxis en authService.js al corregir el nombre e importación de las funciones exportadas desde userService.js (buscarUsuarioPorEmail).   Levantamiento del Servidor: Se confirmó el correcto inicio del servidor Node.js corriendo en el puerto 3000 con la conexión activa a la base de datos MongoDB ("M&L").  
  ## 4. Validación en PostmanPrueba de Enrutamiento:
   Se validó que el middleware de autenticación bloquea correctamente las rutas protegidas devolviendo un estado 401 Unauthorized si no se envía el header Authorization.   Control de Excepciones: Se identificó que las peticiones POST a /api/auth/login sin cuerpo (Body) desencadenaban un error 500 ("Faltan el email y/o la contraseña"), confirmando la necesidad de enviar siempre el payload estructurado en JSON. 
+  Resumen de Avances – Backend M&L Beauty
+## Módulo: Autenticación, Autorización y Carrito de Compras (/api/orders)
+
+## Estado: Resuelto y Verificado ✅
+
+## 📌 Problemas Identificados y Soluciones
+# Estructura del JWT y Mapeo de Rol:
+
+## Problema: 
+Al acceder a las rutas protegidas del carrito (/api/orders/cart), el middleware permitirRoles devolvía 403 Forbidden ("No tienes permisos para realizar esta acción").
+
+## Causa:
+ En la función de firma del token (jwt.sign), la clave del rol no coincidía exactamente con la lectura del middleware verificarToken y con el valor definido en ROLES.COMPRADOR ('comprador').
+
+# Solución: 
+Se alineó el payload del JWT en authService.js para enviar { id: usuario._id, role: usuario.role }, garantizando la coincidencia exacta con el esquema y los middlewares.
+
+## Formato de Headers en Postman:
+
+## Problema:
+ Errores 401 Unauthorized por header mal estructurado ("Token no proporcionado" / "Token inválido").
+
+# Solución: 
+Se corrigió el envío del header Authorization. Al usar el tipo Bearer Token en la pestaña Authorization de Postman, se debe ingresar únicamente el hash del token (sin anteponer manualmente la palabra Bearer), para evitar la duplicación de prefijos.
+
+🧪 Verificación Completa del Flujo
+Registro e Inicio de Sesión:
+
+POST /api/auth/registro -> Registro exitoso.
+
+POST /api/auth/login -> Generación correcta del JWT con los datos del usuario y rol comprador.
+
+Ruta Protegida del Carrito:
+
+GET /api/orders/cart con header Authorization: Bearer <token> -> Status 200 OK.
+
+Retorna exitosamente el objeto del carrito en estado draft, asociado al user_id correspondiente y listo para la adición de ítems
