@@ -30,7 +30,7 @@ function ProductCard({ products, onDelete, isPreview }) {
       showToast(`¡${product.name || "Producto"} agregado al carrito!`, 'success');
     }
   };
-const handleDeleteProduct = async (id) => {
+  const handleDeleteProduct = async (id) => {
     if (onDelete) {
       const success = await onDelete(id);
       if (success) {

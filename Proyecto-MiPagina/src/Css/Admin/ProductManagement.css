@@ -1,0 +1,371 @@
+/* ==========================================================================
+   M&L E-COMMERCE - PRODUCT MANAGEMENT PANEL STYLES
+   Pure CSS for Product Catalog, Form Modal, & Image Upload
+   ========================================================================== */
+
+@import url("./AdminShared.css");
+
+/* Miniatura de Producto en Tabla */
+.product-thumb-cell {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    background-color: #f1f3f5;
+    border: 1px solid rgba(70, 77, 93, 0.12);
+    display: block;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.product-info-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.product-name-title {
+    font-weight: 700;
+    color: #464d5d;
+    font-size: 0.98rem;
+}
+
+.product-desc-snippet {
+    font-size: 0.82rem;
+    color: #8c93a0;
+    max-width: 260px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-price-cell {
+    font-weight: 700;
+    color: #b79067;
+    font-size: 1.05rem;
+}
+
+/* Indicador de Stock */
+.stock-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    font-size: 0.88rem;
+}
+
+.stock-indicator.in-stock {
+    color: #2e7d32;
+}
+
+.stock-indicator.low-stock {
+    color: #d97706;
+}
+
+.stock-indicator.out-of-stock {
+    color: #dc3545;
+}
+
+.stock-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.stock-indicator.in-stock .stock-dot {
+    background-color: #2e7d32;
+    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+}
+
+.stock-indicator.low-stock .stock-dot {
+    background-color: #d97706;
+    box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.2);
+}
+
+.stock-indicator.out-of-stock .stock-dot {
+    background-color: #dc3545;
+    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+}
+
+/* Formulario de Alta y Edición */
+.admin-form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.admin-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 640px) {
+    .admin-form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.admin-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.admin-field-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #464d5d;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.admin-field-label i {
+    color: #b79067;
+    font-size: 0.85rem;
+}
+
+.admin-field-label .required-star {
+    color: #dc3545;
+}
+
+.admin-field-input,
+.admin-field-textarea,
+.admin-field-select {
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1cecb;
+    border-radius: 10px;
+    font-family: "Arimo", sans-serif;
+    font-size: 0.95rem;
+    color: #464d5d;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.admin-field-textarea {
+    resize: vertical;
+    min-height: 85px;
+    line-height: 1.45;
+}
+
+.admin-field-input:focus,
+.admin-field-textarea:focus,
+.admin-field-select:focus {
+    outline: none;
+    border-color: #b79067;
+    box-shadow: 0 0 0 3px rgba(183, 144, 103, 0.18);
+}
+
+/* Selector Dinámico de Materiales / Variantes */
+.variant-selector-box {
+    background-color: rgba(183, 144, 103, 0.08);
+    border: 1.5px dashed #b79067;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    animation: fadeInVariant 0.3s ease-out;
+}
+
+@keyframes fadeInVariant {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.variant-options-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.variant-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.92rem;
+    color: #464d5d;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #d1cecb;
+    transition: all 0.2s ease;
+}
+
+.variant-radio-label.selected {
+    border-color: #b79067;
+    background-color: #ffffff;
+    color: #b79067;
+    box-shadow: 0 2px 6px rgba(183, 144, 103, 0.2);
+    font-weight: 700;
+}
+
+/* Área de Carga de Imagen (Compatible con Multipart) */
+.image-upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.image-dropzone {
+    border: 2px dashed #d1cecb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    background-color: #fafbfc;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+}
+
+.image-dropzone:hover {
+    border-color: #b79067;
+    background-color: rgba(183, 144, 103, 0.04);
+}
+
+.image-dropzone input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.image-dropzone-icon {
+    font-size: 2rem;
+    color: #b79067;
+}
+
+.image-dropzone-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #464d5d;
+    margin: 0;
+}
+
+.image-dropzone-hint {
+    font-size: 0.8rem;
+    color: #8c93a0;
+    margin: 0;
+}
+
+/* Previsualización en Vivo de la Imagen Subida */
+.image-preview-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #ffffff;
+    border: 1px solid #edf2f7;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.image-preview-thumbnail {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid rgba(70, 77, 93, 0.1);
+}
+
+.image-preview-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.image-preview-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #464d5d;
+    word-break: break-all;
+}
+
+.image-preview-badge {
+    font-size: 0.75rem;
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.image-preview-remove-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.image-preview-remove-btn:hover {
+    background-color: #ffebee;
+}
+
+/* Modal de Confirmación de Borrado */
+.delete-confirm-box {
+    text-align: center;
+}
+
+.delete-confirm-icon {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background-color: #ffebee;
+    color: #dc3545;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 1.25rem auto;
+}
+
+.delete-confirm-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #464d5d;
+    margin: 0 0 0.5rem 0;
+}
+
+.delete-confirm-desc {
+    color: #717784;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 1.5rem 0;
+}
+
+.delete-confirm-item-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background-color: #fafbfc;
+    border: 1px solid #edf2f7;
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.delete-confirm-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    object-fit: cover;
+}

@@ -18,14 +18,20 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(especificacion, {
     customSiteTitle: "Api Docs - M&L Beauty",
     swaggerOptions: { persistAuthorization: true }
 }))
-//app.use(`/${CARPETA_IMAGENES}`, express.static(CARPETA_IMAGENES))
-app.get ("/api-docs.json", (req, res) => {
-    res.json(especificacion);
-});
+import { CARPETA_IMAGENES } from "./utils/config.js";
+
+app.use(`/${CARPETA_IMAGENES}`, express.static(CARPETA_IMAGENES));
+
 app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/auth",authRoutes);
+app.use("/api/auth", authRoutes);
+
+// Alias directos para compatibilidad con hooks existentes
+app.use("/orders", orderRoutes);
+app.use("/products", productRoutes);
+app.use("/users", userRoutes);
+app.use("/auth", authRoutes);
 
 
 app.use((req, res) => {

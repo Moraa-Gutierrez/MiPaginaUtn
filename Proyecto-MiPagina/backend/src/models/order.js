@@ -41,7 +41,7 @@ const orderSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ["draft", "pending", "confirmed", "shipped"],
+        enum: ["draft", "pending", "confirmed", "shipped", "completed", "cancelled"],
         default: "draft" // El carrito activo arranca como borrador
     },
     total_amount: {

@@ -147,3 +147,25 @@ export const checkoutOrderService = async (userId, shippingData) => {
 export const getUserOrdersService = async (userId) => {
     return await Order.find({ user_id: userId, status: { $ne: "draft" } }).sort({ createdAt: -1 });
 };
+
+// 6. Get all orders for administration panel (sorted by date)
+export const getAllOrdersService = async () => {
+    return await Order.find()
+        .populate("user_id", "name lastname email")
+        .sort({ created_at: -1, createdAt: -1 });
+};
+
+// 7. Update order status dynamically
+export const updateOrderStatusService = async (orderId, status) => {
+    const updatedOrder = await Order.findByIdAndUpdate(
+        orderId,
+        { status },
+        { returnDocument: "after", runValidators: true }
+    ).populate("user_id", "name lastname email");
+
+    if (!updatedOrder) {
+        throw new ErrorApp(`Orden con ID ${orderId} no encontrada`, 404);
+    }
+
+    return updatedOrder;
+};

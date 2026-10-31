@@ -1,0 +1,307 @@
+/* ==========================================================================
+   M&L E-COMMERCE - ORDER MANAGEMENT PANEL STYLES
+   Pure CSS for Sales Table, Order Breakdown Modal & Shipping Info
+   ========================================================================== */
+
+@import url("./AdminShared.css");
+
+/* Celda de Identificador de Orden */
+.order-id-cell {
+    font-family: monospace;
+    font-weight: 700;
+    color: #464d5d;
+    background-color: #f1f3f5;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    display: inline-block;
+    border: 1px solid rgba(70, 77, 93, 0.15);
+}
+
+/* Celda de Comprador */
+.customer-info-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.customer-name {
+    font-weight: 700;
+    color: #464d5d;
+    font-size: 0.95rem;
+}
+
+.customer-email {
+    font-size: 0.82rem;
+    color: #717784;
+}
+
+/* Celda de Fecha */
+.order-date-cell {
+    font-size: 0.88rem;
+    color: #717784;
+    white-space: nowrap;
+}
+
+/* Celda de Total */
+.order-total-cell {
+    font-weight: 700;
+    color: #b79067;
+    font-size: 1.05rem;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   MODAL DE DETALLE DE LA ORDEN
+   ========================================================================== */
+
+.order-detail-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Barra Superior de Resumen y Cambio de Estado Dinámico */
+.order-detail-header-card {
+    background: linear-gradient(135deg, rgba(70, 77, 93, 0.05) 0%, rgba(183, 144, 103, 0.08) 100%);
+    border: 1px solid rgba(183, 144, 103, 0.2);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.order-detail-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.order-detail-meta h3 {
+    margin: 0;
+    padding: 0;
+    font-family: "Arimo", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #464d5d;
+    text-align: left;
+}
+
+.order-detail-meta span {
+    font-size: 0.88rem;
+    color: #717784;
+}
+
+/* Selector Dinámico de Estado */
+.order-status-controller {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    border: 1px solid #d1cecb;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.status-control-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #717784;
+    white-space: nowrap;
+}
+
+.order-status-select {
+    padding: 0.45rem 0.8rem;
+    border: 1px solid #d1cecb;
+    border-radius: 8px;
+    font-family: "Arimo", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #464d5d;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.order-status-select:focus {
+    border-color: #b79067;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(183, 144, 103, 0.2);
+}
+
+/* Información del Cliente */
+.order-customer-card {
+    background-color: #ffffff;
+    border: 1px solid #edf2f7;
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #464d5d;
+    margin: 0 0 0.8rem 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-subtitle i {
+    color: #b79067;
+}
+
+.customer-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.detail-item-label {
+    font-size: 0.8rem;
+    color: #8c93a0;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.detail-item-val {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #464d5d;
+}
+
+/* Card de Envío Desplegado Accesible */
+.shipping-info-card {
+    background-color: #fafbfc;
+    border: 1.5px solid #edf2f7;
+    border-left: 4px solid #b79067;
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.shipping-address-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .shipping-address-box {
+        grid-template-columns: 1fr;
+    }
+}
+
+.shipping-field {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.shipping-field-label {
+    font-size: 0.75rem;
+    color: #8c93a0;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.shipping-field-value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #464d5d;
+    word-break: break-word;
+}
+
+/* Desglose del Carrito */
+.order-cart-breakdown {
+    background-color: #ffffff;
+    border: 1px solid #edf2f7;
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.breakdown-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.breakdown-table th {
+    background-color: #f1f3f5;
+    color: #464d5d;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.breakdown-table td {
+    padding: 0.75rem 0.85rem;
+    font-size: 0.9rem;
+    color: #464d5d;
+    border-bottom: 1px solid #edf2f7;
+    text-align: left;
+}
+
+.breakdown-table tr:hover {
+    background-color: #faf7f2;
+}
+
+.cart-item-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background-color: rgba(183, 144, 103, 0.15);
+    color: #b79067;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+/* Total General de la Orden */
+.order-summary-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 2px solid #edf2f7;
+}
+
+.order-total-badge-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #464d5d;
+}
+
+.order-total-amount-highlight {
+    font-size: 1.45rem;
+    color: #b79067;
+    font-weight: 800;
+}

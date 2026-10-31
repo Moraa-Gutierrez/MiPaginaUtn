@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import usePostProduct from "../../hooks/products/usePostProduct";
 import { useNavigate } from "react-router-dom";
 import "../../Css/CRUD/CreateProductPage.css";
-import ProductCard from "../../components/Cards";
+import ProductCard from "../../components/cards";
 
 function CreateProductPage() {
     const [form, setForm] = useState({
@@ -237,12 +237,12 @@ function CreateProductPage() {
                                 <button
                                     className="btn-admin-reset"
                                     type="button"
-                                    onClick={() => setForm({ 
-                                        id: "preview-new", 
-                                        name: "", 
-                                        image: "", 
-                                        description: "", 
-                                        price: 0, 
+                                    onClick={() => setForm({
+                                        id: "preview-new",
+                                        name: "",
+                                        image: "",
+                                        description: "",
+                                        price: 0,
                                         quantity: 1,
                                         category_id: 1,
                                         material: "yeso",

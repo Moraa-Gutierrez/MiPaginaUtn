@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import useGetProductById from "../../hooks/products/useGetProductById";
 import { useNavigate, useParams } from "react-router-dom";
 import usePatchProducts from "../../hooks/products/usePatchProducts";
-import ProductCard from "../../components/Cards";
+import ProductCard from "../../components/cards";
 import "../../Css/CRUD/EditProductPage.css";
 
 function EditProductPage() {
@@ -26,11 +26,11 @@ function EditProductPage() {
         const response = await getProductById(id);
         if (response) {
             const { name, image, description, price, quantity, category_id, material, highlighted } = response;
-            setForm({ 
-                name: name || "", 
-                image: image || "", 
-                description: description || "", 
-                price: price || 0, 
+            setForm({
+                name: name || "",
+                image: image || "",
+                description: description || "",
+                price: price || 0,
                 quantity: quantity || 1,
                 category_id: category_id || 1,
                 material: material || "yeso",

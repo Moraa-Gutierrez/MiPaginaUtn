@@ -12,19 +12,27 @@ function MenuDesplegable() {
         <span className={`arrow ${isOpen ? 'rotated' : ''}`}>▼</span>
       </Dropdown.Toggle>
   <Dropdown.Menu className="custom-menu">
+    <Dropdown.Item as={Link} to="/admin/products" className="custom-item">
+      <span className="icon">📦</span>
+      <div className="text-wrapper">
+        <span>Gestión de</span>
+        <span>Productos</span>
+      </div>
+    </Dropdown.Item>
+
+    <Dropdown.Item as={Link} to="/admin/orders" className="custom-item">
+      <span className="icon">🧾</span>
+      <div className="text-wrapper">
+        <span>Gestión de</span>
+        <span>Pedidos</span>
+      </div>
+    </Dropdown.Item>
+    
     <Dropdown.Item as={Link} to="/create-product" className="custom-item">
       <span className="icon">+</span>
       <div className="text-wrapper">
         <span>Cargar</span>
         <span>Producto</span>
-      </div>
-    </Dropdown.Item>
-    
-    <Dropdown.Item as={Link} to="/products" className="custom-item">
-      <span className="icon">✎</span>
-      <div className="text-wrapper">
-        <span>Ver / Editar</span>
-        <span>Productos</span>
       </div>
     </Dropdown.Item>
   </Dropdown.Menu>

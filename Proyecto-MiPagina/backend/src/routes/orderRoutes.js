@@ -2,13 +2,16 @@ import { Router } from "express";
 import * as orderController from "../controllers/orderController.js";
 import { permitirRoles } from "../middleware/permitirRoles.js";
 import { verificarToken } from "../middleware/verificarToken.js";
-import { ROLES } from "../utils/constants.js";
+import { soloStaff, ROLES } from "../utils/constants.js";
 
 const router = Router();
 
 router.use(verificarToken);
 
-// 🛒 RUTAS DEL CARRITO (status: 'draft')
+// 👑 RUTAS DE ADMINISTRACIÓN (Panel de Gestión de Pedidos)
+router.get("/", soloStaff, orderController.getAllOrdersController);
+router.patch("/:id/status", soloStaff, orderController.updateOrderStatusController);
+
 // 🛒 RUTAS DEL CARRITO (status: 'draft')
 router.get("/cart", permitirRoles(ROLES.COMPRADOR), orderController.getOrCreateCartController);
 router.post("/items", permitirRoles(ROLES.COMPRADOR), orderController.addToCartController);

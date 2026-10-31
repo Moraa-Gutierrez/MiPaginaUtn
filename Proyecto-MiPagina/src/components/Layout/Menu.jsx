@@ -7,7 +7,7 @@ import "../../Css/Elementos/Menu.css"
 
 const Menu = () => {
     const { getCartCount } = useCart();
-    const { user, logout, isAuthenticated } = useAuth();
+    const { user, logout, isAuthenticated, isAdmin } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -70,7 +70,7 @@ const Menu = () => {
                         Contacto
                     </NavLink>
                 </li>
-                {isAuthenticated && user?.email === "mora@mora.com" && (
+                {(isAdmin || (isAuthenticated && (user?.role === "admin" || user?.email === "mora@mora.com"))) && (
                     <li>
                         <AdminDropdown />
                     </li>

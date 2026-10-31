@@ -52,4 +52,24 @@ export const getOrCreateCartController = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-}
+};
+
+export const getAllOrdersController = async (req, res, next) => {
+    try {
+        const orders = await orderService.getAllOrdersService();
+        return res.status(200).json(orders);
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const updateOrderStatusController = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+        const updatedOrder = await orderService.updateOrderStatusService(id, status);
+        return res.status(200).json(updatedOrder);
+    } catch (error) {
+        next(error);
+    }
+};
