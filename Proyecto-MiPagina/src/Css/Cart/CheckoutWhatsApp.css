@@ -1,0 +1,129 @@
+/* CheckoutWhatsApp.css
+   Estilos en CSS puro, pensados para integrarse con la identidad visual
+   ya existente de M&L. Usa variables CSS con fallback neutro: si tu proyecto
+   ya define --color-primary, --color-text, --font-main, etc. en un archivo
+   global (ej. index.css / variables.css), este componente los va a tomar
+   automáticamente. Ajustá los nombres de variable si los tuyos son distintos.
+*/
+
+.checkout-wa {
+  --wa-accent: var(--color-primary, #b98a7a);
+  --wa-text: var(--color-text, #4a3f3a);
+  --wa-muted: var(--color-muted, #8a7d78);
+  --wa-border: var(--color-border, #e4dcd6);
+  --wa-bg: var(--color-surface, #fffdfb);
+  --wa-error: #c0463b;
+  --wa-radius: 10px;
+
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.75rem;
+  background: var(--wa-bg);
+  border: 1px solid var(--wa-border);
+  border-radius: var(--wa-radius);
+  font-family: var(--font-main, inherit);
+  color: var(--wa-text);
+  box-sizing: border-box;
+}
+
+.checkout-wa__title {
+  margin: 0 0 1.25rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.checkout-wa__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.checkout-wa__field label {
+  font-size: 0.85rem;
+  color: var(--wa-muted);
+}
+
+.checkout-wa__field input,
+.checkout-wa__field select,
+.checkout-wa__field textarea {
+  font: inherit;
+  color: var(--wa-text);
+  background: #fff;
+  border: 1px solid var(--wa-border);
+  border-radius: calc(var(--wa-radius) / 1.6);
+  padding: 0.6rem 0.75rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.checkout-wa__field input:focus,
+.checkout-wa__field select:focus,
+.checkout-wa__field textarea:focus {
+  border-color: var(--wa-accent);
+}
+
+.checkout-wa__field textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.checkout-wa__address {
+  border-top: 1px dashed var(--wa-border);
+  padding-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.checkout-wa__row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.checkout-wa__row .checkout-wa__field {
+  flex: 1;
+  min-width: 0;
+}
+
+.checkout-wa__error {
+  color: var(--wa-error);
+  font-size: 0.85rem;
+  margin: 0 0 1rem;
+}
+
+.checkout-wa__submit {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--wa-accent);
+  border: none;
+  border-radius: calc(var(--wa-radius) / 1.6);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.checkout-wa__submit:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.checkout-wa__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive: en pantallas chicas, la fila calle/ciudad pasa a columna */
+@media (max-width: 420px) {
+  .checkout-wa {
+    padding: 1.25rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .checkout-wa__row {
+    flex-direction: column;
+    gap: 0;
+  }
+}

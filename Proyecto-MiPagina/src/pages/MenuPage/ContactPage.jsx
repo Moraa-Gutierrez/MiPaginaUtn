@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Css/Contacto.css"
+import "../../Css/MenuPages/Contacto.css";
 function ContactPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [form, setForm] = useState({

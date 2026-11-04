@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import useGetProducts from '../hooks/products/useGetProduct';
-import useGetProductsByCategory from '../hooks/products/useGetProductByCategory';
-import ProductCard from '../components/Cards';
-import { SkeletonGrid } from '../components/cards/SkeletonCard';
-import useDeleteProducts from '../hooks/products/useDeleteProducts';
-import { normalizeText } from '../components/Cards';
-import "../Css/Products.css";
+import useGetProducts from '../../hooks/products/useGetProduct';
+import useGetProductsByCategory from '../../hooks/products/useGetProductByCategory';
+import ProductCard from '../../components/cards';
+import { SkeletonGrid } from '../../components/cards/SkeletonCard';
+import useDeleteProducts from '../../hooks/products/useDeleteProducts';
+import { normalizeText } from '../../components/cards';
+import "../../Css/MenuPages/Products.css";
 
 function Products() {
   const { category_id } = useParams();

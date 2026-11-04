@@ -1,0 +1,121 @@
+/* CheckoutPage.css
+   Página contenedora: centra el contenido y resuelve los estados de
+   carga / error antes de mostrar el formulario <CheckoutWhatsApp />.
+   Usa las mismas variables que CheckoutWhatsApp.css, con el mismo
+   fallback neutro, para heredar la paleta real de M&L si ya existe
+   definida globalmente.
+*/
+
+.checkout-page {
+  --cp-accent: var(--color-primary, #b98a7a);
+  --cp-text: var(--color-text, #4a3f3a);
+  --cp-muted: var(--color-muted, #8a7d78);
+  --cp-border: var(--color-border, #e4dcd6);
+  --cp-bg: var(--color-bg, #fbf7f4);
+  --cp-error: #c0463b;
+
+  min-height: calc(100vh - 80px); /* ajustá si tu header tiene otra altura */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2.5rem 1rem;
+  background: var(--cp-bg);
+  box-sizing: border-box;
+}
+
+.checkout-page--centered {
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+/* --- Estado de carga --- */
+
+.checkout-page__spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid var(--cp-border);
+  border-top-color: var(--cp-accent);
+  border-radius: 50%;
+  animation: checkout-page-spin 0.8s linear infinite;
+}
+
+@keyframes checkout-page-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checkout-page__spinner {
+    animation-duration: 1.6s;
+  }
+}
+
+.checkout-page__status-text {
+  margin: 0;
+  color: var(--cp-muted);
+  font-size: 0.95rem;
+}
+
+.checkout-page__status-text--error {
+  color: var(--cp-error);
+  max-width: 360px;
+}
+
+/* --- Estado de error --- */
+
+.checkout-page__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.checkout-page__btn {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.checkout-page__btn--primary {
+  color: #fff;
+  background: var(--cp-accent);
+  border: none;
+}
+
+.checkout-page__btn--primary:hover {
+  opacity: 0.9;
+}
+
+.checkout-page__btn--secondary {
+  color: var(--cp-text);
+  background: transparent;
+  border: 1px solid var(--cp-border);
+}
+
+.checkout-page__btn--secondary:hover {
+  background: #fff;
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 420px) {
+  .checkout-page {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .checkout-page__actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .checkout-page__btn {
+    width: 100%;
+  }
+}

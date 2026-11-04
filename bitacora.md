@@ -331,9 +331,9 @@ Incorporadas las rutas GET /api/orders y PATCH /api/orders/:id/status en orderRo
 
 [ ] Preparar el archivo README.md del repositorio con las instrucciones de instalación y las credenciales de prueba para los docentes/evaluadores.
 3 de noviembre
-Corrección de Registro (Registro.jsx y useRegisterUser.jsx):
+# Corrección de Registro (Registro.jsx y useRegisterUser.jsx):
 Se ajustó el mapeo de los campos del formulario con el modelo de base de datos (user.js), corrigiendo la minúscula en lastname y asegurando el envío correcto de la fecha de nacimiento (date) y contraseñas válidas.
-Control de Accesos y Roles (ProductCardItem.jsx):
+# Control de Accesos y Roles (ProductCardItem.jsx):
 Se integró el contexto de autenticación (AuthContext) en las tarjetas de productos para aplicar renderizado condicional.Los botones de edición y eliminación de productos ahora quedan ocultos para los usuarios con rol de "comprador" y solo se muestran a los administradores.
-Rediseño del Flujo de Pedidos y Checkout (Enfoque Local / WhatsApp):
+# Rediseño del Flujo de Pedidos y Checkout (Enfoque Local / WhatsApp):
 Se redefinió la estrategia comercial del e-commerce: no se utilizarán pasarelas de pago automáticas ni se descontará stock de forma prematura para evitar bloqueos de inventario y simplificar la operativa con tu familia.Se validó el servicio de backend (orderService.js) para que al finalizar la compra el carrito pase a un estado pending (pendiente), guardando los datos de envío y generando un número único de orden, pero dejando el stock intacto y disponible hasta que el pago sea verificado externamente.   Se estructuró la lógica para que el cliente, tras confirmar sus datos de envío en la web, sea derivado automáticamente a WhatsApp mediante un enlace dinámico (wa.me) que prellene un mensaje formal con el detalle de los productos, el monto total y la dirección de envío.Se confirmó la integración con el Panel de Administración de Pedidos (/admin/orders), permitiéndote a vos y a tu mamá visualizar las órdenes pendientes, revisar los datos del comprador y actualizar manualmente los estados en tiempo real una vez confirmado el pago.   

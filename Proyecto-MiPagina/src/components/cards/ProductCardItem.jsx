@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useAuth from '../../context/AuthContext'; // 👈 1. Importamos el contexto de autenticación
+import useAuth from '../../context/AuthContext'; 
 
 function ProductCardItem({ product, onDelete, isPreview, onOpenDetails, onAddToCart }) {
-  const { isAdmin } = useAuth(); // 👈 2. Extraemos si el usuario actual es admin
-
+  const { isAdmin } = useAuth(); 
   const getCategoryName = (categoryId) => {
     switch (Number(categoryId)) {
       case 1: return "Perfumes";

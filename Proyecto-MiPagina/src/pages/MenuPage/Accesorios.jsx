@@ -1,9 +1,9 @@
 import React from "react";
-import ProductCard from "../components/cards";
-import useGetProductsByCategory from "../hooks/products/useGetProductByCategory";
+import ProductCard from "../../components/cards";
+import useGetProductsByCategory from "../../hooks/products/useGetProductByCategory";
 
-function FigurasYesoCemento() {
-    const { error, loading, products } = useGetProductsByCategory(5);
+function Accesorios() {
+    const { products, error, loading } = useGetProductsByCategory(2);
 
     if (error) {
         return (
@@ -13,21 +13,20 @@ function FigurasYesoCemento() {
             </div>
         );
     }
-
     if (loading) {
         return (
             <div>
-                <h2>Cargando exceso de belleza...𓂃˖˳·˖ ִֶָ ⋆🪷⋆ ִֶָ˖·˳˖𓂃 ִֶָ.</h2>
+                <h2> Cargando exceso de belleza...💍📿👜👒</h2>
             </div>
         );
     }
-
     return (
         <div>
-            <h1>Figuras en Yeso y Cemento</h1>
+            <h1>Accesorios</h1>
             <ProductCard products={products} />
         </div>
     );
 }
 
-export default FigurasYesoCemento;
+export default Accesorios;
+

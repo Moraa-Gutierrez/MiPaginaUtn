@@ -1,6 +1,6 @@
 import React from "react";
-import ProductCard from "../components/cards";
-import useGetProductsByCategory from "../hooks/products/useGetProductByCategory";
+import ProductCard from "../../components/cards";
+import useGetProductsByCategory from "../../hooks/products/useGetProductByCategory";
 
 function CuidadosDiarios() {
     const { error, loading, products } = useGetProductsByCategory(4);
