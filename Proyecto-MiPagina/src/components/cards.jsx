@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ProductCardItem from './cards/ProductCardItem';
 import ProductModal from './cards/ProductModal';
 import ToastNotification from './cards/ToastNotification';
+import useAuth from '../context/AuthContext';
 import EmptyState from './cards/EmptyState';
 import { useCart } from '../context/CartContext';
 import "../Css/Elementos/Cards.css";

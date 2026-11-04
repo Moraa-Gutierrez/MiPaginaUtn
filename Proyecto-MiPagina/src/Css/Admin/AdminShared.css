@@ -1,13 +1,9 @@
-/* ==========================================================================
-   M&L E-COMMERCE - ADMIN SHARED STYLES
-   Pure CSS Design System respecting brand visual identity
-   ========================================================================== */
+
 
 @import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 
-/* Layout Principal del Administrador */
 .admin-view-container {
     background-color: #f8f9fa;
     font-family: "Arimo", sans-serif;
@@ -22,7 +18,7 @@
     margin: 0 auto;
 }
 
-/* Encabezado Principal */
+
 .admin-header-banner {
     display: flex;
     justify-content: space-between;
@@ -60,7 +56,6 @@
     flex-wrap: wrap;
 }
 
-/* Botones con la Identidad M&L */
 .admin-btn-primary {
     background-color: #b79067;
     color: #ffffff;
@@ -160,7 +155,6 @@ button:disabled,
     transform: none !important;
 }
 
-/* Barra de Navegación de Pestañas entre Paneles */
 .admin-nav-tabs {
     display: flex;
     gap: 8px;
@@ -199,7 +193,7 @@ button:disabled,
     border-radius: 8px 8px 0 0;
 }
 
-/* Barra de Herramientas y Filtros */
+
 .admin-toolbar-card {
     background: #ffffff;
     border: 1px solid rgba(70, 77, 93, 0.1);
@@ -274,7 +268,6 @@ button:disabled,
     box-shadow: 0 0 0 3px rgba(183, 144, 103, 0.15);
 }
 
-/* Tarjeta y Tabla de Datos */
 .admin-table-container {
     background: #ffffff;
     border-radius: 14px;
@@ -328,7 +321,7 @@ button:disabled,
     vertical-align: middle;
 }
 
-/* Badges de Categorías y Estados */
+
 .admin-badge {
     display: inline-flex;
     align-items: center;
@@ -413,7 +406,7 @@ button:disabled,
     border: 1px solid #ffcdd2;
 }
 
-/* Botones de Acción de Tabla */
+
 .table-actions-cell {
     display: flex;
     align-items: center;
@@ -465,7 +458,7 @@ button:disabled,
     border-color: #464d5d;
 }
 
-/* Paginación */
+
 .admin-pagination {
     display: flex;
     justify-content: space-between;
@@ -523,7 +516,7 @@ button:disabled,
     cursor: not-allowed;
 }
 
-/* Modales Compartidos */
+
 .admin-modal-overlay {
     position: fixed;
     top: 0;
@@ -634,7 +627,7 @@ button:disabled,
     }
 }
 
-/* Spinner de Carga Pure CSS */
+
 .admin-spinner {
     width: 20px;
     height: 20px;
@@ -676,7 +669,6 @@ button:disabled,
     margin: 0;
 }
 
-/* Empty State */
 .admin-empty-card {
     text-align: center;
     padding: 3.5rem 2rem;
@@ -708,7 +700,7 @@ button:disabled,
     line-height: 1.5;
 }
 
-/* Notificaciones Toast Integradas */
+
 .admin-toast-container {
     position: fixed;
     bottom: 24px;
@@ -769,7 +761,7 @@ button:disabled,
     }
 }
 
-/* Vista de Acceso Denegado / Unauthorized */
+
 .admin-unauthorized-card {
     max-width: 520px;
     margin: 4rem auto;

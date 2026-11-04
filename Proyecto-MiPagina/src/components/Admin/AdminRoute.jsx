@@ -1,18 +1,13 @@
 import React from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import useAuth from '../../context/AuthContext';
 import '../../Css/Admin/AdminShared.css';
 
-/**
- * Componente de Protección de Rutas para Administradores
- * Valida el rol 'admin' a través del Context y localStorage/sessionStorage.
- * Si el usuario no tiene permisos, muestra una pantalla amigable de acceso restringido
- * con opción para iniciar sesión o simular rol para pruebas.
- */
+
 function AdminRoute({ children }) {
     const { user, isAdmin, isAuthenticated, loading, simulateAdminLogin } = useAuth();
 
-    // Verificación adicional de respaldo en localStorage/sessionStorage
+    
     const isLocalAdmin = 
         localStorage.getItem("role") === "admin" || 
         sessionStorage.getItem("role") === "admin" ||

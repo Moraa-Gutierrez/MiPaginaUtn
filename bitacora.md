@@ -279,63 +279,61 @@ ProductFormModal.jsx
 Campos obligatorios: name, description, category_id, price y quantity.
 Selector dinámico de variantes/materiales: Se activa automáticamente al elegir la Categoría 5 (Figuras de Yeso y Cemento), permitiendo elegir entre yeso o cemento.
 Input de carga de imagen (<input type="file" />): Envía los datos empaquetados en un objeto FormData con multipart/form-data, previsualización inmediata en miniatura antes de guardar y opción de remoción.
-Confirmación de borrado (
-
-DeleteConfirmModal.jsx
-):
+Confirmación de borrado (DeleteConfirmModal.jsx):
 Modal preventivo que detalla la miniatura y el nombre del producto antes de ejecutar el borrado permanente.
 Buscador y Paginación: Búsqueda en vivo por nombre/descripción, filtro select por categoría, filtro por estado de stock y paginación reactiva (8 productos por página).
 2. Panel de Gestión de Órdenes y Pedidos
-Ruta protegida: /admin/orders (Componente: 
-
-OrderManagementPage.jsx
-)
+Ruta protegida: /admin/orders (Componente: OrderManagementPage.jsx)
 Estilos: 
 
 OrderManagement.css
-Listado de Ventas (
-
-OrderTable.jsx
-):
+Listado de Ventas (OrderTable.jsx):
 Tabla ordenada cronológicamente (más recientes primero) con ID de Orden, Cliente/Comprador (nombre, apellido y correo), Fecha, Total y Estado actual con badges diferenciados (draft, pending, confirmed, shipped, completed, cancelled).
-Modal de Detalle de Orden (
-
-OrderDetailModal.jsx
-):
+Modal de Detalle de Orden (OrderDetailModal.jsx):
 Desglose del carrito: Tabla detallada con cada producto adquirido, cantidad, precio unitario, subtotal y monto total destacado de la orden.
 Objeto de envío accesible: Bloque destacado de despacho con desglose explícito de los campos street (Calle y altura), city (Ciudad/Localidad) y zip_code (Código Postal).
 Cambio de Estado Dinámico: Dropdown selector interactivo (draft, pending, confirmed, shipped, completed, cancelled) que envía inmediatamente la petición PATCH /api/orders/:id/status al backend, actualiza el estado en memoria y notifica al usuario.
 Buscador y Filtro: Búsqueda por nombre de cliente, correo o Nº de orden, y filtro por estado del pedido con paginación integrada.
 3. Seguridad, Protección de Rutas y Navegación
-Guarda de Autenticación (
-
-AdminRoute.jsx
-):
-Valida la presencia del rol 'admin' tanto en el contexto de React (
-
-AuthContext.jsx
-) como en localStorage o sessionStorage.
+Guarda de Autenticación (AdminRoute.jsx):
+Valida la presencia del rol 'admin' tanto en el contexto de React (AuthContext.jsx) como en localStorage o sessionStorage.
 Si un usuario no autorizado intenta ingresar, se renderiza una pantalla con estética M&L informando el acceso restringido, junto con botones para iniciar sesión como administrador o simular sesión de prueba con 1 clic.
 Integración en Router y Navegación:
 Actualizado 
-
 router.jsx
  con las rutas /admin/products y /admin/orders protegidas.
-Actualizado el menú desplegable de navegación en 
-
-AdminPanel.jsx
- y 
-
-Menu.jsx
- para mostrar los accesos al administrador logueado.
+Actualizado el menú desplegable de navegación en AdminPanel.jsx y Menu.jsx para mostrar los accesos al administrador logueado.
 Sincronización con Backend Node/Express:
-Incorporadas las rutas GET /api/orders y PATCH /api/orders/:id/status en 
+Incorporadas las rutas GET /api/orders y PATCH /api/orders/:id/status en orderRoutes.js y orderController.js, además de soporte para procesamiento de imágenes con Multer en productController.js.
 
-orderRoutes.js
- y 
+## Lista de Tareas Finales (Checklist para Entregar)
+[ ] Configuración de Entorno de Producción
 
-orderController.js
-, además de soporte para procesamiento de imágenes con Multer en 
+[ ] Verificar que la URL base de la API (REACT_APP_API_URL / VITE_API_URL) apunte al servidor desplegado y no a localhost.
 
-productController.js
-.
+[ ] Confirmar que las variables .env (MongoDB URI, JWT Secret) estén cargadas en el servidor de hosting.
+
+[ ] Prueba de Subida de Archivos
+
+[ ] Probar la creación de un producto desde el Panel de Admin con una imagen real para confirmar que Multer/almacenamiento en la nube funcione en producción.
+
+[ ] Prueba End-to-End (E2E) Completa
+
+[ ] Admin: Crear/Editar un producto desde el panel.
+
+[ ] Comprador: Iniciar sesión, agregar producto al carrito y realizar checkout.
+
+[ ] Admin: Entrar al Panel de Órdenes y verificar que la orden aparezca en estado pending/draft con los datos de envío.
+
+[ ] Documentación y Entrega
+
+[ ] Dar una última revisión a la documentación en Swagger para asegurar que las rutas principales estén visibles.
+
+[ ] Preparar el archivo README.md del repositorio con las instrucciones de instalación y las credenciales de prueba para los docentes/evaluadores.
+3 de noviembre
+Corrección de Registro (Registro.jsx y useRegisterUser.jsx):
+Se ajustó el mapeo de los campos del formulario con el modelo de base de datos (user.js), corrigiendo la minúscula en lastname y asegurando el envío correcto de la fecha de nacimiento (date) y contraseñas válidas.
+Control de Accesos y Roles (ProductCardItem.jsx):
+Se integró el contexto de autenticación (AuthContext) en las tarjetas de productos para aplicar renderizado condicional.Los botones de edición y eliminación de productos ahora quedan ocultos para los usuarios con rol de "comprador" y solo se muestran a los administradores.
+Rediseño del Flujo de Pedidos y Checkout (Enfoque Local / WhatsApp):
+Se redefinió la estrategia comercial del e-commerce: no se utilizarán pasarelas de pago automáticas ni se descontará stock de forma prematura para evitar bloqueos de inventario y simplificar la operativa con tu familia.Se validó el servicio de backend (orderService.js) para que al finalizar la compra el carrito pase a un estado pending (pendiente), guardando los datos de envío y generando un número único de orden, pero dejando el stock intacto y disponible hasta que el pago sea verificado externamente.   Se estructuró la lógica para que el cliente, tras confirmar sus datos de envío en la web, sea derivado automáticamente a WhatsApp mediante un enlace dinámico (wa.me) que prellene un mensaje formal con el detalle de los productos, el monto total y la dirección de envío.Se confirmó la integración con el Panel de Administración de Pedidos (/admin/orders), permitiéndote a vos y a tu mamá visualizar las órdenes pendientes, revisar los datos del comprador y actualizar manualmente los estados en tiempo real una vez confirmado el pago.   

@@ -1,52 +1,52 @@
-// Este hook nos permite:
-// Logearnos y deslogearnos desde cualquier lugar con logica centralizada
-// Generar y destruir sesion de usuario
-// Todo el sistema conoce quien es el usuario loggeado
-// El sistema puede saber si hay un usuario loggeado o no (usuario o guest)
-import { useEffect, useState } from "react"
+import { createContext, useContext, useState, useEffect } from "react";
 
-// Es una constante que simboliza la clave de la sesion - podria ser un token
-const SESSION_KEY = "usuario"
+// 1. Creamos el contexto de autenticación
+const AuthContext = createContext();
 
-function useAuth() {
-    const [user, setUser] = useState(null)
-    const [error, setError] = useState(null)
+const SESSION_KEY = "usuario";
 
-    // ¿Si tenemos sesion, donde guardamos el usuario?
+// 2. Creamos el Proveedor que envolverá a la app
+export function AuthProvider({ children }) {
+    const [user, setUser] = useState(null);
+    const [error, setError] = useState(null);
+
+    // Al cargar la app, leemos la sesión si existe
     useEffect(() => {
-        const storedUser = sessionStorage.getItem(SESSION_KEY)
-        if(storedUser){
+        const storedUser = sessionStorage.getItem(SESSION_KEY);
+        if (storedUser) {
             try {
-                // Pasa a objeto de js el usuario guardado en JSON que está en sessionStorage
-                setUser(JSON.parse(storedUser))
-            } catch (error) {
-                console.error(error)
-                setError(error)
+                setUser(JSON.parse(storedUser));
+            } catch (err) {
+                console.error("Error al parsear el usuario de la sesión:", err);
+                setError(err);
             }
         }
-    }, [])
+    }, []);
 
-    // Crear sesion y guardarla
+    // Crear sesión, actualizar estado global y guardar en sessionStorage
     const login = (userData) => {
-        setUser(userData)
-        // json.stringify convierte de js a json para poder guardarlo
-        // TODO: NO GUARDAR PASSWORD
-        sessionStorage.setItem(SESSION_KEY, JSON.stringify(userData))
-    }
+        setUser(userData);
+        sessionStorage.setItem(SESSION_KEY, JSON.stringify(userData));
+    };
 
+    // Destruir sesión y limpiar estado global
     const logout = () => {
-        setUser(null)
-        sessionStorage.removeItem(SESSION_KEY)
-    }
+        setUser(null);
+        sessionStorage.removeItem(SESSION_KEY);
+    };
 
-    return {
-        user,
-        login,
-        logout,
-        error,
-        isAuthenticated: user !== null
-    }
-
+    return (
+        <AuthContext.Provider value={{ user, login, logout, error, isAuthenticated: user !== null }}>
+            {children}
+        </AuthContext.Provider>
+    );
 }
 
-export default useAuth
+// 3. Hook personalizado para consumir el contexto fácilmente
+export default function useAuth() {
+    const context = useContext(AuthContext);
+    if (!context) {
+        throw new Error("useAuth debe ser usado dentro de un AuthProvider");
+    }
+    return context;
+}

@@ -1,8 +1,6 @@
 import React from 'react';
 import '../../../Css/Admin/ProductManagement.css';
 
-const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=300&auto=format&fit=crop&q=80";
-
 function DeleteConfirmModal({ isOpen, onClose, onConfirm, product, deleting }) {
     if (!isOpen || !product) return null;
 
@@ -42,19 +40,19 @@ function DeleteConfirmModal({ isOpen, onClose, onConfirm, product, deleting }) {
 
                         <div className="delete-confirm-item-card">
                             <img
-                                src={product.image || DEFAULT_IMAGE}
+                                src={product.image }
                                 alt={product.name}
                                 className="delete-confirm-thumb"
                                 onError={(e) => {
                                     e.target.onerror = null;
-                                    e.target.src = DEFAULT_IMAGE;
+                                    e.target.src = '/images/default-product.png';
                                 }}
                             />
                             <div>
-                                <div style={{ fontWeight: 700, color: '#464d5d', fontSize: '0.95rem' }}>
+                                <div className="product-name">
                                     {product.name}
                                 </div>
-                                <div style={{ color: '#b79067', fontWeight: 600, fontSize: '0.88rem' }}>
+                                <div className="product-price">
                                     {formatCurrency(product.price)}
                                 </div>
                             </div>
@@ -62,7 +60,7 @@ function DeleteConfirmModal({ isOpen, onClose, onConfirm, product, deleting }) {
                     </div>
                 </div>
 
-                <div className="admin-modal-footer" style={{ justifyContent: 'center' }}>
+                <div className="admin-modal-footer" >
                     <button
                         type="button"
                         className="admin-btn-outline"

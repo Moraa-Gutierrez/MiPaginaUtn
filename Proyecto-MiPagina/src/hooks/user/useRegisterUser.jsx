@@ -1,5 +1,7 @@
 import { useState } from "react"
-import { API_URL } from "../../config"
+import { ROUTES } from "../../config"
+import { api } from "../../utils/api"
+import { leerSesion } from "../../utils/adapters"
 
 function useRegisterUser() {
     const [error, setError] = useState(null)
@@ -8,34 +10,26 @@ function useRegisterUser() {
         setError(null)
 
         try {
-           const response = await fetch(`${API_URL}/user`, {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json"
+            const data = await api("POST", ROUTES.registro, {
+                body: {
+                    name: formData.name,
+                    lastname: formData.lastname, 
+                    date: formData.date,     
+                    email: formData.email,
+                    password: formData.password
                 },
-                body: JSON.stringify(formData)
+                porDefecto: "Error creating user account"
             })
 
-            if(!response.ok){
-                throw new Error(`Error al registrar usuario, ${response.status}`)
-            }
-
-            const data = await response.json()
-
-            // Omitir la contraseña asi no es visible
-            // destructuring + spread operator
-            const { password: _, ...userSinPassword } = data
-
-            return userSinPassword
-
-        } catch (error) {
-            console.error("Error al registrar usuario")
-            setError(error)
-            return null
+            return { user: leerSesion(data) }
+        } catch (err) {
+            console.error("Error registering user:", err)
+            setError(err)
+            return { message: err.message }
         }
     }
-    return {error, registerUser}
 
+    return { error, registerUser }
 }
 
 export default useRegisterUser

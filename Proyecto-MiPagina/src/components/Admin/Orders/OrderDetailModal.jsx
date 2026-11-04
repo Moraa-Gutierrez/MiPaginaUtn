@@ -60,7 +60,7 @@ function OrderDetailModal({ isOpen, onClose, order, onStatusChange, updating }) 
         <div className="admin-modal-overlay" onClick={onClose} role="dialog" aria-modal="true">
             <div className="admin-modal-dialog large" onClick={(e) => e.stopPropagation()}>
                 
-                {/* Cabecera del Modal */}
+               
                 <div className="admin-modal-header">
                     <h2 className="admin-modal-title">
                         <i className="fa-solid fa-receipt"></i>
@@ -79,7 +79,7 @@ function OrderDetailModal({ isOpen, onClose, order, onStatusChange, updating }) 
                 <div className="admin-modal-body">
                     <div className="order-detail-grid">
 
-                        {/* Banner Superior con CAMBIO DE ESTADO DINÁMICO */}
+                       
                         <div className="order-detail-header-card">
                             <div className="order-detail-meta">
                                 <h3>Orden {displayId}</h3>
@@ -88,7 +88,6 @@ function OrderDetailModal({ isOpen, onClose, order, onStatusChange, updating }) 
                                 </span>
                             </div>
 
-                            {/* Dropdown / Selector para Cambio de Estado Dinámico */}
                             <div className="order-status-controller">
                                 <span className="status-control-label">
                                     <i className="fa-solid fa-arrows-rotate"></i> Actualizar Estado:
@@ -110,7 +109,7 @@ function OrderDetailModal({ isOpen, onClose, order, onStatusChange, updating }) 
                             </div>
                         </div>
 
-                        {/* Datos del Comprador */}
+                     
                         <div className="order-customer-card">
                             <h4 className="section-subtitle">
                                 <i className="fa-solid fa-user"></i> Datos del Comprador
@@ -137,7 +136,7 @@ function OrderDetailModal({ isOpen, onClose, order, onStatusChange, updating }) 
                             </div>
                         </div>
 
-                        {/* OBJETO DE ENVÍO DESPLEGADO DE FORMA ACCESIBLE */}
+             
                         <div className="shipping-info-card">
                             <h4 className="section-subtitle">
                                 <i className="fa-solid fa-location-dot"></i> Dirección y Datos de Envío
@@ -170,7 +169,7 @@ function OrderDetailModal({ isOpen, onClose, order, onStatusChange, updating }) 
                             )}
                         </div>
 
-                        {/* DESGLOSE DEL CARRITO */}
+             
                         <div className="order-cart-breakdown">
                             <h4 className="section-subtitle">
                                 <i className="fa-solid fa-basket-shopping"></i> Desglose de Artículos Comprados
@@ -226,7 +225,7 @@ function OrderDetailModal({ isOpen, onClose, order, onStatusChange, updating }) 
                                         </table>
                                     </div>
 
-                                    {/* Resumen Total */}
+                                   
                                     <div className="order-summary-footer">
                                         <div className="order-total-badge-box">
                                             <span>Monto Total de la Orden:</span>
@@ -242,7 +241,6 @@ function OrderDetailModal({ isOpen, onClose, order, onStatusChange, updating }) 
                     </div>
                 </div>
 
-                {/* Pie del Modal */}
                 <div className="admin-modal-footer">
                     <button type="button" className="admin-btn-secondary" onClick={onClose}>
                         Cerrar Detalle

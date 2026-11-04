@@ -45,6 +45,7 @@ export const router = createBrowserRouter([
                     </AdminRoute>
                 )
             },
+            
             {
                 path: "admin/products",
                 element: (

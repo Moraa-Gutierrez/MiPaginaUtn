@@ -1,52 +1,58 @@
-import React, { useState } from 'react';
-import useLoginUser from '../../hooks/user/useLoginUser';
-import { useAuth } from '../../context/AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
-import appleImg from '../../assets/Login-Registro/apple.png';
-import googleImg from '../../assets/Login-Registro/logogoogle.png';
-
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useLoginUser from "../../hooks/user/useLoginUser";
+import useAuth from "../../context/AuthContext";
+import googleImg from "../../assets/Login-Registro/logogoogle.png";
+import appleImg from "../../assets/Login-Registro/apple.png";
+import { Link } from "react-router-dom";
+import { notifyToast, notifyError } from "../../utils/notify";
 function Login() {
-    const { loginUser, error: loginError } = useLoginUser(); 
-    const { login } = useAuth();
-    const navigate = useNavigate();
-
     const [form, setForm] = useState({
         email: "",
         password: "",
     });
 
+    const { login } = useAuth();
+    const navigate = useNavigate();
+    const { error: loginError, loginUser } = useLoginUser();
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
         setForm({
             ...form,
-            [name]: value,
+            [e.target.name]: e.target.value
         });
     };
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        
-        const userData = await loginUser(form.email, form.password);
-        
-        if (userData) {
-            login(userData);
-            window.alert(`¡Inicio de sesión correcto! ¡Bienvenido, ${userData.name}! ✨`);
-            setForm({
-                email: "",
-                password: "",
-            });
+
+        // 1. Llamamos al login
+        const result = await loginUser(form.email, form.password);
+
+        // 2. Verificamos que devuelva el usuario adaptado
+        if (result?.user) {
+            // Impactamos el estado global del AuthContext
+            login(result.user);
+
+            setForm({ email: "", password: "" });
+
+            // Notificamos leyendo name o nombre por seguridad
+            const nombreMostrar = result.user.name || result.user.nombre || "Usuario";
+            notifyToast(`¡Hola ${nombreMostrar}!`);
+
+            // 3. Redirigimos
             navigate("/");
+        } else {
+            notifyError("No se pudo iniciar sesión", result?.message || "Credenciales incorrectas");
         }
     };
-
     return (
         <main>
             <h2>Iniciar Sesión</h2>
-            
+
             <div className="contenedor-login">
                 <div className="formulario">
                     <form onSubmit={handleFormSubmit}>
-                        
+
                         {/* Campo de Email */}
                         <div className="input-group">
                             <label htmlFor="email-input">Email:</label>
@@ -82,7 +88,7 @@ function Login() {
                         )}
 
                         <button type="submit" className="btn-signup">Iniciar Sesión</button>
-                        
+
                         <div className="social-contenedor">
                             <button type="button" className="social-btn">
                                 <img src={googleImg} alt="Logo Google" /> Google
@@ -97,7 +103,7 @@ function Login() {
                         ¿No tienes una cuenta? <Link className="afooter" to="/register">Regístrate aquí</Link>
                     </p>
                 </div>
-                
+
                 <div className="image-section"></div>
             </div>
         </main>

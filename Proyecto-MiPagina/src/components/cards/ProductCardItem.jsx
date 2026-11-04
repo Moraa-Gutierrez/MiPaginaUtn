@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useAuth from '../../context/AuthContext'; // 👈 1. Importamos el contexto de autenticación
 
 function ProductCardItem({ product, onDelete, isPreview, onOpenDetails, onAddToCart }) {
+  const { isAdmin } = useAuth(); // 👈 2. Extraemos si el usuario actual es admin
+
   const getCategoryName = (categoryId) => {
     switch (Number(categoryId)) {
       case 1: return "Perfumes";
@@ -61,7 +64,7 @@ function ProductCardItem({ product, onDelete, isPreview, onOpenDetails, onAddToC
         </div>
 
         <div className="contenedor-botones-tarjeta">
-          {/* Acciones del Cliente */}
+          {/* Acciones del Cliente (Siempre visibles para todos) */}
           <div className="fila-botones fila-botones-cliente">
             {isPreview ? (
               <>
@@ -92,34 +95,36 @@ function ProductCardItem({ product, onDelete, isPreview, onOpenDetails, onAddToC
             )}
           </div>
 
-          {/* Acciones del Administrador */}
-          <div className="fila-botones fila-botones-admin">
-            {isPreview ? (
-              <>
-                <span className="btn btn-admin-disabled">
-                  <i className="fa-solid fa-pen"></i> Editar
-                </span>
-                <span className="btn btn-admin-disabled">
-                  <i className="fa-solid fa-trash"></i> Eliminar
-                </span>
-              </>
-            ) : (
-              <>
-                <Link to={`/edit-product/${product.id}`} className="btn btn-editar">
-                  <i className="fa-solid fa-pen"></i> Editar
-                </Link>
-                {onDelete && (
-                  <button 
-                    type="button" 
-                    onClick={() => onDelete(product.id)} 
-                    className="btn btn-eliminar"
-                  >
+          
+          {isAdmin && (
+            <div className="fila-botones fila-botones-admin">
+              {isPreview ? (
+                <>
+                  <span className="btn btn-admin-disabled">
+                    <i className="fa-solid fa-pen"></i> Editar
+                  </span>
+                  <span className="btn btn-admin-disabled">
                     <i className="fa-solid fa-trash"></i> Eliminar
-                  </button>
-                )}
-              </>
-            )}
-          </div>
+                  </span>
+                </>
+              ) : (
+                <>
+                  <Link to={`/edit-product/${product.id}`} className="btn btn-editar">
+                    <i className="fa-solid fa-pen"></i> Editar
+                  </Link>
+                  {onDelete && (
+                    <button 
+                      type="button" 
+                      onClick={() => onDelete(product.id)} 
+                      className="btn btn-eliminar"
+                    >
+                      <i className="fa-solid fa-trash"></i> Eliminar
+                    </button>
+                  )}
+                </>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </article>

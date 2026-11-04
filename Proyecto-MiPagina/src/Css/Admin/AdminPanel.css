@@ -1,8 +1,7 @@
 
-/* --- BOTÓN ADMIN --- */
 .custom-dropdown .admin-btn {
   background-color: transparent ;
-  color: #fff ; /* Color verde/amarillo fosforito */
+  color: #fff ; 
   border: 1px solid #b79067;
   border-radius: 12px ;
   width: 5.5em;
@@ -34,10 +33,10 @@ arrow {
   font-size: 0.8rem;
 }
 
-/* --- MENÚ DESPLEGABLE (Caja Blanca) --- */
+
 .custom-dropdown .custom-menu {
   background-color: #ffffff ;
-  border-radius: 24px ; /* Bordes muy redondeados como la imagen */
+  border-radius: 24px ;
   border: none ;
   padding: 15px 10px ;
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
@@ -45,25 +44,23 @@ arrow {
   margin-top: 10px ;
 }
 
-/* --- FILAS / ITEMS --- */
 .custom-dropdown .custom-item {
   display: flex ;
   align-items: center;
   gap: 15px;
   padding: 12px 15px ;
-  color: #4a5568 ; /* Gris oscuro del texto */
+  color: #4a5568 ; 
   font-size: 1.1rem;
   background: transparent ;
   transition: background 0.2s ease;
   border-radius: 12px;
 }
 
-/* Efecto Hover */
 .custom-dropdown .custom-item:hover {
-  background-color: #f7fafc ; /* Un gris muy sutil al pasar el mouse */
+  background-color: #f7fafc ; 
 }
 
-/* Íconos (Marrón/Dorado claro) */
+
 .custom-dropdown .custom-item .icon {
   color: #c49a6c; 
   font-size: 1.4rem;
@@ -74,7 +71,7 @@ arrow {
   width: 24px;
 }
 
-/* Organización del texto en dos líneas */
+
 .custom-dropdown .text-wrapper {
   display: flex;
   flex-direction: column;

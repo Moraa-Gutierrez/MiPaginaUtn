@@ -2,9 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../../Css/Admin/AdminShared.css';
 
-/**
- * Barra de Pestañas de Navegación entre los dos Paneles de Administración
- */
+
 function AdminNavTabs() {
     return (
         <div className="admin-nav-tabs">

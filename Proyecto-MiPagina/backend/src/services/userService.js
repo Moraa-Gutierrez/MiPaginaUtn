@@ -24,8 +24,8 @@ return await Usuario.findOne({ email: email.toLowerCase().trim() }).select("+pas
 
 export const dataPublicUser = (usuario) => ({
     _id: usuario._id,
-    nombre: usuario.name,
-    apellido: usuario.lastname,
+    name: usuario.name || usuario.nombre,        
+    lastname: usuario.lastname || usuario.apellido, 
     email: usuario.email,
-    rol: usuario.role
+    role: usuario.role || usuario.rol             
 });

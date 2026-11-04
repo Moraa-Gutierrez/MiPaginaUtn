@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
-import { useAuth } from '../../context/AuthContext'
-import AdminDropdown from '../../pages/Admin/AdminPanel'
+import useAuth from '../../context/AuthContext'
 import "../../Css/Elementos/Menu.css"
 
 const Menu = () => {
@@ -70,9 +69,13 @@ const Menu = () => {
                         Contacto
                     </NavLink>
                 </li>
-                {(isAdmin || (isAuthenticated && (user?.role === "admin" || user?.email === "mora@mora.com"))) && (
+                
+                {/* Panel Admin: visible solo para administradores */}
+                {isAdmin && (
                     <li>
-                        <AdminDropdown />
+                        <NavLink to="/admin/users" onClick={closeMenu}>
+                            Panel Admin
+                        </NavLink>
                     </li>
                 )}
 
@@ -83,13 +86,14 @@ const Menu = () => {
                     </>
                 ) : (
                     <>
-                        <li><span className="menu-user-greeting">Hola, {user.name} 👋</span></li>
+                        <li><span className="menu-user-greeting">Hola, {user?.name || user?.nombre} 👋</span></li>
                         <li><button onClick={() => { logout(); closeMenu(); }} className="menu-btn-logout">Cerrar Sesión</button></li>
                     </>
                 )}
-                <li><NavLink to="/cart" onClick={closeMenu}>Carrito ({getCartCount()}) 🛒</NavLink></li>
+                <li><NavLink to="/cart" onClick={closeMenu}>Carrito ({getCartCount?.() || 0}) 🛒</NavLink></li>
             </ul>
         </nav>
     );
 }
+
 export default Menu
