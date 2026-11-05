@@ -1,4 +1,4 @@
-export const WHATSAPP_NUMBER = "5492262000000";
+export const WHATSAPP_NUMBER = "5492262356177";
 /**
  * Formatea un número como moneda en pesos argentinos.
  * @param {number} value

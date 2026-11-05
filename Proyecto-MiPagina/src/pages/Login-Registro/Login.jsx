@@ -21,25 +21,28 @@ function Login() {
             [e.target.name]: e.target.value
         });
     };
-
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
-        // 1. Llamamos al login
+
         const result = await loginUser(form.email, form.password);
 
-        // 2. Verificamos que devuelva el usuario adaptado
+        console.log("Resultado del login:", result);
         if (result?.user) {
-            // Impactamos el estado global del AuthContext
+
+
+            if (result.token) {
+                localStorage.setItem('token', result.token);
+            }
+
+
             login(result.user);
 
             setForm({ email: "", password: "" });
 
-            // Notificamos leyendo name o nombre por seguridad
             const nombreMostrar = result.user.name || result.user.nombre || "Usuario";
             notifyToast(`¡Hola ${nombreMostrar}!`);
 
-            // 3. Redirigimos
             navigate("/");
         } else {
             notifyError("No se pudo iniciar sesión", result?.message || "Credenciales incorrectas");

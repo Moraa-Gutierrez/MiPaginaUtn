@@ -1,8 +1,10 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
 import { useCart } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 
 function CartPage() {
+  const navigate = useNavigate();
   const {
     cart,
     removeFromCart,
@@ -17,9 +19,9 @@ function CartPage() {
   };
 
   const handleCheckout = () => {
-    window.alert("¡Gracias por tu compra! Tu orden de e-commerce ha sido procesada de manera simulada. ✨🛒🛍️");
-    clearCart();
-  };
+  if (cart.length === 0) return;
+  navigate('/checkout'); 
+};
 
   return (
     <div style={{ padding: '40px', maxWidth: '1000px', margin: '0 auto', fontFamily: 'Arimo, sans-serif', color: '#464d5d' }}>
@@ -59,9 +61,9 @@ function CartPage() {
             </thead>
             <tbody>
               {cart.map((item) => (
-                <tr key={item.id} style={{ borderBottom: '1px solid #ddd' }}>
+                <tr key={item.id || item._id} style={{ borderBottom: '1px solid #ddd' }}>
                   <td style={{ padding: '12px', display: 'flex', alignItems: 'center', gap: '15px' }}>
-                    <img src={item.image} alt={item.name} style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' }} />
+                    <img src={item.image || 'https://via.placeholder.com/50'} alt={item.name} style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' }} />
                     <span style={{ fontWeight: 'bold' }}>{item.name}</span>
                   </td>
                   <td style={{ padding: '12px', textAlign: 'center', color: '#b79067', fontWeight: 'bold' }}>

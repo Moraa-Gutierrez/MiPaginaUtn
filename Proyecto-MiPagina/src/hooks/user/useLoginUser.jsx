@@ -10,15 +10,23 @@ function useLoginUser() {
         setError(null)
 
         try {
-          
             const data = await api("POST", ROUTES.login, {
                 body: { email, password },
                 porDefecto: "Invalid email or password"
             })
 
-            return { user: leerSesion(data) }
+           
+            const token = data.token || data.accessToken || data.jwt || data.data?.token;
+
+           
+            if (token) {
+                localStorage.setItem("token", token);
+            } else {
+                console.warn("⚠️ No hay token reconocible:", data);
+            }
+
+            return { user: leerSesion(data), token }
         } catch (err) {
-            console.error("Error logging in:", err)
             setError(err)
             return { message: err.message }
         }

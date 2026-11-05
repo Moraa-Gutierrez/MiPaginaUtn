@@ -1,25 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; 
+import  useAuth  from "../context/AuthContext"; 
 import { buildWhatsAppUrl } from "../utils/whatsappMesagge"; 
 import"../Css/Cart/CheckoutWhatsApp.css";
 
-/**
- * CheckoutWhatsApp
- *
- * Formulario de checkout que:
- * 1. Autocompleta nombre/email si el usuario está logueado (useAuth).
- * 2. Al confirmar, llama al backend para pasar la orden de "draft" a "pending".
- * 3. Vacía el carrito local y redirige a WhatsApp con el mensaje armado.
- * 4. Navega al usuario a /profile/orders.
- *
- * Props:
- * - order: la orden "draft" actual, ya cargada desde el backend
- *   (incluye _id, order_number, items[], total_amount).
- * - onOrderConfirmed: callback opcional para vaciar el carrito en el estado global
- *   (ej. viene de un CartContext). Si no se pasa, el componente solo limpia
- *   su propio estado local.
- */
 function CheckoutWhatsApp({ order, onOrderConfirmed }) {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -90,13 +74,16 @@ function CheckoutWhatsApp({ order, onOrderConfirmed }) {
       phone: formData.phone,
     };
 
-    try {
-      // 1) Backend: pasar la orden de "draft" a "pending" y guardar shipping.
-      // Ajustá la ruta/cliente HTTP a cómo esté armado tu proyecto (fetch, axios, etc).
+  try {
+      const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+console.log("📦 Objeto order recibido en Checkout:", order);
       const response = await fetch(`/api/orders/${order._id}/checkout`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include", // si usás cookies para el JWT
+        headers: { 
+          "Content-Type": "application/json",
+
+          ...(token ? { Authorization: `Bearer ${token}` } : {})
+        },
         body: JSON.stringify({ shipping }),
       });
 

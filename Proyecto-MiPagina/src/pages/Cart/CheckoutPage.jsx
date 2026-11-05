@@ -32,10 +32,14 @@ function CheckoutPage() {
       // Sincroniza el carrito local con el backend: si ya existe una orden
       // "draft" para este usuario la devuelve, si no la crea con los
       // productos actuales del carrito.
+      const token = localStorage.getItem('token'); 
+
       const response = await fetch("/api/orders/cart", {
         method: "GET",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include", // Envía el token / JWT guardado en las cookies
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
       });
 
 
