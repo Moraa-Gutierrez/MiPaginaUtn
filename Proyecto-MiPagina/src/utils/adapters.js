@@ -97,7 +97,7 @@ export const orderViewAdapter = (order) => ({
 export const userAdapter = (usuario, token) => ({
     id: usuario._id ?? usuario.id,
     name: usuario.name ?? usuario.nombre,
-    lastName: usuario.lastName ?? usuario.apellido,
+    lastName: usuario.lastName ?? usuario.apellido ?? usuario.lastname,
     email: usuario.email,
     role: usuario.role ?? usuario.rol,
     token,

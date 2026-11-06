@@ -5,5 +5,6 @@ export const ROUTES = {
     registro: "/auth/registro",
     users: "/users",         
     products: "/products",
-    cart: "/cart"
+    cart: "/cart",
+    pedidos: "/orders",
 };

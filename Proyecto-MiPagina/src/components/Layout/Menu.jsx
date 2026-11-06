@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
-import useAuth from '../../context/AuthContext'
+import useAuth from '../../hooks/user/useAuth' // Asegurate de que esta ruta sea la correcta hacia tu hook de auth
 import "../../Css/Elementos/Menu.css"
 
 const Menu = () => {
-    const { getCartCount } = useCart();
+   
+    const { unidades } = useCart();
     const { user, logout, isAuthenticated, isAdmin } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -86,14 +87,16 @@ const Menu = () => {
                     </>
                 ) : (
                     <>
-                        <li><span className="menu-user-greeting">Hola, {user?.name || user?.nombre} 👋</span></li>
+                        <li><span className="menu-user-greeting">Hola, {user?.name || user?.nombre || user?.lastname} 👋</span></li>
                         <li><button onClick={() => { logout(); closeMenu(); }} className="menu-btn-logout">Cerrar Sesión</button></li>
                     </>
                 )}
-                <li><NavLink to="/cart" onClick={closeMenu}>Carrito ({getCartCount?.() || 0}) 🛒</NavLink></li>
+                
+                {/* 🛒 Acá usamos 'unidades' directamente del contexto del profesor */}
+                <li><NavLink to="/cart" onClick={closeMenu}>Carrito ({unidades || 0}) 🛒</NavLink></li>
             </ul>
         </nav>
     );
 }
 
-export default Menu
+export default Menu;

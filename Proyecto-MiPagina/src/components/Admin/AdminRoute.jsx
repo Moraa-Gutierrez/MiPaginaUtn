@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import useAuth from '../../context/AuthContext';
+import {AuthProvider} from '../../context/AuthContext';
 import '../../Css/Admin/AdminShared.css';
 
 
 function AdminRoute({ children }) {
-    const { user, isAdmin, isAuthenticated, loading, simulateAdminLogin } = useAuth();
+    const { user, isAdmin, isAuthenticated, loading, simulateAdminLogin } = AuthProvider();
 
     
     const isLocalAdmin = 

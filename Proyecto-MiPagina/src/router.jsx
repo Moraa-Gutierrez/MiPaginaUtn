@@ -5,14 +5,14 @@ import Products from "./pages/MenuPage/Products";
 import CreateProductPage from "./pages/CRUD/CreateProductPage";
 import EditProductPage from "./pages/CRUD/EditProductPage";
 import CartPage from "./pages/Cart/CartPage";
-import CheckoutPage from './pages/Cart/CheckoutPage'; 
 import ContactPage from "./pages/MenuPage/ContactPage";
 import QuienesSomos from "./pages/QuienesSomos";
 import Login from "./pages/Login-Registro/Login";
 import Register from "./pages/Login-Registro/Register";
-
+import OrdersPage from "./pages/MenuPage/OrderPage";
 // Rutas de Administración y Protección
 import AdminRoute from "./components/Admin/AdminRoute";
+import ProtectedRoute from "./components/Layout/ProtectedRoute"; 
 import ProductManagementPage from "./pages/Admin/ProductManagementPage";
 import OrderManagementPage from "./pages/Admin/OrderManagementPage";
 
@@ -46,7 +46,6 @@ export const router = createBrowserRouter([
                     </AdminRoute>
                 )
             },
-            
             {
                 path: "admin/products",
                 element: (
@@ -66,9 +65,9 @@ export const router = createBrowserRouter([
             {
                 path: "create-product",
                 element: (
-                    <AdminRoute>
+                    <ProtectedRoute roles={["vendedor", "admin"]}>
                         <CreateProductPage />
-                    </AdminRoute>
+                    </ProtectedRoute>
                 )
             },
             {
@@ -88,8 +87,12 @@ export const router = createBrowserRouter([
                 element: <CartPage />
             },
             {
-                path: "checkout",
-                element: <CheckoutPage />
+                path: "orders",
+                element: (
+                    <ProtectedRoute roles={["comprador"]}>
+                        <OrdersPage />
+                    </ProtectedRoute>
+                )
             },
             {
                 path: "register",
@@ -97,7 +100,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "log-in",
-                element: <Login/>
+                element: <Login />
             },
             {
                 path: "*",

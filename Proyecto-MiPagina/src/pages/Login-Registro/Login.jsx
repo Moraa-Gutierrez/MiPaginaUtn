@@ -1,41 +1,39 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useLoginUser from "../../hooks/user/useLoginUser";
-import useAuth from "../../context/AuthContext";
+import useAuth from "../../hooks/user/useAuth";
 import googleImg from "../../assets/Login-Registro/logogoogle.png";
 import appleImg from "../../assets/Login-Registro/apple.png";
 import { Link } from "react-router-dom";
 import { notifyToast, notifyError } from "../../utils/notify";
+
 function Login() {
     const [form, setForm] = useState({
         email: "",
         password: "",
     });
 
-    const { login } = useAuth();
+    const { login } = useAuth(); 
     const navigate = useNavigate();
     const { error: loginError, loginUser } = useLoginUser();
+
     const handleInputChange = (e) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
         });
     };
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-
 
         const result = await loginUser(form.email, form.password);
 
         console.log("Resultado del login:", result);
         if (result?.user) {
-
-
-            if (result.token) {
-                localStorage.setItem('token', result.token);
+            if (result.user?.token) {
+                localStorage.setItem('token', result.user.token);
             }
-
-
             login(result.user);
 
             setForm({ email: "", password: "" });
@@ -48,6 +46,7 @@ function Login() {
             notifyError("No se pudo iniciar sesión", result?.message || "Credenciales incorrectas");
         }
     };
+
     return (
         <main>
             <h2>Iniciar Sesión</h2>
@@ -55,7 +54,6 @@ function Login() {
             <div className="contenedor-login">
                 <div className="formulario">
                     <form onSubmit={handleFormSubmit}>
-
                         {/* Campo de Email */}
                         <div className="input-group">
                             <label htmlFor="email-input">Email:</label>

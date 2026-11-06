@@ -31,5 +31,4 @@ function useRegisterUser() {
 
     return { error, registerUser }
 }
-
 export default useRegisterUser

@@ -1,12 +1,12 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 const SESSION_KEY = "usuario";
 
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false); 
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const storedUser = sessionStorage.getItem(SESSION_KEY);
@@ -28,6 +28,12 @@ export function AuthProvider({ children }) {
     const logout = () => {
         setUser(null);
         sessionStorage.removeItem(SESSION_KEY);
+
+
+        localStorage.removeItem('cart');
+
+
+        window.location.reload();
     };
 
     // Función para simular el acceso de administrador rápidamente desde la vista protegida
@@ -43,25 +49,17 @@ export function AuthProvider({ children }) {
     const isAdmin = user?.role === 'admin' || user?.rol === 'admin' || user?.isAdmin === true || user?.email === "mora@mora.com";
 
     return (
-        <AuthContext.Provider value={{ 
-            user, 
-            login, 
-            logout, 
-            error, 
-            isAuthenticated: user !== null, 
-            isAdmin, 
-            loading, 
-            simulateAdminLogin 
+        <AuthContext.Provider value={{
+            user,
+            login,
+            logout,
+            error,
+            isAuthenticated: user !== null,
+            isAdmin,
+            loading,
+            simulateAdminLogin
         }}>
             {children}
         </AuthContext.Provider>
     );
-}
-
-export default function useAuth() {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error("useAuth debe ser usado dentro de un AuthProvider");
-    }
-    return context;
 }

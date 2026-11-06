@@ -1,99 +1,84 @@
-import React from 'react';
-import {useNavigate} from "react-router-dom";
-import { useCart } from '../../context/CartContext';
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom"
+import useCart from "../../hooks/orders/useCart"
+import useOrders from "../../hooks/orders/useOrders"
+import { notifyError, confirmAction, notifyToast } from "../../utils/notify"
+import "../../Css/MenuPages/CartPage.css"
 
 function CartPage() {
-  const navigate = useNavigate();
-  const {
-    cart,
-    removeFromCart,
-    updateCartQuantity,
-    clearCart,
-    getCartTotal,
-  } = useCart();
+  const { items, unidades, total, loading, error, increment, decrement, removeItem, clearCart } = useCart()
+  const { createOrder, loading: creando } = useOrders()
+  const navigate = useNavigate()
 
-  const handleQtyChange = (productId, e) => {
-    const qty = parseInt(e.target.value) || 0;
-    updateCartQuantity(productId, qty);
-  };
+  const handleCheckout = async () => {
+    const confirmado = await confirmAction(
+      "¿Confirmar la compra?",
+      `Vas a comprar ${unidades} ${unidades === 1 ? "unidad" : "unidades"} por $${total}.`,
+      "Sí, comprar"
+    )
+    if (!confirmado) return
 
-  const handleCheckout = () => {
-  if (cart.length === 0) return;
-  navigate('/checkout'); 
-};
+    const { ok, error } = await createOrder()
+
+    if (!ok) {
+      notifyError("No se pudo confirmar la compra", error?.message || "Revisá el stock disponible.")
+      return
+    }
+    clearCart()
+    notifyToast("¡Compra confirmada!")
+    navigate("/orders")
+  }
+
+  const handleClearCart = async () => {
+    const confirmed = await confirmAction(
+      "¿Vaciar el carrito?",
+      "Se quitarán todos los productos.",
+      "Sí, vaciar"
+    )
+    if (confirmed) clearCart()
+  }
+
+  if (loading && (items || []).length === 0) return <p className="cart-loading">Cargando carrito...</p>
 
   return (
-    <div style={{ padding: '40px', maxWidth: '1000px', margin: '0 auto', fontFamily: 'Arimo, sans-serif', color: '#464d5d' }}>
-      <h1 style={{ fontFamily: 'Great Vibes, cursive', fontSize: '60px', color: '#b79067', textAlign: 'center', marginBottom: '20px' }}>
-        Tu Carrito de Compras
-      </h1>
+    <main className="cart-main-container">
+      <h1>Mi Carrito</h1>
 
-      {cart.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '40px', background: '#f9f9f9', borderRadius: '10px' }}>
-          <p style={{ color: '#666', fontSize: '20px', marginBottom: '20px' }}>El carrito está vacío por el momento.</p>
-          <Link
-            to="/products"
-            style={{
-              display: 'inline-block',
-              padding: '12px 24px',
-              backgroundColor: '#b79067',
-              color: 'white',
-              borderRadius: '8px',
-              textDecoration: 'none',
-              fontWeight: 'bold',
-            }}
-          >
-            Volver a la Tienda
-          </Link>
-        </div>
+      {error && <p className="cart-error">{error.message}</p>}
+
+      {(!items || items.length === 0) ? (
+        <p className="cart-empty">Tu carrito está vacío.</p>
       ) : (
-        <div>
-          <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '30px' }}>
+        <div className="cart-content-wrapper">
+          <table className="cart-table">
             <thead>
-              <tr style={{ borderBottom: '2px solid #b79067' }}>
-                <th style={{ textAlign: 'left', padding: '12px', color: '#464d5d', background: 'none' }}>Producto</th>
-                <th style={{ textAlign: 'center', padding: '12px', color: '#464d5d', background: 'none' }}>Precio</th>
-                <th style={{ textAlign: 'center', padding: '12px', color: '#464d5d', background: 'none' }}>Cantidad</th>
-                <th style={{ textAlign: 'center', padding: '12px', color: '#464d5d', background: 'none' }}>Subtotal</th>
-                <th style={{ textAlign: 'center', padding: '12px', color: '#464d5d', background: 'none' }}>Acciones</th>
+              <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {cart.map((item) => (
-                <tr key={item.id || item._id} style={{ borderBottom: '1px solid #ddd' }}>
-                  <td style={{ padding: '12px', display: 'flex', alignItems: 'center', gap: '15px' }}>
-                    <img src={item.image || 'https://via.placeholder.com/50'} alt={item.name} style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' }} />
-                    <span style={{ fontWeight: 'bold' }}>{item.name}</span>
+              {(items || []).map((item) => (
+                <tr key={item.id}>
+                  <td className="cart-product-title" style={{ textTransform: "capitalize" }}>
+                    {item.name}
                   </td>
-                  <td style={{ padding: '12px', textAlign: 'center', color: '#b79067', fontWeight: 'bold' }}>
-                    ${item.price}
+                  <td>${item.price}</td>
+                  <td>
+                    {/* Controles funcionales para sumar, restar y ver la cantidad */}
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", justifyContent: "center" }}>
+                      <button onClick={() => decrement(item.id)} className="btn-qty">-</button>
+                      <span>{item.cartQuantity}</span>
+                      <button onClick={() => increment(item.id)} className="btn-qty">+</button>
+                    </div>
                   </td>
-                  <td style={{ padding: '12px', textAlign: 'center' }}>
-                    <input
-                      type="number"
-                      min="1"
-                      value={item.cartQuantity}
-                      onChange={(e) => handleQtyChange(item.id, e)}
-                      style={{ width: '60px', padding: '6px', textAlign: 'center', borderRadius: '4px', border: '1px solid #ccc' }}
-                    />
-                  </td>
-                  <td style={{ padding: '12px', textAlign: 'center', color: '#b79067', fontWeight: 'bold' }}>
-                    ${(item.price * item.cartQuantity).toFixed(2)}
-                  </td>
-                  <td style={{ padding: '12px', textAlign: 'center' }}>
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      style={{
-                        padding: '6px 12px',
-                        backgroundColor: '#d9534f',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                      }}
-                    >
-                      Quitar
+                  <td>${item.price * item.cartQuantity}</td>
+                  <td>
+                    {/* Botón funcional para eliminar el ítem específico */}
+                    <button onClick={() => removeItem(item.id)} className="btn-remove">
+                      Eliminar
                     </button>
                   </td>
                 </tr>
@@ -101,47 +86,30 @@ function CartPage() {
             </tbody>
           </table>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#f9f9f9', padding: '20px', borderRadius: '10px' }}>
-            <button
-              onClick={clearCart}
-              style={{
-                padding: '10px 20px',
-                backgroundColor: '#666',
-                color: 'white',
-                border: 'none',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-              }}
-            >
-              Vaciar Carrito
-            </button>
+          <div className="cart-summary-section">
+            <h2>Total: ${total}</h2>
+            <p className="cart-units-info">{unidades} {unidades === 1 ? "unidad" : "unidades"}</p>
 
-            <div style={{ textAlign: 'right' }}>
-              <h3 style={{ margin: '0 0 10px 0', fontSize: '24px', color: '#464d5d', fontFamily: 'Arimo, sans-serif' }}>
-                Total: <span style={{ color: '#b79067' }}>${getCartTotal().toFixed(2)}</span>
-              </h3>
-              <button
-                onClick={handleCheckout}
-                style={{
-                  padding: '12px 30px',
-                  backgroundColor: '#b79067',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontWeight: 'bold',
-                  fontSize: '18px',
-                }}
-              >
-                Finalizar Compra 💳
+            <div className="cart-actions">
+              <button className="btn-checkout" onClick={handleCheckout} disabled={loading || creando}>
+                {creando ? "Confirmando..." : "Finalizar compra"}
+              </button>
+              <button className="btn-clear" onClick={handleClearCart} disabled={loading}>
+                Vaciar carrito
               </button>
             </div>
           </div>
+
+          <p className="cart-disclaimer">
+            <small>
+              El carrito se guarda de forma local en tu navegador.
+              Al confirmar la compra, se genera el pedido y el carrito se vacía automáticamente.
+            </small>
+          </p>
         </div>
       )}
-    </div>
-  );
+    </main>
+  )
 }
 
-export default CartPage;
+export default CartPage

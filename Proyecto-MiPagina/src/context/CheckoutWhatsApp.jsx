@@ -1,13 +1,29 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import  useAuth  from "../context/AuthContext"; 
-import { buildWhatsAppUrl } from "../utils/whatsappMesagge"; 
-import"../Css/Cart/CheckoutWhatsApp.css";
-
+import {AuthProvider} from "../context/AuthContext";
+import { buildWhatsAppUrl } from "../utils/whatsappMesagge";
+import "../Css/Cart/CheckoutWhatsApp.css";
+ 
+/**
+ * CheckoutWhatsApp
+ *
+ * Formulario de checkout que:
+ * 1. Autocompleta nombre/email si el usuario está logueado (useAuth).
+ * 2. Al confirmar, llama al backend para pasar la orden de "draft" a "pending".
+ * 3. Vacía el carrito local y redirige a WhatsApp con el mensaje armado.
+ * 4. Navega al usuario a /profile/orders.
+ *
+ * Props:
+ * - order: la orden "draft" actual, ya cargada desde el backend
+ *   (incluye _id, order_number, items[], total_amount).
+ * - onOrderConfirmed: callback opcional para vaciar el carrito en el estado global
+ *   (ej. viene de un CartContext). Si no se pasa, el componente solo limpia
+ *   su propio estado local.
+ */
 function CheckoutWhatsApp({ order, onOrderConfirmed }) {
-  const { user } = useAuth();
+  const { usuario } = AuthProvider();
   const navigate = useNavigate();
-
+ 
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -19,28 +35,28 @@ function CheckoutWhatsApp({ order, onOrderConfirmed }) {
     paymentMethod: "transferencia", // "transferencia" | "efectivo"
     notes: "",
   });
-
+ 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
-
+ 
   // Autocompletar nombre/email si hay usuario logueado.
   useEffect(() => {
-    if (user) {
+    if (usuario) {
       setFormData((prev) => ({
         ...prev,
-        fullName: `${user.name || ""} ${user.lastname || ""}`.trim(),
-        email: user.email || "",
+        fullName: `${usuario.name || usuario.nombre} ${usuario.lastname || usuario.apellido}`.trim(),
+        email: usuario.email || "",
       }));
     }
-  }, [user]);
-
+  }, [usuario]);
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
+ 
   const isRetiro = formData.deliveryMethod === "retiro";
-
+ 
   const validate = () => {
     if (!formData.fullName.trim()) return "Falta el nombre completo.";
     if (!formData.email.trim()) return "Falta el email.";
@@ -51,19 +67,19 @@ function CheckoutWhatsApp({ order, onOrderConfirmed }) {
     }
     return null;
   };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-
+ 
     const validationError = validate();
     if (validationError) {
       setError(validationError);
       return;
     }
-
+ 
     setIsSubmitting(true);
-
+ 
     const shipping = {
       deliveryMethod: formData.deliveryMethod,
       street: formData.street,
@@ -73,31 +89,28 @@ function CheckoutWhatsApp({ order, onOrderConfirmed }) {
       notes: formData.notes,
       phone: formData.phone,
     };
-
-  try {
-      const token = localStorage.getItem("token") || sessionStorage.getItem("token");
-console.log("📦 Objeto order recibido en Checkout:", order);
+ 
+    try {
+      // 1) Backend: pasar la orden de "draft" a "pending" y guardar shipping.
+      // Ajustá la ruta/cliente HTTP a cómo esté armado tu proyecto (fetch, axios, etc).
       const response = await fetch(`/api/orders/${order._id}/checkout`, {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-
-          ...(token ? { Authorization: `Bearer ${token}` } : {})
-        },
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include", // si usás cookies para el JWT
         body: JSON.stringify({ shipping }),
       });
-
+ 
       if (!response.ok) {
         throw new Error("No se pudo confirmar el pedido. Intentá de nuevo.");
       }
-
+ 
       const updatedOrder = await response.json();
-
+ 
       // 2) Vaciar el carrito local (estado global, si existe).
       if (onOrderConfirmed) {
         onOrderConfirmed();
       }
-
+ 
       // 3) Armar el link de WhatsApp y abrirlo en una pestaña nueva.
       const waUrl = buildWhatsAppUrl({
         order: updatedOrder,
@@ -105,7 +118,7 @@ console.log("📦 Objeto order recibido en Checkout:", order);
         shipping,
       });
       window.open(waUrl, "_blank");
-
+ 
       // 4) Navegar al historial de compras.
       navigate("/profile/orders");
     } catch (err) {
@@ -114,11 +127,11 @@ console.log("📦 Objeto order recibido en Checkout:", order);
       setIsSubmitting(false);
     }
   };
-
+ 
   return (
     <form className="checkout-wa" onSubmit={handleSubmit}>
       <h2 className="checkout-wa__title">Finalizar compra</h2>
-
+ 
       <div className="checkout-wa__field">
         <label htmlFor="fullName">Nombre completo</label>
         <input
@@ -130,7 +143,7 @@ console.log("📦 Objeto order recibido en Checkout:", order);
           required
         />
       </div>
-
+ 
       <div className="checkout-wa__field">
         <label htmlFor="email">Email</label>
         <input
@@ -142,7 +155,7 @@ console.log("📦 Objeto order recibido en Checkout:", order);
           required
         />
       </div>
-
+ 
       <div className="checkout-wa__field">
         <label htmlFor="phone">Teléfono de contacto</label>
         <input
@@ -155,7 +168,7 @@ console.log("📦 Objeto order recibido en Checkout:", order);
           required
         />
       </div>
-
+ 
       <div className="checkout-wa__field">
         <label htmlFor="deliveryMethod">Método de entrega</label>
         <select
@@ -168,7 +181,7 @@ console.log("📦 Objeto order recibido en Checkout:", order);
           <option value="retiro">Retiro por punto de encuentro</option>
         </select>
       </div>
-
+ 
       {!isRetiro && (
         <div className="checkout-wa__address">
           <div className="checkout-wa__field">
@@ -182,7 +195,7 @@ console.log("📦 Objeto order recibido en Checkout:", order);
               required={!isRetiro}
             />
           </div>
-
+ 
           <div className="checkout-wa__row">
             <div className="checkout-wa__field">
               <label htmlFor="city">Ciudad</label>
@@ -195,7 +208,7 @@ console.log("📦 Objeto order recibido en Checkout:", order);
                 required={!isRetiro}
               />
             </div>
-
+ 
             <div className="checkout-wa__field">
               <label htmlFor="postalCode">Código postal</label>
               <input
@@ -209,7 +222,7 @@ console.log("📦 Objeto order recibido en Checkout:", order);
           </div>
         </div>
       )}
-
+ 
       <div className="checkout-wa__field">
         <label htmlFor="paymentMethod">Método de pago</label>
         <select
@@ -222,7 +235,7 @@ console.log("📦 Objeto order recibido en Checkout:", order);
           <option value="efectivo">Efectivo</option>
         </select>
       </div>
-
+ 
       <div className="checkout-wa__field">
         <label htmlFor="notes">Notas / aclaraciones (opcional)</label>
         <textarea
@@ -233,9 +246,9 @@ console.log("📦 Objeto order recibido en Checkout:", order);
           onChange={handleChange}
         />
       </div>
-
+ 
       {error && <p className="checkout-wa__error">{error}</p>}
-
+ 
       <button
         type="submit"
         className="checkout-wa__submit"
@@ -246,5 +259,6 @@ console.log("📦 Objeto order recibido en Checkout:", order);
     </form>
   );
 }
-
+ 
 export default CheckoutWhatsApp;
+ 

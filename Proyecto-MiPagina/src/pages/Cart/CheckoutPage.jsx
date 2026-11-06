@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../context/CartContext"; // ajustá la ruta a tu proyecto
-import CheckoutWhatsApp from "../../context/CheckoutWhatsApp"; // ajustá la ruta
+import {useCart} from "../../context/CartContext";
+import CheckoutWhatsApp from "../../context/CheckoutWhatsApp";
 import "../../Css/Cart/CheckoutPage.css";
 
 /**
@@ -32,7 +32,7 @@ function CheckoutPage() {
       // Sincroniza el carrito local con el backend: si ya existe una orden
       // "draft" para este usuario la devuelve, si no la crea con los
       // productos actuales del carrito.
-      const token = localStorage.getItem('token'); 
+      const token = localStorage.getItem('token');
 
       const response = await fetch("/api/orders/cart", {
         method: "GET",
@@ -41,7 +41,6 @@ function CheckoutPage() {
           "Authorization": `Bearer ${token}`
         },
       });
-
 
       if (!response.ok) {
         throw new Error(

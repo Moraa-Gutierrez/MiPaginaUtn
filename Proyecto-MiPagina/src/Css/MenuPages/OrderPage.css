@@ -1,0 +1,157 @@
+.orders-main-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Arimo', sans-serif;
+    color: #464d5d;
+}
+
+.orders-main-container h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 45px;
+    color: #b79067;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.orders-loading, .orders-empty {
+    text-align: center;
+    font-size: 18px;
+    margin: 40px 0;
+    color: #666;
+}
+
+.orders-error {
+    color: #d9534f;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    overflow: hidden;
+}
+
+.order-card-header {
+    background: #f8fafc;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 14px;
+}
+
+.order-status {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-pendiente {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.status-pagado {
+    background-color: #d1fae5;
+    color: #059669;
+}
+
+.status-cancelado {
+    background-color: #f3f4f6;
+    color: #4b5563;
+}
+
+.order-card-body {
+    padding: 20px;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.order-table th, .order-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.order-table th {
+    color: #64748b;
+    font-weight: 600;
+}
+
+.product-title {
+    text-transform: capitalize;
+}
+
+.order-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 15px;
+}
+
+.order-total {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1e293b;
+    margin: 0;
+}
+
+.order-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-pay, .btn-cancel {
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+}
+
+.btn-pay {
+    background-color: #10b981;
+    color: white;
+}
+
+.btn-pay:hover {
+    background-color: #059669;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    border: 1px solid #ef4444;
+    color: #ef4444;
+}
+
+.btn-cancel:hover {
+    background-color: #fef2f2;
+}
+
+.orders-disclaimer {
+    margin-top: 30px;
+    color: #94a3b8;
+    text-align: center;
+    font-size: 12px;
+}

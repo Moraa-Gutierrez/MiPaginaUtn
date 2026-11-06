@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useAuth from '../../context/AuthContext'; 
+import { AuthContext } from "../../context/AuthContext" 
 
 function ProductCardItem({ product, onDelete, isPreview, onOpenDetails, onAddToCart }) {
-  const { isAdmin } = useAuth(); 
+  const { isAdmin } = React.useContext(AuthContext);
   const getCategoryName = (categoryId) => {
     switch (Number(categoryId)) {
       case 1: return "Perfumes";
