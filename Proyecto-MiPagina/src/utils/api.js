@@ -5,10 +5,15 @@ const SESSION_KEY = "usuario"
 
 export function leerToken() {
     try {
-        return JSON.parse(sessionStorage.getItem(SESSION_KEY))?.token ?? null
+        const storedUser = sessionStorage.getItem(SESSION_KEY)
+        if (storedUser) {
+            const parsed = JSON.parse(storedUser)
+            if (parsed?.token) return parsed.token
+        }
     } catch {
-        return null
+        // Fallback si no es JSON válido
     }
+    return sessionStorage.getItem("token") || localStorage.getItem("token") || null
 }
 
 export class ApiError extends Error {
@@ -19,17 +24,37 @@ export class ApiError extends Error {
     }
 }
 
-export async function api(metodo, ruta, { body, porDefecto = "Error connecting to the server" } = {}) {
+export async function api(metodo, ruta, opciones = {}) {
     const token = leerToken()
-    const esArchivo = body instanceof FormData
+
+    let bodyData = undefined
+    let porDefecto = "Error connecting to the server"
+
+    if (opciones) {
+        if ("porDefecto" in opciones) {
+            porDefecto = opciones.porDefecto
+        }
+
+        if ("body" in opciones) {
+            bodyData = opciones.body
+        } else {
+            const { porDefecto: _, ...rest } = opciones
+            if (Object.keys(rest).length > 0) {
+                bodyData = rest
+            }
+        }
+    }
+
+    const esArchivo = bodyData instanceof FormData
+    const tieneBody = bodyData !== undefined && metodo !== "GET" && metodo !== "HEAD"
 
     const response = await fetch(`${API_URL}${ruta}`, {
         method: metodo,
         headers: {
-            ...(body !== undefined && !esArchivo ? { "Content-Type": "application/json" } : {}),
+            ...(tieneBody && !esArchivo ? { "Content-Type": "application/json" } : {}),
             ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
-        body: body === undefined ? undefined : esArchivo ? body : JSON.stringify(body),
+        body: tieneBody ? (esArchivo ? bodyData : typeof bodyData === "string" ? bodyData : JSON.stringify(bodyData)) : undefined,
     })
 
     if (!response.ok) {

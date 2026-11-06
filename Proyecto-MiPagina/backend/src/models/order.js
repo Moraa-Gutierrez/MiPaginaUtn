@@ -24,16 +24,22 @@ const orderItemSchema = new mongoose.Schema({
 
 // Sub-esquema para los datos de envío (opcional si está en draft)
 const shippingSchema = new mongoose.Schema({
-    street: { type: String, required: true },
-    city: { type: String, required: true },
-    zip_code: { type: String, required: true }
+    street: { 
+        type: String, 
+        required: function() { return this.parent().delivery_method === 'domicilio'; } 
+    },
+    city: { 
+        type: String, 
+        required: function() { return this.parent().delivery_method === 'domicilio'; } 
+    },
+    zip_code: { 
+        type: String, 
+        required: function() { return this.parent().delivery_method === 'domicilio'; } 
+    }
 }, { _id: false });
 
 const orderSchema = new mongoose.Schema({
-    order_number: {
-        type: String,
-        default: null // Será null mientras esté en borrador (draft) y se asigna al confirmar
-    },
+    order_number: { type: String, default: null },
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -42,7 +48,12 @@ const orderSchema = new mongoose.Schema({
     status: {
         type: String,
         enum: ["draft", "pending", "confirmed", "shipped", "completed", "cancelled"],
-        default: "draft" // El carrito activo arranca como borrador
+        default: "draft"
+    },
+    delivery_method: { 
+        type: String, 
+        enum: ["domicilio", "retiro"],
+        default: "domicilio" 
     },
     total_amount: {
         type: Number,
@@ -50,10 +61,10 @@ const orderSchema = new mongoose.Schema({
         min: [0, "El total no puede ser negativo"],
         default: 0
     },
-    items: [orderItemSchema], // Array embebido de productos
+    items: [orderItemSchema],
     shipping: {
         type: shippingSchema,
-        default: null // Se completa al hacer el checkout
+        default: null
     }
 }, {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } // Mapea las fechas con los nombres de tu diagrama

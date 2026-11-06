@@ -29,6 +29,7 @@ app.use("/api/auth", authRoutes);
 
 // Alias directos para compatibilidad con hooks existentes
 app.use("/orders", orderRoutes);
+app.use("/api/orders", orderRoutes);
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
 app.use("/auth", authRoutes);

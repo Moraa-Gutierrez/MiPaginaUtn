@@ -13,21 +13,12 @@ function CartPage() {
     const confirmado = await confirmAction(
       "¿Confirmar la compra?",
       `Vas a comprar ${unidades} ${unidades === 1 ? "unidad" : "unidades"} por $${total}.`,
-      "Sí, comprar"
+      "Ir a completar datos"
     )
     if (!confirmado) return
 
-    const { ok, error } = await createOrder()
-
-    if (!ok) {
-      notifyError("No se pudo confirmar la compra", error?.message || "Revisá el stock disponible.")
-      return
-    }
-    clearCart()
-    notifyToast("¡Compra confirmada!")
-    navigate("/orders")
+    navigate("/checkout")
   }
-
   const handleClearCart = async () => {
     const confirmed = await confirmAction(
       "¿Vaciar el carrito?",

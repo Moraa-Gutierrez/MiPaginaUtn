@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router-dom"; 
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
 import Products from "./pages/MenuPage/Products";
@@ -10,9 +10,11 @@ import QuienesSomos from "./pages/QuienesSomos";
 import Login from "./pages/Login-Registro/Login";
 import Register from "./pages/Login-Registro/Register";
 import OrdersPage from "./pages/MenuPage/OrderPage";
+import CheckoutWhatsApp from "./pages/Cart/CheckoutWhatsApp";
 // Rutas de Administración y Protección
+import {ROLES} from "./utils/constants.js";
 import AdminRoute from "./components/Admin/AdminRoute";
-import ProtectedRoute from "./components/Layout/ProtectedRoute"; 
+import ProtectedRoute from "./components/Layout/ProtectedRoute";
 import ProductManagementPage from "./pages/Admin/ProductManagementPage";
 import OrderManagementPage from "./pages/Admin/OrderManagementPage";
 
@@ -91,6 +93,14 @@ export const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute roles={["comprador"]}>
                         <OrdersPage />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: "checkout",
+                element: (
+                    <ProtectedRoute roles={[ROLES.COMPRADOR]}>
+                        <CheckoutWhatsApp />
                     </ProtectedRoute>
                 )
             },

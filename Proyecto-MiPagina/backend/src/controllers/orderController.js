@@ -14,8 +14,8 @@ export const getUserOrderController = async (req, res, next) => {
 export const addToCartController = async (req, res, next) => {
     try {
         const usuarioId = req.usuario.id;
-        const { productId, quantity } = req.body;
-        const cart = await orderService.addToCartService(usuarioId, productId, quantity);
+        const { productId, quantity = 1 } = req.body || {};
+        const cart = await orderService.addToCartService(usuarioId, productId, Number(quantity) || 1);
         return res.status(200).json(cart);
     } catch (error) {
         next(error);
@@ -37,7 +37,7 @@ export const removeFromCartController = async (req, res, next) => {
 export const checkoutOrderController = async (req, res, next) => {
     try {
         const usuarioId = req.usuario.id;
-        const { shippingData } = req.body; 
+        const { shippingData } = req.body || {}; 
         const cart = await orderService.checkoutOrderService(usuarioId, shippingData);
         return res.status(201).json(cart); 
     } catch (error) {

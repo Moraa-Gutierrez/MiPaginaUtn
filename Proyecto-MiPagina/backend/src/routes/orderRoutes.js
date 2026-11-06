@@ -13,14 +13,14 @@ router.get("/", soloStaff, orderController.getAllOrdersController);
 router.patch("/:id/status", soloStaff, orderController.updateOrderStatusController);
 
 // 🛒 RUTAS DEL CARRITO (status: 'draft')
-router.get("/cart", permitirRoles(ROLES.COMPRADOR), orderController.getOrCreateCartController);
-router.post("/items", permitirRoles(ROLES.COMPRADOR), orderController.addToCartController);
-router.delete("/items/:productId", permitirRoles(ROLES.COMPRADOR), orderController.removeFromCartController);
+router.get("/cart", permitirRoles(ROLES.COMPRADOR, ROLES.ADMIN), orderController.getOrCreateCartController);
+router.post("/items", permitirRoles(ROLES.COMPRADOR, ROLES.ADMIN), orderController.addToCartController);
+router.delete("/items/:productId", permitirRoles(ROLES.COMPRADOR, ROLES.ADMIN), orderController.removeFromCartController);
 
 // 💳 CHECKOUT Y COMPRA
-router.post("/:id/checkout", verificarToken, permitirRoles(ROLES.COMPRADOR), orderController.checkoutOrderController);
-
+router.post("/checkout", permitirRoles(ROLES.COMPRADOR, ROLES.ADMIN), orderController.checkoutOrderController);
+router.post("/:id/checkout", permitirRoles(ROLES.COMPRADOR, ROLES.ADMIN), orderController.checkoutOrderController);
 // 📜 HISTORIAL DE PEDIDOS CONFIRMADOS
-router.get("/my-orders", permitirRoles(ROLES.COMPRADOR), orderController.getUserOrderController);
+router.get("/my-orders", permitirRoles(ROLES.COMPRADOR, ROLES.ADMIN), orderController.getUserOrderController);
 
 export default router;

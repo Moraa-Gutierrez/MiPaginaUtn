@@ -38,9 +38,10 @@ export const addToCartService = async (usuarioId, productId, quantity) => {
 
     // Check if the product is already in the cart items array
     const itemIndex = cart.items.findIndex((item) => {
-    const idEnCart = item.product_id._id ? item.product_id._id.toString() : item.product_id.toString();
-    return idEnCart === productId;
-});
+        if (!item.product_id) return false;
+        const idEnCart = item.product_id._id ? item.product_id._id.toString() : item.product_id.toString();
+        return idEnCart === productId?.toString();
+    });
 
     if (itemIndex > -1) {
         cart.items[itemIndex].quantity += quantity;
@@ -73,7 +74,7 @@ export const removeFromCartService = async (userId, productId) => {
     }
 
     cart.items = cart.items.filter(
-        (item) => item.product_id.toString() !== productId
+        (item) => (item.product_id?._id ? item.product_id._id.toString() : item.product_id?.toString()) !== productId?.toString()
     );
 
     cart.total_amount = cart.items.reduce(
@@ -86,7 +87,7 @@ export const removeFromCartService = async (userId, productId) => {
 };
 
 // 4. Checkout / Confirm order with atomic stock reduction and rollback (inspired by teacher's best practices)
-export const checkoutOrderService = async (userId, shippingData) => {
+export const checkoutOrderService = async (userId, shippingData = {}) => {
     const cart = await Order.findOne({ user_id: userId, status: "draft" });
 
     if (!cart || cart.items.length === 0) {
@@ -117,11 +118,12 @@ export const checkoutOrderService = async (userId, shippingData) => {
         // Generate formal order number
         const orderNumber = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
-        // Update draft cart to confirmed order
-        cart.status = "confirmed";
+       // Update draft cart to pending order (esperando validación de pago)
+  
+        cart.status = "pending";
         cart.order_number = orderNumber;
+        cart.delivery_method = shippingData?.deliveryMethod || "domicilio"; 
         cart.shipping = shippingData;
-
         // Recalculate total safely on server
         cart.total_amount = cart.items.reduce(
             (acc, item) => acc + item.unit_price * item.quantity, 
