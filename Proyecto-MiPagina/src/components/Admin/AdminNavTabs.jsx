@@ -25,6 +25,16 @@ function AdminNavTabs() {
                 <i className="fa-solid fa-receipt"></i>
                 Gestión de Órdenes y Pedidos
             </NavLink>
+
+            <NavLink
+                to="/admin/users"
+                className={({ isActive }) =>
+                    isActive ? "admin-nav-tab active" : "admin-nav-tab"
+                }
+            >
+                <i className="fa-solid fa-users"></i>
+                Gestión de Usuarios
+            </NavLink>
         </div>
     );
 }

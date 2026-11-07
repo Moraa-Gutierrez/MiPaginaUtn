@@ -153,17 +153,22 @@ export const getUserOrdersService = async (userId) => {
 // 6. Get all orders for administration panel (sorted by date)
 export const getAllOrdersService = async () => {
     return await Order.find()
-        .populate("user_id", "name lastname email")
+        .populate("user_id", "name lastname email role")
         .sort({ created_at: -1, createdAt: -1 });
 };
 
 // 7. Update order status dynamically
 export const updateOrderStatusService = async (orderId, status) => {
+    const validStatuses = ["draft", "pending", "confirmed", "shipped", "completed", "cancelled"];
+    if (!validStatuses.includes(status)) {
+        throw new ErrorApp(`Estado no válido. Los estados permitidos son: ${validStatuses.join(", ")}`, 400);
+    }
+
     const updatedOrder = await Order.findByIdAndUpdate(
         orderId,
         { status },
         { returnDocument: "after", runValidators: true }
-    ).populate("user_id", "name lastname email");
+    ).populate("user_id", "name lastname email role");
 
     if (!updatedOrder) {
         throw new ErrorApp(`Orden con ID ${orderId} no encontrada`, 404);

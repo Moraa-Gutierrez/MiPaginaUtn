@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { API_URL } from '../../config';
 
 // Datos de demostración enriquecidos para cuando la base de datos no tiene órdenes iniciales
 const INITIAL_DEMO_ORDERS = [
@@ -147,11 +146,6 @@ export function useAdminOrders() {
     const [error, setError] = useState(null);
     const [toast, setToast] = useState(null);
 
-    const getAuthHeaders = () => {
-        const token = sessionStorage.getItem("token") || localStorage.getItem("token");
-        return token ? { Authorization: `Bearer ${token}` } : {};
-    };
-
     const showToast = (message, type = 'success') => {
         setToast({ message, type });
     };
@@ -165,40 +159,14 @@ export function useAdminOrders() {
         setLoading(true);
         setError(null);
         try {
-            let response = await fetch(`${API_URL}/orders`, {
-                headers: {
-                    ...getAuthHeaders(),
-                    "Content-Type": "application/json"
-                }
-            });
-
-            if (!response.ok && response.status === 404) {
-                response = await fetch(`${API_URL}/api/orders`, {
-                    headers: {
-                        ...getAuthHeaders(),
-                        "Content-Type": "application/json"
-                    }
-                });
-            }
-
-            if (response.ok) {
-                const data = await response.json();
-                if (Array.isArray(data) && data.length > 0) {
-                    setOrders(data);
-                    return;
-                }
-            }
-
-            // Si el backend no tiene órdenes o no responde con datos, usamos demo persistente en sessionStorage
-            const cachedOrders = sessionStorage.getItem("admin_orders_cache");
-            if (cachedOrders) {
-                setOrders(JSON.parse(cachedOrders));
-            } else {
-                setOrders(INITIAL_DEMO_ORDERS);
-                sessionStorage.setItem("admin_orders_cache", JSON.stringify(INITIAL_DEMO_ORDERS));
+            const data = await api("GET", "/orders");
+            if (Array.isArray(data)) {
+                setOrders(data);
+                return;
             }
         } catch (err) {
             console.warn("Aviso al consultar órdenes del backend:", err.message);
+            setError(err.message);
             const cachedOrders = sessionStorage.getItem("admin_orders_cache");
             setOrders(cachedOrders ? JSON.parse(cachedOrders) : INITIAL_DEMO_ORDERS);
         } finally {
@@ -214,49 +182,22 @@ export function useAdminOrders() {
     const updateOrderStatus = async (orderId, newStatus) => {
         setUpdating(true);
         try {
-            let success = false;
-            try {
-                let response = await fetch(`${API_URL}/orders/${orderId}/status`, {
-                    method: "PATCH",
-                    headers: {
-                        ...getAuthHeaders(),
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ status: newStatus }),
-                });
+            const updatedOrder = await api("PUT", `/orders/${orderId}/status`, {
+                status: newStatus
+            });
 
-                if (!response.ok && response.status === 404) {
-                    response = await fetch(`${API_URL}/api/orders/${orderId}/status`, {
-                        method: "PATCH",
-                        headers: {
-                            ...getAuthHeaders(),
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ status: newStatus }),
-                    });
-                }
-
-                if (response.ok) {
-                    const updatedOrder = await response.json();
-                    setOrders(prev => prev.map(o => (o._id || o.id) === orderId ? { ...o, ...updatedOrder, status: newStatus } : o));
-                    success = true;
-                }
-            } catch (networkErr) {
-                console.warn("Fallo en petición al backend, actualizando localmente:", networkErr);
-            }
-
-            // Si la llamada remota falló o fue mockeada, actualizamos el estado local
+            setOrders(prev => prev.map(o => (o._id || o.id) === orderId ? { ...o, ...(updatedOrder || {}), status: newStatus } : o));
+            showToast(`Estado de la orden actualizado a "${newStatus}".`, "success");
+            return { success: true, order: updatedOrder };
+        } catch (err) {
+            console.error("Error al actualizar estado:", err);
+            // Si la llamada remota falla, mantener el estado local y notificar
             setOrders(prev => {
                 const updated = prev.map(o => (o._id || o.id) === orderId ? { ...o, status: newStatus } : o);
                 sessionStorage.setItem("admin_orders_cache", JSON.stringify(updated));
                 return updated;
             });
-
-            showToast(`Estado de la orden actualizado a "${newStatus}".`, "success");
-            return { success: true };
-        } catch (err) {
-            console.error("Error al actualizar estado:", err);
-            showToast("No se pudo actualizar el estado de la orden.", "error");
+            showToast(err.message || "No se pudo actualizar el estado de la orden.", "error");
             return { success: false, error: err.message };
         } finally {
             setUpdating(false);

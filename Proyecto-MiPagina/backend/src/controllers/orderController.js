@@ -66,7 +66,10 @@ export const getAllOrdersController = async (req, res, next) => {
 export const updateOrderStatusController = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { status } = req.body;
+        const { status } = req.body || {};
+        if (!status) {
+            return res.status(400).json({ error: "El estado es requerido" });
+        }
         const updatedOrder = await orderService.updateOrderStatusService(id, status);
         return res.status(200).json(updatedOrder);
     } catch (error) {

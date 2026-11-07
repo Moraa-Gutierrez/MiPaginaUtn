@@ -27,5 +27,48 @@ export const dataPublicUser = (usuario) => ({
     name: usuario.name || usuario.nombre,        
     lastname: usuario.lastname || usuario.apellido, 
     email: usuario.email,
-    role: usuario.role || usuario.rol             
+    role: usuario.role || usuario.rol,
+    active: usuario.active !== undefined ? usuario.active : true             
 });
+
+export const updateUserRoleService = async (id, role) => {
+    // Normalizar role: acepta 'customer' o 'comprador', y 'admin'
+    const normalizedRole = (role === "customer" || role === "comprador") ? "comprador" : role;
+    const validRoles = ["comprador", "customer", "admin", "vendedor"];
+    if (!validRoles.includes(role)) {
+        throw new ErrorApp("Rol no válido. Los roles permitidos son: customer/comprador, admin", 400);
+    }
+
+    const updatedUser = await Usuario.findByIdAndUpdate(
+        id,
+        { role: normalizedRole },
+        { returnDocument: "after", runValidators: true }
+    );
+    if (!updatedUser) {
+        throw new ErrorApp(`Usuario con ID ${id} no encontrado`, 404);
+    }
+    return updatedUser;
+};
+
+export const updateUserStatusService = async (id, active) => {
+    const updatedUser = await Usuario.findByIdAndUpdate(
+        id,
+        { active: Boolean(active) },
+        { returnDocument: "after", runValidators: true }
+    );
+    if (!updatedUser) {
+        throw new ErrorApp(`Usuario con ID ${id} no encontrado`, 404);
+    }
+    return updatedUser;
+};
+
+export const deleteUserService = async (id) => {
+    const user = await Usuario.findById(id);
+    if (!user) {
+        throw new ErrorApp(`Usuario con ID ${id} no encontrado`, 404);
+    }
+    // Baja lógica (active = false)
+    user.active = false;
+    await user.save();
+    return user;
+};

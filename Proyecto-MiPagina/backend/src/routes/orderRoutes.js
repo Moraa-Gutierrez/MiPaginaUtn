@@ -11,6 +11,7 @@ router.use(verificarToken);
 // 👑 RUTAS DE ADMINISTRACIÓN (Panel de Gestión de Pedidos)
 router.get("/", soloStaff, orderController.getAllOrdersController);
 router.patch("/:id/status", soloStaff, orderController.updateOrderStatusController);
+router.put("/:id/status", soloStaff, orderController.updateOrderStatusController);
 
 // 🛒 RUTAS DEL CARRITO (status: 'draft')
 router.get("/cart", permitirRoles(ROLES.COMPRADOR, ROLES.ADMIN), orderController.getOrCreateCartController);

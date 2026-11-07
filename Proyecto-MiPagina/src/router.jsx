@@ -17,6 +17,7 @@ import AdminRoute from "./components/Admin/AdminRoute";
 import ProtectedRoute from "./components/Layout/ProtectedRoute";
 import ProductManagementPage from "./pages/Admin/ProductManagementPage";
 import OrderManagementPage from "./pages/Admin/OrderManagementPage";
+import UserManagementPage from "./pages/Admin/UserManagementPage";
 
 export const router = createBrowserRouter([
     {
@@ -61,6 +62,14 @@ export const router = createBrowserRouter([
                 element: (
                     <AdminRoute>
                         <OrderManagementPage />
+                    </AdminRoute>
+                )
+            },
+            {
+                path: "admin/users",
+                element: (
+                    <AdminRoute>
+                        <UserManagementPage />
                     </AdminRoute>
                 )
             },

@@ -27,6 +27,14 @@ function MenuDesplegable() {
         <span>Pedidos</span>
       </div>
     </Dropdown.Item>
+
+    <Dropdown.Item as={Link} to="/admin/users" className="custom-item">
+      <span className="icon">👥</span>
+      <div className="text-wrapper">
+        <span>Gestión de</span>
+        <span>Usuarios</span>
+      </div>
+    </Dropdown.Item>
     
     <Dropdown.Item as={Link} to="/create-product" className="custom-item">
       <span className="icon">+</span>

@@ -10,5 +10,10 @@ router.use(verificarToken, permitirRoles(ROLES.ADMIN));
 router.get("/", userController.getUsersController);
 router.get("/:id", userController.getUserByIdController);
 router.post("/", userController.createUserController);
+router.put("/:id/role", userController.updateUserRoleController);
+router.patch("/:id/role", userController.updateUserRoleController);
+router.put("/:id/status", userController.updateUserStatusController);
+router.patch("/:id/status", userController.updateUserStatusController);
+router.delete("/:id", userController.deleteUserController);
 
 export default router;
