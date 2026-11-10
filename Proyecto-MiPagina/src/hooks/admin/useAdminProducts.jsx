@@ -84,7 +84,8 @@ export function useAdminProducts() {
 
             if (!response.ok) {
                 const errData = await response.json().catch(() => ({}));
-                throw new Error(errData.error || errData.message || `Error al crear producto (${response.status})`);
+                const msg = errData.mensajeError || (typeof errData.detalles === 'string' ? errData.detalles : '') || errData.error || errData.message || `Error al crear producto (${response.status})`;
+                throw new Error(msg);
             }
 
             const newProduct = await response.json();
@@ -131,7 +132,8 @@ export function useAdminProducts() {
 
             if (!response.ok) {
                 const errData = await response.json().catch(() => ({}));
-                throw new Error(errData.error || errData.message || `Error al actualizar producto (${response.status})`);
+                const msg = errData.mensajeError || (typeof errData.detalles === 'string' ? errData.detalles : '') || errData.error || errData.message || `Error al actualizar producto (${response.status})`;
+                throw new Error(msg);
             }
 
             const updatedProduct = await response.json();

@@ -21,7 +21,6 @@ export const getOrCreateCartService = async (userId) => {
 
     return cart;
 };
-
 // 2. Add item to cart (draft order)
 export const addToCartService = async (usuarioId, productId, quantity) => {
     // Verify product exists and is active

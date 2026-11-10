@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-
+import {api} from '../../utils/api';
 // Datos de demostración enriquecidos para cuando la base de datos no tiene órdenes iniciales
 const INITIAL_DEMO_ORDERS = [
     {
@@ -165,7 +165,7 @@ export function useAdminOrders() {
                 return;
             }
         } catch (err) {
-            console.warn("Aviso al consultar órdenes del backend:", err.message);
+            console.error("Aviso al consultar órdenes del backend:", err.message);
             setError(err.message);
             const cachedOrders = sessionStorage.getItem("admin_orders_cache");
             setOrders(cachedOrders ? JSON.parse(cachedOrders) : INITIAL_DEMO_ORDERS);

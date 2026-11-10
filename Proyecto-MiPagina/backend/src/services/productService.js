@@ -27,16 +27,22 @@ export const getProductByIdService = async (id) => {
 export const createProductService = async (data) => {
     let finalMaterial = null;
     if (Number(data.category_id) === 5) {
-        finalMaterial = data.material || "yeso"||"cemento";
+        finalMaterial = data.material || "yeso";
     }
 
     try {
-        const newProduct = await Product.create({
+        const productPayload = {
             ...data,
             category_id: Number(data.category_id),
             material: finalMaterial
-        });
+        };
 
+        if (data.price !== undefined) productPayload.price = Number(data.price);
+        if (data.quantity !== undefined) productPayload.quantity = Number(data.quantity);
+        if (data.active !== undefined) productPayload.active = String(data.active) === "true" || data.active === true;
+        if (data.highlighted !== undefined) productPayload.highlighted = String(data.highlighted) === "true" || data.highlighted === true;
+
+        const newProduct = await Product.create(productPayload);
         return newProduct;
     } catch (error) {
         if (error.code === 11000) {
@@ -49,14 +55,24 @@ export const createProductService = async (data) => {
 
 // 4. Update an existing product
 export const updateProductService = async (id, data) => {
-    if (data.category_id && Number(data.category_id) !== 5) {
-        data.material = null;
+    const updatePayload = { ...data };
+
+    if (updatePayload.category_id !== undefined) {
+        updatePayload.category_id = Number(updatePayload.category_id);
+        if (updatePayload.category_id !== 5) {
+            updatePayload.material = null;
+        }
     }
+
+    if (updatePayload.price !== undefined) updatePayload.price = Number(updatePayload.price);
+    if (updatePayload.quantity !== undefined) updatePayload.quantity = Number(updatePayload.quantity);
+    if (updatePayload.active !== undefined) updatePayload.active = String(updatePayload.active) === "true" || updatePayload.active === true;
+    if (updatePayload.highlighted !== undefined) updatePayload.highlighted = String(updatePayload.highlighted) === "true" || updatePayload.highlighted === true;
 
     try {
         const updatedProduct = await Product.findByIdAndUpdate(
             id,
-            data,
+            updatePayload,
             { 
                 returnDocument: "after", 
                 runValidators: true // Forces Mongoose to run schema validators on updates

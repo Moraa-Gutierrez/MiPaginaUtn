@@ -3,10 +3,12 @@ import { subir as subirLocal } from "../services/storage/local.js";
 import { subir as subirSupabase } from "../services/storage/supabase.js";
 import { STORAGE } from "../utils/config.js";
 
-const uploadFile = async (file) => {
+const uploadFile = async (file, categoryId) => {
     if (!file) return null;
     const uploader = STORAGE === "supabase" ? subirSupabase : subirLocal;
-    return await uploader(file);
+
+
+    return STORAGE === "supabase" ? await uploader(file, categoryId) : await uploader(file);
 };
 
 export const getProductsController = async (req, res, next) => {
@@ -23,7 +25,7 @@ export const getProductByIdController = async (req, res, next) => {
         const product = await productService.getProductByIdService(req.params.id);
         if (!product) {
             return res.status(404).json({ message: "Producto no encontrado" });
-        }   
+        }
         res.status(200).json(product);
     } catch (error) {
         next(error);
@@ -32,20 +34,28 @@ export const getProductByIdController = async (req, res, next) => {
 
 export const createProductController = async (req, res, next) => {
     try {
+        const datosBody = req.body || {};
+
         if (req.file) {
-            req.body.image = await uploadFile(req.file);
+            datosBody.image = await uploadFile(req.file, datosBody.category_id);
         }
-        const product = await productService.createProductService(req.body);
+
+        const product = await productService.createProductService(datosBody);
         res.status(201).json(product);
     } catch (error) {
-        next(error);
+        console.error("❌ Error en createProductController:", error);
+        const statusCode = error.statusCode || error.status || 500;
+        res.status(statusCode).json({
+            mensajeError: error.message || "Error al crear el producto",
+            detalles: error.error_description || error.error || error.errors || error.message || error
+        });
     }
 };
 
 export const updateProductController = async (req, res, next) => {
     try {
         if (req.file) {
-            req.body.image = await uploadFile(req.file);
+            req.body.image = await uploadFile(req.file, req.body.category_id);
         }
         const product = await productService.updateProductService(req.params.id, req.body);
         if (!product) {
@@ -53,6 +63,7 @@ export const updateProductController = async (req, res, next) => {
         }
         res.status(200).json(product);
     } catch (error) {
+        console.error("❌ Error en updateProductController:", error);
         next(error);
     }
 };

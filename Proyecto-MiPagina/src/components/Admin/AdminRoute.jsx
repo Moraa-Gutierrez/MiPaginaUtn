@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import {AuthProvider} from '../../context/AuthContext';
+import useAuth  from '../../hooks/user/useAuth';
 import '../../Css/Admin/AdminShared.css';
 
 
 function AdminRoute({ children }) {
-    const { user, isAdmin, isAuthenticated, loading, simulateAdminLogin } = AuthProvider();
-
+    const { user, isAdmin, isAuthenticated, loading, simulateAdminLogin } = useAuth();
     
     const isLocalAdmin = 
         localStorage.getItem("role") === "admin" || 
