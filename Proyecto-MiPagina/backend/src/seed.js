@@ -28,7 +28,8 @@ const [bodySplash, cremaManos, perfumeHumor, velaVainilla, bandejaCemento, busto
         stock_quantity: 15,
         active: true,
         highlighted: true,
-        category: { name: "Cuidados Diarios" }
+        category: { name: "Cuidados Diarios" },
+        category_id: 4
     },
     {
         product_name: "Crema Hidratante para Manos Natura Tododia",
@@ -38,7 +39,8 @@ const [bodySplash, cremaManos, perfumeHumor, velaVainilla, bandejaCemento, busto
         stock_quantity: 20,
         active: true,
         highlighted: false,
-        category: { name: "Cuidados Diarios" }
+        category: { name: "Cuidados Diarios" },
+        category_id: 4
     },
     {
         product_name: "Perfume Natura Humor Próprio 75ml",
@@ -48,7 +50,8 @@ const [bodySplash, cremaManos, perfumeHumor, velaVainilla, bandejaCemento, busto
         stock_quantity: 10,
         active: true,
         highlighted: true,
-        category: { name: "Perfumes" }
+        category: { name: "Perfumes" },
+        category_id: 1
     },
     {
         product_name: "Vela Aromática en Frasco de Vidrio (Vainilla & Coco)",
@@ -58,7 +61,8 @@ const [bodySplash, cremaManos, perfumeHumor, velaVainilla, bandejaCemento, busto
         stock_quantity: 12,
         active: true,
         highlighted: true,
-        category: { name: "Velas" }
+        category: { name: "Velas" },
+        category_id: 3
     },
     {
         product_name: "Bandeja Macetera Ovalada de Cemento",
@@ -68,7 +72,8 @@ const [bodySplash, cremaManos, perfumeHumor, velaVainilla, bandejaCemento, busto
         stock_quantity: 8,
         active: true,
         highlighted: false,
-        category: { name: "Figuras de Yeso y Cemento" }
+        category: { name: "Figuras de Yeso y Cemento" },
+        category_id: 5
     },
     {
         product_name: "Busto Escultura David en Yeso",
@@ -78,7 +83,8 @@ const [bodySplash, cremaManos, perfumeHumor, velaVainilla, bandejaCemento, busto
         stock_quantity: 6,
         active: true,
         highlighted: true,
-        category: { name: "Figuras de Yeso y Cemento" }
+        category: { name: "Figuras de Yeso y Cemento" },
+        category_id: 5
     },
     {
         product_name: "Soporte Dual 3D para Joysticks y Auriculares",
@@ -88,7 +94,8 @@ const [bodySplash, cremaManos, perfumeHumor, velaVainilla, bandejaCemento, busto
         stock_quantity: 10,
         active: true,
         highlighted: false,
-        category: { name: "Accesorios" }
+        category: { name: "Accesorios" },
+        category_id: 2
     }
 ]);
 
